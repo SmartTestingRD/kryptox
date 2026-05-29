@@ -1,0 +1,1862 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="What is KryptoX">
+  <script is:inline>menuActive('about')</script>
+
+<!-- ============================================================
+     GLOBAL BASE — START
+     Tokens, reset, tipografía, helpers, animaciones, reveal, KXParticles
+     ============================================================ -->
+
+<style>
+/* --- GLOBAL: Design Tokens & Base --- */
+.kx-about {
+    --kx-bg:              #ffffff;
+    --kx-bg-soft:         #f3f5f7;
+    --kx-bg-softer:       #f6f8fa;
+    --kx-text:            #0a0f12;
+    --kx-text-soft:       rgba(10,15,18,0.72);
+    --kx-text-muted:      rgba(10,15,18,0.54);
+    --kx-border:          rgba(10,15,18,0.10);
+    --kx-border-strong:   rgba(10,15,18,0.16);
+    --kx-dark:            #000000;
+    --kx-dark-2:          #071015;
+    --kx-shadow-soft:     0 10px 30px rgba(0,0,0,0.10);
+    --kx-shadow-card:     0 16px 44px rgba(0,0,0,0.10);
+    --kx-shadow-deep:     0 26px 70px rgba(0,0,0,0.18);
+    position: relative;
+    background: var(--kx-bg);
+    color: var(--kx-text);
+    overflow: hidden;
+}
+
+/* --- GLOBAL: Container --- */
+.kx-about__container {
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- GLOBAL: Eyebrow pill (dark sections) --- */
+.kx-about__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.84);
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.kx-about__eyebrowDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--mainColor);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--mainColor) 12%, transparent);
+    flex: 0 0 auto;
+}
+
+/* --- GLOBAL: Section label (light sections) --- */
+.kx-about__sectionLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: color-mix(in srgb, var(--mainColor) 64%, #0a0f12);
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.kx-about__sectionLabel::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+/* --- GLOBAL: Section title & sub --- */
+.kx-about__sectionTitle {
+    margin: 0;
+    font-size: 38px;
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+    font-weight: 200;
+    color: var(--kx-text);
+}
+
+.kx-about__sectionSub {
+    margin: 18px 0 0;
+    max-width: 760px;
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--kx-text-soft);
+}
+
+/* --- GLOBAL: Button base --- */
+.kx-about__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 600;
+    transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease,
+                background 160ms ease, border-color 160ms ease, color 160ms ease;
+    will-change: transform;
+}
+
+.kx-about__btn:hover { transform: translateY(-1px); filter: brightness(.94); }
+
+.kx-about__btnPrimary {
+    background: color-mix(in srgb, var(--mainColor) 88%, #000);
+    color: #000;
+    box-shadow: 0 18px 60px color-mix(in srgb, var(--mainColor) 22%, rgba(0,0,0,0.42));
+}
+.kx-about__btnPrimary:hover{ color: #000; }
+
+.kx-about__btnSecondary {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    border-color: rgba(255,255,255,0.16);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.kx-about__btnSecondary:hover {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.22);
+    color: #fff;
+}
+
+.kx-about__btnIcon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex: 0 0 auto;
+}
+
+/* --- GLOBAL: Section wrapper --- */
+.kx-about__section { position: relative; padding: 108px 0; }
+.kx-about__section--soft { background: var(--kx-bg-soft); }
+.kx-about__section--dark {
+    background:
+        radial-gradient(circle at 18% 12%, rgba(0,191,194,0.14), transparent 24%),
+        radial-gradient(circle at 84% 82%, rgba(0,191,194,0.10), transparent 20%),
+        linear-gradient(180deg, #03080d 0%, #071015 100%);
+    color: #fff;
+}
+
+.kx-about__section--dark .kx-about__sectionTitle { color: #fff; }
+.kx-about__section--dark .kx-about__sectionSub   { color: rgba(255,255,255,0.72); }
+
+/* --- GLOBAL: Canvas particle layer --- */
+.kx-about__canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- GLOBAL: Scroll reveal --- */
+.kx-about__reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.kx-about__reveal.is_visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- GLOBAL: Keyframes --- */
+@keyframes kxAboutPulse {
+    0%   { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(5.4); opacity: 0; }
+}
+
+@keyframes kxAboutFlow {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes kxAboutSpin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* responsive handled per-section below */
+
+@media screen and (max-width: 450px) {
+    .kx-about__sectionTitle{
+        font-size: 30px;
+    }
+}
+</style>
+
+<!-- GLOBAL wrapper open -->
+<section class="kx-about">
+
+<script is:inline>
+/* ============================================================
+   GLOBAL: KXParticles Engine + Scroll Reveal
+   ============================================================ */
+(function(){
+
+    /* --- Particle Engine --- */
+    window.KXAboutParticles = function(canvasEl, opts) {
+        var canvas = canvasEl;
+        var ctx    = canvas.getContext('2d');
+        var W, H, nodes = [], raf, startTime = null;
+
+        var defaults = {
+            type:    'network',
+            count:   45,
+            color:   '0,191,194',
+            speed:   0.28,
+            opacity: 0.35
+        };
+        var o = Object.assign({}, defaults, opts || {});
+
+        function resize() {
+            W = canvas.width  = canvas.offsetWidth;
+            H = canvas.height = canvas.offsetHeight;
+        }
+
+        function rand(a, b) { return a + Math.random() * (b - a); }
+
+        function initNodes() {
+            nodes = [];
+            for (var i = 0; i < o.count; i++) {
+                nodes.push({
+                    x:     rand(0, W),
+                    y:     rand(0, H),
+                    vx:    rand(-o.speed, o.speed),
+                    vy:    rand(-o.speed * 0.6, o.speed * 0.6),
+                    r:     rand(1.2, 2.6),
+                    phase: rand(0, Math.PI * 2),
+                    spd:   rand(0.003, 0.008)
+                });
+            }
+        }
+
+        function moveNodes() {
+            for (var i = 0; i < nodes.length; i++) {
+                var n = nodes[i];
+                n.x += n.vx; n.y += n.vy;
+                if (n.x < -20) n.x = W + 20;
+                if (n.x > W+20) n.x = -20;
+                if (n.y < -20) n.y = H + 20;
+                if (n.y > H+20) n.y = -20;
+            }
+        }
+
+        function drawNetwork(t) {
+            ctx.clearRect(0, 0, W, H);
+            for (var i = 0; i < nodes.length; i++) {
+                for (var j = i+1; j < nodes.length; j++) {
+                    var dx = nodes[i].x - nodes[j].x;
+                    var dy = nodes[i].y - nodes[j].y;
+                    var d  = Math.sqrt(dx*dx + dy*dy);
+                    if (d < 120) {
+                        var a = (1 - d/120) * 0.18 * o.opacity;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = 'rgba('+o.color+','+a+')';
+                        ctx.lineWidth = 0.7;
+                        ctx.stroke();
+                    }
+                }
+            }
+            for (var i = 0; i < nodes.length; i++) {
+                var pulse = 0.4 + 0.6 * Math.sin(t * nodes[i].spd + nodes[i].phase);
+                ctx.beginPath();
+                ctx.arc(nodes[i].x, nodes[i].y, nodes[i].r, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba('+o.color+','+(pulse * o.opacity * 0.8)+')';
+                ctx.fill();
+            }
+        }
+
+        function drawFlow(t) {
+            ctx.clearRect(0, 0, W, H);
+            for (var i = 0; i < nodes.length; i++) {
+                var n = nodes[i];
+                var wave = Math.sin(t * 0.5 + n.phase) * 20;
+                var a    = (0.25 + 0.25 * Math.sin(t * n.spd * 2 + n.phase)) * o.opacity;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y + wave, n.r * 0.9, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba('+o.color+','+a+')';
+                ctx.fill();
+            }
+        }
+
+        function drawGrid(t) {
+            ctx.clearRect(0, 0, W, H);
+            var cols = Math.floor(W / 55);
+            var rows = Math.floor(H / 55);
+            for (var ci = 0; ci <= cols; ci++) {
+                for (var ri = 0; ri <= rows; ri++) {
+                    var x    = ci * 55;
+                    var y    = ri * 55;
+                    var dist = Math.sqrt(Math.pow(x-W/2,2) + Math.pow(y-H/2,2));
+                    var wave = Math.sin(t * 0.4 - dist * 0.011);
+                    var a    = (0.06 + 0.06 * wave) * o.opacity;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 1.2, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba('+o.color+','+a+')';
+                    ctx.fill();
+                }
+            }
+        }
+
+        function drawScanner(t) {
+            ctx.clearRect(0, 0, W, H);
+            var scanY = ((t * 26) % (H + 60)) - 30;
+            var grad  = ctx.createLinearGradient(0, scanY-50, 0, scanY+50);
+            grad.addColorStop(0,   'rgba('+o.color+',0)');
+            grad.addColorStop(0.5, 'rgba('+o.color+','+(0.05 * o.opacity)+')');
+            grad.addColorStop(1,   'rgba('+o.color+',0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, scanY-50, W, 100);
+            for (var i = 0; i < nodes.length; i++) {
+                var n = nodes[i];
+                var a = (0.12 + 0.08 * Math.sin(t * n.spd + n.phase)) * o.opacity;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r * 0.8, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba('+o.color+','+a+')';
+                ctx.fill();
+            }
+        }
+
+        function drawWave(t) {
+            ctx.clearRect(0, 0, W, H);
+            for (var i = 0; i < nodes.length; i++) {
+                var n  = nodes[i];
+                var wo = Math.sin(t * 0.4 + n.x * 0.014 + n.phase) * 28;
+                var a  = (0.18 + 0.12 * Math.sin(t * n.spd + n.phase)) * o.opacity;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y + wo, n.r, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba('+o.color+','+a+')';
+                ctx.fill();
+            }
+        }
+
+        function loop(ts) {
+            if (!startTime) startTime = ts;
+            var t = (ts - startTime) * 0.001;
+            moveNodes();
+            if      (o.type === 'network') drawNetwork(t);
+            else if (o.type === 'flow')    drawFlow(t);
+            else if (o.type === 'grid')    drawGrid(t);
+            else if (o.type === 'scanner') drawScanner(t);
+            else if (o.type === 'wave')    drawWave(t);
+            raf = requestAnimationFrame(loop);
+        }
+
+        function init() { resize(); initNodes(); raf = requestAnimationFrame(loop); }
+        window.addEventListener('resize', function(){ resize(); initNodes(); });
+        init();
+        return { destroy: function(){ cancelAnimationFrame(raf); } };
+    };
+
+    /* --- Scroll Reveal Observer --- */
+    document.addEventListener('DOMContentLoaded', function(){
+        var root = document.querySelector('.kx-about');
+        if (!root) return;
+
+        var items = root.querySelectorAll('.kx-about__reveal');
+
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is_visible');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+            items.forEach(function(item){ io.observe(item); });
+        } else {
+            items.forEach(function(item){ item.classList.add('is_visible'); });
+        }
+
+        /* --- Smooth anchor scroll --- */
+        root.querySelectorAll('a[href^="#"]').forEach(function(link){
+            link.addEventListener('click', function(e){
+                var href = link.getAttribute('href');
+                if (!href || href === '#') return;
+                var target = document.querySelector(href);
+                if (!target) return;
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        /* --- Init all section canvases --- */
+        root.querySelectorAll('.kx-about__canvas').forEach(function(canvas){
+            KXAboutParticles(canvas, {
+                type:    canvas.dataset.type    || 'network',
+                count:   parseInt(canvas.dataset.count   || '40', 10),
+                color:   canvas.dataset.color   || '0,191,194',
+                speed:   parseFloat(canvas.dataset.speed || '0.28'),
+                opacity: parseFloat(canvas.dataset.opacity || '0.3')
+            });
+        });
+    });
+})();
+</script>
+
+<!-- ============================================================
+     GLOBAL BASE — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 1: HERO — START
+     ============================================================ -->
+
+<style>
+/* --- HERO --- */
+.kx-about__hero {
+    position: relative;
+    padding: 128px 0 110px;
+    background:
+        radial-gradient(circle at 15% 18%, rgba(0,191,194,0.18), transparent 24%),
+        radial-gradient(circle at 84% 24%, rgba(0,191,194,0.12), transparent 20%),
+        linear-gradient(180deg, #000000 0%, #071015 100%);
+    color: #fff;
+    isolation: isolate;
+}
+
+.kx-about__hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    opacity: 0.34;
+    pointer-events: none;
+}
+
+.kx-about__hero::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 160px;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 100%);
+    pointer-events: none;
+}
+
+.kx-about__heroGrid {
+    display: grid;
+    grid-template-columns: minmax(0,1.06fr) minmax(460px,0.94fr);
+    gap: 48px;
+    align-items: center;
+}
+
+.kx-about__heroTitle {
+    margin: 24px 0 0;
+    max-width: 780px;
+    font-size: 68px;
+    line-height: 0.97;
+    letter-spacing: -0.05em;
+    font-weight: 600;
+    color: #fff;
+}
+
+.kx-about__heroSub {
+    margin: 24px 0 0;
+    max-width: 700px;
+    font-size: 17px;
+    line-height: 1.58;
+    color: rgba(255,255,255,0.82);
+}
+
+.kx-about__heroText {
+    margin: 18px 0 0;
+    max-width: 670px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.62);
+        display: none;
+}
+
+.kx-about__heroActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+/* Mini stat cards */
+.kx-about__heroMini {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 14px;
+    margin-top: 40px;
+    max-width: 720px;
+}
+
+.kx-about__heroMiniCard {
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.kx-about__heroMiniCard:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.08);
+}
+
+.kx-about__heroMiniLabel {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255,255,255,0.52);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.kx-about__heroMiniValue {
+    display: block;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* Hero visual diagram */
+.kx-about__heroVisual {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kx-about__heroCore {
+    position: relative;
+    width: min(100%, 620px);
+    aspect-ratio: 1 / 1;
+}
+
+.kx-about__heroCore::before {
+    content: "";
+    position: absolute;
+    inset: 12% 12%;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+}
+
+.kx-about__heroCore::after {
+    content: "";
+    position: absolute;
+    inset: 24% 24%;
+    border-radius: 999px;
+    border: 1px dashed rgba(255,255,255,0.10);
+    animation: kxAboutSpin 18s linear infinite;
+}
+
+/* Node cards */
+.kx-about__node {
+    position: absolute;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.045) 100%);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.24);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.kx-about__node:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.22);
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+}
+
+.kx-about__node--center {
+    left: 50%; top: 50%;
+    width: 240px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 26px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(0,191,194,0.22), transparent 46%),
+        linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%);
+    border-color: rgba(0,191,194,0.18);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.34);
+    z-index: 3;
+}
+
+.kx-about__node--center:hover { transform: translate(-50%, calc(-50% - 2px)); border-color: rgba(0,191,194,0.34); }
+.kx-about__node--crypto  { top: 7%;  right: 8%;   width: 190px; z-index: 2; }
+.kx-about__node--bank    { right: 2%; bottom: 14%; width: 210px; z-index: 2; }
+.kx-about__node--controls{ left: 8%; bottom: 10%; width: 200px; z-index: 2; }
+
+.kx-about__nodeLabel {
+    display: block;
+    margin-bottom: 9px;
+    color: rgba(255,255,255,0.50);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.kx-about__nodeTitle {
+    display: block;
+    color: #fff;
+    font-size: 17px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+}
+
+.kx-about__nodeText {
+    margin: 8px 0 0;
+    color: rgba(255,255,255,0.62);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+/* Pulse rings */
+.kx-about__pulse {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 84px; height: 84px;
+    border-radius: 999px;
+    background: #00d7d717;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 10px rgba(0,191,194,0.12);
+    z-index: 1;
+}
+
+.kx-about__pulse::before,
+.kx-about__pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(0,191,194,0.48);
+    animation: kxAboutPulse 2.6s ease-out infinite;
+}
+
+.kx-about__pulse::after { animation-delay: 1.2s; }
+
+/* Flow lines */
+.kx-about__line {
+    position: absolute;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.kx-about__line::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(0,191,194,0) 0%, rgba(0,191,194,0.65) 50%, rgba(255,255,255,0) 100%);
+    transform: translateX(-100%);
+    animation: kxAboutFlow 3.8s linear infinite;
+}
+
+.kx-about__line--top   { left: 54%; top: 24%;  width: 190px; height: 1px; transform: rotate(-28deg); background: linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.12)); }
+.kx-about__line--right { left: 56%; top: 56%;  width: 196px; height: 1px; transform: rotate(28deg);  background: linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.12)); }
+.kx-about__line--left  { left: 23%; top: 62%;  width: 178px; height: 1px; transform: rotate(-28deg); background: linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.12)); }
+
+/* ---- HERO: Responsive — START ---- */
+@media (max-width: 1266px) {
+    .kx-about__heroGrid {
+        grid-template-columns: 1fr;
+    }
+    .kx-about__heroVisual { display: none; }
+    .kx-about__heroTitle  { font-size: 54px; max-width: 100%; }
+    .kx-about__heroSub    { font-size: 19px; }
+    .kx-about__heroMini   { max-width: 100%; }
+}
+
+@media (max-width: 800px) {
+    .kx-about__heroMini {
+        grid-template-columns: 1fr;
+    }
+    .kx-about__heroTitle { font-size: 44px; }
+    .kx-about__heroSub   { font-size: 18px; }
+}
+
+@media (max-width: 598px) {
+    .kx-about__btn--exploreHide { display: none; }
+    .kx-about__heroTitle        { font-size: 38px; line-height: 1.02; }
+}
+/* ---- HERO: Responsive — END ---- */
+
+</style>
+
+<section class="kx-about__hero">
+    <canvas class="kx-about__canvas"
+            data-type="network" data-count="60" data-color="0,191,194"
+            data-speed="0.5" data-opacity="0.45"></canvas>
+    <div class="kx-about__container">
+        <div class="kx-about__heroGrid">
+
+            <div class="kx-about__reveal">
+                <span class="kx-about__eyebrow">
+                    <span class="kx-about__eyebrowDot"></span>
+                    About KryptoX
+                </span>
+
+                <h1 class="kx-about__heroTitle">Connecting crypto liquidity with banking infrastructure.</h1>
+
+                <p class="kx-about__heroSub">
+                    KryptoX provides a secure orchestration layer that enables institutions to move between digital assets and traditional financial systems — with transparency, control, and compliance built in.
+                </p>
+
+                <p class="kx-about__heroText">
+                    Built for financial institutions, payment providers, and digital asset platforms that require reliable infrastructure to coordinate crypto-to-fiat settlement flows at institutional scale.
+                </p>
+
+                <div class="kx-about__heroActions">
+                    <a class="kx-about__btn kx-about__btnPrimary" href="/request-demo">
+                        Request a Demo
+                        <svg class="kx-about__btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 5.2a1 1 0 0 1 1.4 0l6.2 6.2a1 1 0 0 1 0 1.4l-6.2 6.2a1 1 0 1 1-1.4-1.4l4.5-4.5H4a1 1 0 1 1 0-2h13.7l-4.5-4.5a1 1 0 0 1 0-1.4Z"/></svg>
+                    </a>
+                    <a class="kx-about__btn kx-about__btnSecondary kx-about__btn--exploreHide" href="#kxAboutApproach">
+                        Explore How It Works
+                    </a>
+                </div>
+
+                <div class="kx-about__heroMini">
+                    <div class="kx-about__heroMiniCard">
+                        <span class="kx-about__heroMiniLabel">Infrastructure Role</span>
+                        <span class="kx-about__heroMiniValue">Unified operational layer between crypto liquidity and banking rails.</span>
+                    </div>
+                    <div class="kx-about__heroMiniCard">
+                        <span class="kx-about__heroMiniLabel">Operational Focus</span>
+                        <span class="kx-about__heroMiniValue">Routing, settlement execution, approvals and oversight in one environment.</span>
+                    </div>
+                    <div class="kx-about__heroMiniCard">
+                        <span class="kx-about__heroMiniLabel">Institutional Outcome</span>
+                        <span class="kx-about__heroMiniValue">More control, clearer auditability and better coordination across providers.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kx-about__heroVisual kx-about__reveal">
+                <div class="kx-about__heroCore">
+                    <div class="kx-about__line kx-about__line--top"></div>
+                    <div class="kx-about__line kx-about__line--right"></div>
+                    <div class="kx-about__line kx-about__line--left"></div>
+
+                    <div class="kx-about__node kx-about__node--crypto">
+                        <span class="kx-about__nodeLabel">Liquidity Side</span>
+                        <span class="kx-about__nodeTitle">Crypto Liquidity Providers</span>
+                        <p class="kx-about__nodeText">Access and coordinate multiple liquidity sources with full operational visibility.</p>
+                    </div>
+
+                    <div class="kx-about__node kx-about__node--center">
+                        <span class="kx-about__nodeLabel">Core Layer</span>
+                        <span class="kx-about__nodeTitle">KryptoX Orchestration</span>
+                        <p class="kx-about__nodeText">Structured workflows, controls and auditable execution across all settlement flows.</p>
+                    </div>
+
+                    <div class="kx-about__node kx-about__node--bank">
+                        <span class="kx-about__nodeLabel">Settlement Side</span>
+                        <span class="kx-about__nodeTitle">Banking Infrastructure</span>
+                        <p class="kx-about__nodeText">Traditional rails for fiat settlement and institutional banking operations.</p>
+                    </div>
+
+                    <div class="kx-about__node kx-about__node--controls">
+                        <span class="kx-about__nodeLabel">Governance Side</span>
+                        <span class="kx-about__nodeTitle">Institutional Controls</span>
+                        <p class="kx-about__nodeText">Approvals, thresholds and compliance checkpoints integrated into the flow.</p>
+                    </div>
+
+                    <div class="kx-about__pulse" aria-hidden="true"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- HERO: particles initialized via global canvas init on DOMContentLoaded --- */
+</script>
+
+<!-- ============================================================
+     SECTION 1: HERO — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 2: THE INSTITUTIONAL CHALLENGE — START
+     ============================================================ -->
+
+<style>
+/* --- CHALLENGE --- */
+.kx-about__challengeGrid {
+    display: grid;
+    grid-template-columns: minmax(0,0.98fr) minmax(360px,0.92fr);
+    gap: 38px;
+    align-items: start;
+    margin-top: 10px;
+}
+
+.kx-about__copy { margin-top: 30px; }
+
+.kx-about__copy p {
+    margin: 0 0 18px;
+    font-size: 18px;
+    line-height: 1.82;
+    color: var(--kx-text-soft);
+}
+
+.kx-about__copy p:last-child { margin-bottom: 0; }
+
+.kx-about__stack { display: grid; gap: 14px; }
+
+.kx-about__problem {
+    position: relative;
+    padding: 22px 24px 22px 28px;
+    border-radius: 20px;
+    border: 1px solid var(--kx-border);
+    background: #fff;
+    box-shadow: var(--kx-shadow-card);
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    overflow: hidden;
+}
+
+.kx-about__problem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+    border-color: color-mix(in srgb, var(--mainColor) 24%, rgba(10,15,18,0.14));
+}
+
+.kx-about__problem::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 18px; bottom: 18px;
+    width: 4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg,
+        color-mix(in srgb, var(--mainColor) 78%, #fff),
+        color-mix(in srgb, var(--mainColor) 24%, #fff));
+}
+
+.kx-about__problemTitle {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: var(--kx-text);
+}
+
+.kx-about__problemText {
+    margin: 8px 0 0;
+    color: var(--kx-text-soft);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ---- CHALLENGE: Responsive — START ---- */
+@media (max-width: 948px) {
+    .kx-about__challengeGrid {
+        grid-template-columns: 1fr;
+    }
+}
+/* ---- CHALLENGE: Responsive — END ---- */
+
+</style>
+
+<section class="kx-about__section kx-about__section--soft">
+    <!-- Subtle particles on light bg: dark-toned, very low opacity -->
+    <canvas class="kx-about__canvas"
+            data-type="network" data-count="30" data-color="10,80,110"
+            data-speed="0.18" data-opacity="0.1"></canvas>
+    <div class="kx-about__container">
+        <div class="kx-about__challengeGrid">
+
+            <div class="kx-about__reveal">
+                <div class="kx-about__sectionLabel">The Institutional Challenge</div>
+                <h2 class="kx-about__sectionTitle">Bridging two financial worlds</h2>
+                <div class="kx-about__copy">
+                    <p>
+                        Digital assets and traditional financial systems operate on fundamentally different infrastructures — each with its own rules, timelines, and counterparties.
+                    </p>
+                    <p>
+                        Institutions that operate across both environments face operational fragmentation, liquidity constraints, and growing compliance requirements.
+                    </p>
+                    <p>
+                        Managing these flows manually or through disconnected providers creates risk, inefficiency, and limited visibility over settlement outcomes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="kx-about__stack kx-about__reveal">
+                <article class="kx-about__problem">
+                    <h3 class="kx-about__problemTitle">Fragmented liquidity providers</h3>
+                    <p class="kx-about__problemText">Liquidity sits across disconnected venues, making coordinated routing and operational oversight significantly more difficult.</p>
+                </article>
+
+                <article class="kx-about__problem">
+                    <h3 class="kx-about__problemTitle">Complex settlement processes</h3>
+                    <p class="kx-about__problemText">Moving value between digital assets and banking rails involves multiple counterparties, procedural handoffs, and strict control requirements.</p>
+                </article>
+
+                <article class="kx-about__problem">
+                    <h3 class="kx-about__problemTitle">Limited operational visibility</h3>
+                    <p class="kx-about__problemText">Without a unified operating layer, teams lose clarity around execution status, dependencies, and exceptions as they occur.</p>
+                </article>
+
+                <article class="kx-about__problem">
+                    <h3 class="kx-about__problemTitle">Increasing regulatory oversight</h3>
+                    <p class="kx-about__problemText">Institutions need workflows that support governance, traceability, and compliance requirements throughout every settlement operation.</p>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- CHALLENGE: subtle network particles on light bg, initialized via global init --- */
+</script>
+
+<!-- ============================================================
+     SECTION 2: THE INSTITUTIONAL CHALLENGE — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 3: THE KRYPTOX APPROACH — START
+     ============================================================ -->
+
+<style>
+/* --- APPROACH --- */
+.kx-about__approachHead {
+    text-align: center;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.kx-about__approachWrap {
+    margin-top: 48px;
+    padding: 36px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 26px 70px rgba(0,0,0,0.24);
+    position: relative;
+    overflow: hidden;
+}
+
+.kx-about__approachWrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.34;
+    pointer-events: none;
+}
+
+.kx-about__flow {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 26px;
+    align-items: center;
+    min-height: 280px;
+}
+
+.kx-about__flowStep {
+    position: relative;
+    z-index: 2;
+    padding: 30px 26px;
+    border-radius: 24px;
+    min-height: 196px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.04) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.kx-about__flowStep:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.22);
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+}
+
+.kx-about__flowStep--center {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(0,191,194,0.20), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
+    border-color: rgba(0,191,194,0.24);
+}
+
+.kx-about__flowStepLabel {
+    display: block;
+    margin-bottom: 12px;
+    color: rgba(255,255,255,0.48);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.kx-about__flowStepTitle {
+    margin: 0;
+    color: #fff;
+    font-size: 26px;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+}
+
+.kx-about__flowStepText {
+    margin: 14px 0 0;
+    color: rgba(255,255,255,0.66);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.kx-about__flowLink {
+    position: absolute;
+    top: 0%;
+    width: calc(50% - 18px);
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.14));
+    transform: translateY(-50%);
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.kx-about__flowLink::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,191,194,0) 0%, rgba(0,191,194,0.8) 50%, rgba(0,191,194,0) 100%);
+    transform: translateX(-100%);
+    animation: kxAboutFlow 3.2s linear infinite;
+}
+
+.kx-about__flowLink--left  { left:  calc(16.666% + 52px); }
+.kx-about__flowLink--right { right: calc(16.666% + 52px); }
+
+.kx-about__approachFoot {
+    margin: 28px auto 0;
+    max-width: 860px;
+    text-align: center;
+    color: rgba(255,255,255,0.66);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* ---- APPROACH: Responsive — START ---- */
+@media (max-width: 1086px) {
+    .kx-about__flow {
+        grid-template-columns: 1fr;
+    }
+    .kx-about__flowLink { display: none; }
+    .kx-about__approachWrap { padding: 24px; }
+}
+
+@media (max-width: 800px) {
+    .kx-about__flowStepText,
+    .kx-about__approachFoot { font-size: 15px; }
+}
+/* ---- APPROACH: Responsive — END ---- */
+
+</style>
+
+<section class="kx-about__section kx-about__section--dark" id="kxAboutApproach">
+    <canvas class="kx-about__canvas"
+            data-type="flow" data-count="50" data-color="0,191,194"
+            data-speed="0.3" data-opacity="0.28"></canvas>
+    <div class="kx-about__container">
+
+        <div class="kx-about__approachHead kx-about__reveal">
+            <div class="kx-about__sectionLabel" style="justify-content:center;">The KryptoX Approach</div>
+            <h2 class="kx-about__sectionTitle">An orchestration layer for crypto-to-fiat infrastructure</h2>
+            <p class="kx-about__sectionSub">
+                KryptoX sits between crypto liquidity providers, banking rails, and institutional workflows — coordinating all three without replacing any.
+            </p>
+        </div>
+
+        <div class="kx-about__approachWrap kx-about__reveal">
+            <div class="kx-about__flow">
+                <div class="kx-about__flowLink kx-about__flowLink--left"></div>
+                <div class="kx-about__flowLink kx-about__flowLink--right"></div>
+
+                <article class="kx-about__flowStep">
+                    <span class="kx-about__flowStepLabel">Input Layer</span>
+                    <h3 class="kx-about__flowStepTitle">Crypto Liquidity</h3>
+                    <p class="kx-about__flowStepText">
+                        Digital asset sources and liquidity execution environments feed into a structured operational workflow.
+                    </p>
+                </article>
+
+                <article class="kx-about__flowStep kx-about__flowStep--center">
+                    <span class="kx-about__flowStepLabel">Coordination Layer</span>
+                    <h3 class="kx-about__flowStepTitle">KryptoX</h3>
+                    <p class="kx-about__flowStepText">
+                        The platform coordinates routing, settlement execution, compliance controls, and approvals from a unified operational layer.
+                    </p>
+                </article>
+
+                <article class="kx-about__flowStep">
+                    <span class="kx-about__flowStepLabel">Output Layer</span>
+                    <h3 class="kx-about__flowStepTitle">Banking Infrastructure</h3>
+                    <p class="kx-about__flowStepText">
+                        Traditional financial rails handle fiat settlement, treasury movement, and institutional disbursement workflows.
+                    </p>
+                </article>
+            </div>
+
+            <p class="kx-about__approachFoot">
+                Rather than replacing existing infrastructure, KryptoX coordinates interactions between these systems — enabling secure, auditable settlement flows with institutional governance built in at every stage.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<script is:inline>
+/* --- APPROACH: flow particles, initialized via global init --- */
+</script>
+
+<!-- ============================================================
+     SECTION 3: THE KRYPTOX APPROACH — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 4: CORE PLATFORM CAPABILITIES — START
+     ============================================================ -->
+
+<style>
+/* --- CAPABILITIES --- */
+.kx-about__capabilitiesHead { max-width: 930px; }
+
+.kx-about__capabilitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0,1fr));
+    gap: 20px;
+    margin-top: 42px;
+}
+
+.kx-about__capability {
+    position: relative;
+    grid-column: span 2;
+    padding: 26px 24px 24px;
+    border-radius: 22px;
+    border: 1px solid var(--kx-border);
+    background: #fff;
+    box-shadow: var(--kx-shadow-card);
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    overflow: hidden;
+}
+
+.kx-about__capability:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 60px rgba(0,0,0,0.14);
+    border-color: color-mix(in srgb, var(--mainColor) 26%, rgba(10,15,18,0.18));
+}
+
+.kx-about__capability::after {
+    content: "";
+    position: absolute;
+    inset: auto -40px -40px auto;
+    width: 120px; height: 120px;
+    border-radius: 999px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--mainColor) 16%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.kx-about__capability:nth-child(4),
+.kx-about__capability:nth-child(5) { grid-column: span 3; }
+
+/* Icon box — stroke style */
+.kx-about__iconBox {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--mainColor) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--mainColor) 22%, transparent);
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--mainColor) 10%, transparent);
+}
+
+.kx-about__iconBox svg {
+    width: 22px; height: 22px;
+    stroke: var(--kx-text);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.kx-about__capabilityTitle {
+    margin: 18px 0 0;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    color: var(--kx-text);
+}
+
+.kx-about__capabilityText {
+    margin: 12px 0 0;
+    color: var(--kx-text-soft);
+    font-size: 15px;
+    line-height: 1.74;
+}
+
+/* ---- CAPABILITIES: Responsive — START ---- */
+@media (max-width: 830px) {
+    /* Switch to 2-col base so 4th & 5th can share a row */
+    .kx-about__capabilitiesGrid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+    /* First 3 cards: each spans full width (2 cols) */
+    .kx-about__capability:nth-child(1),
+    .kx-about__capability:nth-child(2),
+    .kx-about__capability:nth-child(3) {
+        grid-column: span 2;
+    }
+    /* 4th & 5th: span 1 each → 2 side-by-side */
+    .kx-about__capability:nth-child(4),
+    .kx-about__capability:nth-child(5) {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 650px) {
+    /* All cards full width */
+    .kx-about__capabilitiesGrid {
+        grid-template-columns: 1fr;
+        gap: 0px;
+    }
+    .kx-about__capabilitiesGrid article{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .kx-about__capability,
+    .kx-about__capability:nth-child(4),
+    .kx-about__capability:nth-child(5) {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 800px) {
+    .kx-about__capabilityText { font-size: 15px; }
+}
+/* ---- CAPABILITIES: Responsive — END ---- */
+
+</style>
+
+<section class="kx-about__section">
+    <canvas class="kx-about__canvas"
+            data-type="grid" data-count="0" data-color="10,80,110"
+            data-speed="0.15" data-opacity="0.12"></canvas>
+    <div class="kx-about__container">
+
+        <div class="kx-about__capabilitiesHead kx-about__reveal">
+            <div class="kx-about__sectionLabel">Core Platform Capabilities</div>
+            <h2 class="kx-about__sectionTitle">Infrastructure designed for institutional operations</h2>
+            <p class="kx-about__sectionSub">
+                The platform coordinates movement, controls, and execution across crypto and fiat infrastructure — without sacrificing institutional oversight at any stage.
+            </p>
+        </div>
+
+        <div class="kx-about__capabilitiesGrid">
+
+            <article class="kx-about__capability kx-about__reveal">
+                <div class="kx-about__iconBox iconCont" aria-hidden="true">
+                    <!-- Exchange / two arrows -->
+                    <img src="/media/solutions/icon/exchange.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__capabilityTitle">Crypto ↔ Fiat Orchestration</h3>
+                <p class="kx-about__capabilityText">
+                    Coordinate value movement between digital assets and banking systems through structured, auditable workflows.
+                </p>
+            </article>
+
+            <article class="kx-about__capability kx-about__reveal">
+                <div class="kx-about__iconBox iconCont" aria-hidden="true">
+                    <!-- Network nodes -->
+                    <img src="/media/solutions/icon/node.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__capabilityTitle">Liquidity Coordination</h3>
+                <p class="kx-about__capabilityText">
+                    Route liquidity across multiple providers while maintaining full operational oversight and execution control.
+                </p>
+            </article>
+
+            <article class="kx-about__capability kx-about__reveal">
+                <div class="kx-about__iconBox iconCont" aria-hidden="true">
+                    <!-- Check circle -->
+                    <img src="/media/solutions/icon/tick.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__capabilityTitle">Settlement Management</h3>
+                <p class="kx-about__capabilityText">
+                    Control and track settlement processes between digital asset rails and traditional banking infrastructure end to end.
+                </p>
+            </article>
+
+            <article class="kx-about__capability kx-about__reveal">
+                <div class="kx-about__iconBox iconCont" aria-hidden="true">
+                    <!-- Shield check -->
+                    <img src="/media/solutions/icon/shield.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__capabilityTitle">Institutional Controls</h3>
+                <p class="kx-about__capabilityText">
+                    Define operational rules, approval layers, and transaction thresholds that govern settlement execution at every level.
+                </p>
+            </article>
+
+            <article class="kx-about__capability kx-about__reveal">
+                <div class="kx-about__iconBox iconCont" aria-hidden="true">
+                    <!-- File check -->
+                    <img src="/media/solutions/icon/audit.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__capabilityTitle">Compliance Integration</h3>
+                <p class="kx-about__capabilityText">
+                    Support KYC, KYT, AML, and full audit workflows natively integrated into the operational flow for regulated environments.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- CAPABILITIES: subtle grid particles on light bg, initialized via global init --- */
+</script>
+
+<!-- ============================================================
+     SECTION 4: CORE PLATFORM CAPABILITIES — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 5: WHO KRYPTOX IS BUILT FOR — START
+     ============================================================ -->
+
+<style>
+/* --- AUDIENCE --- */
+.kx-about__audienceGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 18px;
+    margin-top: 42px;
+}
+
+.kx-about__audience {
+    position: relative;
+    min-height: 280px;
+    padding: 28px 24px 22px;
+    border-radius: 24px;
+    background: #fff;
+    border: 1px solid var(--kx-border);
+    box-shadow: var(--kx-shadow-card);
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    overflow: hidden;
+}
+
+.kx-about__audience:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 62px rgba(0,0,0,0.14);
+    border-color: color-mix(in srgb, var(--mainColor) 24%, rgba(10,15,18,0.14));
+}
+
+.kx-about__audience::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+        color-mix(in srgb, var(--mainColor) 84%, #fff),
+        color-mix(in srgb, var(--mainColor) 12%, #fff));
+    opacity: 0.9;
+}
+
+/* Audience icon box — stroke style */
+.kx-about__audienceIcon {
+    width: 54px; height: 54px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--mainColor) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--mainColor) 22%, transparent);
+}
+
+.kx-about__audienceIcon svg {
+    width: 24px; height: 24px;
+    stroke: var(--kx-text);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.kx-about__audienceTitle {
+    margin: 22px 0 0;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    color: var(--kx-text);
+}
+
+.kx-about__audienceText {
+    margin: 14px 0 0;
+    color: var(--kx-text-soft);
+    font-size: 15px;
+    line-height: 1.74;
+}
+
+/* ---- AUDIENCE: Responsive — START ---- */
+@media (max-width: 1138px) {
+    .kx-about__audienceGrid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .kx-about__audienceGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .kx-about__audienceText { font-size: 15px; }
+}
+/* ---- AUDIENCE: Responsive — END ---- */
+
+</style>
+
+<section class="kx-about__section kx-about__section--soft">
+    <canvas class="kx-about__canvas"
+            data-type="network" data-count="28" data-color="10,80,110"
+            data-speed="0.16" data-opacity="0.09"></canvas>
+    <div class="kx-about__container">
+
+        <div class="kx-about__reveal">
+            <div class="kx-about__sectionLabel">Who KryptoX Is Built For</div>
+            <h2 class="kx-about__sectionTitle">Designed for institutions operating across digital and traditional finance</h2>
+            <p class="kx-about__sectionSub">
+                KryptoX supports organizations that require controlled operational infrastructure at the point where liquidity, settlement, and governance converge.
+            </p>
+        </div>
+
+        <div class="kx-about__audienceGrid">
+
+            <article class="kx-about__audience kx-about__reveal">
+                <div class="kx-about__audienceIcon iconCont" aria-hidden="true">
+                    <!-- Building / bank -->
+                    <img src="/media/solutions/icon/bank.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__audienceTitle">Financial Institutions</h3>
+                <p class="kx-about__audienceText">
+                    Banks and regulated entities seeking secure, auditable infrastructure to interact with digital asset liquidity at institutional scale.
+                </p>
+            </article>
+
+            <article class="kx-about__audience kx-about__reveal">
+                <div class="kx-about__audienceIcon iconCont" aria-hidden="true">
+                    <!-- Credit card -->
+                    <img src="/media/solutions/icon/payment.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__audienceTitle">Payment Providers</h3>
+                <p class="kx-about__audienceText">
+                    Organizations that require efficient, controlled settlement between crypto flows and banking systems with full operational visibility.
+                </p>
+            </article>
+
+            <article class="kx-about__audience kx-about__reveal">
+                <div class="kx-about__audienceIcon iconCont" aria-hidden="true">
+                    <!-- Layers -->
+                    <img src="/media/solutions/icon/blockchain.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__audienceTitle">Crypto Platforms</h3>
+                <p class="kx-about__audienceText">
+                    Digital asset companies that need reliable, compliance-aware access to fiat settlement and banking infrastructure.
+                </p>
+            </article>
+
+            <article class="kx-about__audience kx-about__reveal">
+                <div class="kx-about__audienceIcon iconCont" aria-hidden="true">
+                    <!-- Briefcase -->
+                    <img src="/media/solutions/icon/money-bag.svg" alt="" class="cardIcon">
+                </div>
+                <h3 class="kx-about__audienceTitle">Treasury &amp; Finance Teams</h3>
+                <p class="kx-about__audienceText">
+                    Institutional teams managing liquidity, treasury operations, and cross-asset settlement flows who need governance built into every step.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- AUDIENCE: subtle network particles on soft-light bg, initialized via global init --- */
+</script>
+
+<!-- ============================================================
+     SECTION 5: WHO KRYPTOX IS BUILT FOR — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 6: SECURITY & OPERATIONAL INTEGRITY — START
+     ============================================================ -->
+
+<style>
+/* --- TRUST / SECURITY --- */
+.kx-about__trustGrid {
+    display: grid;
+    grid-template-columns: minmax(0,1.02fr) minmax(380px,0.98fr);
+    gap: 38px;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.kx-about__trustText{
+    margin-top: 40px;
+}
+.kx-about__trustText p {
+    margin: 0 0 18px;
+    color: rgba(255,255,255,0.72);
+    font-size: 18px;
+    line-height: 1.82;
+}
+
+.kx-about__trustText p:last-child { margin-bottom: 0; }
+
+.kx-about__trustStack { display: grid; gap: 16px; }
+
+.kx-about__trustCard {
+    position: relative;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 22px 22px 22px 20px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.kx-about__trustCard:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.20);
+    background: rgba(255,255,255,0.08);
+}
+
+/* Trust icon — stroke style */
+.kx-about__trustIcon {
+    width: 60px; height: 60px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--mainColor) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--mainColor) 28%, transparent);
+}
+
+.kx-about__trustIcon svg {
+    width: 26px; height: 26px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.kx-about__trustTitle {
+    margin: 0;
+    color: #fff;
+    font-size: 21px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+}
+
+.kx-about__trustDesc {
+    margin: 10px 0 0;
+    color: rgba(255,255,255,0.66);
+    font-size: 14px;
+    line-height: 1.72;
+}
+
+/* ---- TRUST: Responsive — START ---- */
+@media (max-width: 900px) {
+    .kx-about__trustGrid {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .kx-about__trustText p,
+    .kx-about__trustDesc { font-size: 15px; }
+}
+@media (max-width: 460px) {
+    .kx-about__trustIcon{ display: none; }
+    .kx-about__trustCard{
+        display: inline;
+    }
+    .kx-about__trustCard div{
+        grid-column: 1;
+        width: 100%;
+    }
+}
+/* ---- TRUST: Responsive — END ---- */
+
+</style>
+
+<section class="kx-about__section kx-about__section--dark">
+    <canvas class="kx-about__canvas"
+            data-type="scanner" data-count="36" data-color="0,191,194"
+            data-speed="0.22" data-opacity="0.22"></canvas>
+    <div class="kx-about__container">
+        <div class="kx-about__trustGrid">
+
+            <div class="kx-about__reveal">
+                <div class="kx-about__sectionLabel" style="color:color-mix(in srgb, var(--mainColor) 80%, #fff);">Security and Operational Integrity</div>
+                <h2 class="kx-about__sectionTitle">Security and compliance at the core of the platform</h2>
+                <div class="kx-about__trustText">
+                    <p>
+                        KryptoX is designed with institutional governance in mind. The platform emphasizes operational transparency, auditability, and strict separation between orchestration, liquidity providers, and custody.
+                    </p>
+                    <p>
+                        Security and compliance frameworks are integrated directly into operational workflows — not bolted on after — to support regulated financial environments from day one.
+                    </p>
+                </div>
+            </div>
+
+            <div class="kx-about__trustStack kx-about__reveal">
+
+                <article class="kx-about__trustCard">
+                    <div class="kx-about__trustIcon" aria-hidden="true">
+                        <!-- Eye -->
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="kx-about__trustTitle">Operational Transparency</h3>
+                        <p class="kx-about__trustDesc">Institutional teams maintain clear visibility into workflows, execution stages, and dependencies throughout every settlement operation.</p>
+                    </div>
+                </article>
+
+                <article class="kx-about__trustCard">
+                    <div class="kx-about__trustIcon" aria-hidden="true">
+                        <!-- Search -->
+                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="kx-about__trustTitle">Auditability</h3>
+                        <p class="kx-about__trustDesc">Structured controls and coordinated execution produce traceable operational records that satisfy requirements in regulated environments.</p>
+                    </div>
+                </article>
+
+                <article class="kx-about__trustCard">
+                    <div class="kx-about__trustIcon" aria-hidden="true">
+                        <!-- Lock -->
+                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="kx-about__trustTitle">Governance Controls</h3>
+                        <p class="kx-about__trustDesc">Approval layers, operational rules, and compliance checkpoints support safer execution across every institutional settlement flow.</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- TRUST/SECURITY: scanner particles on dark bg, initialized via global init --- */
+</script>
+
+<!-- ============================================================
+     SECTION 6: SECURITY & OPERATIONAL INTEGRITY — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 7: CTA — START
+     ============================================================ -->
+
+<style>
+/* --- CTA --- */
+.kx-about__cta {
+    padding: 96px 0 110px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    padding-top: 160px;
+}
+
+.kx-about__ctaBox {
+    position: relative;
+    padding: 46px 42px;
+    border-radius: 30px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 0% 0%,   color-mix(in srgb, var(--mainColor) 16%, #747474), transparent 28%),
+        radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--mainColor) 14%, #747474), transparent 28%),
+        linear-gradient(180deg, #071015 0%, #02080d 100%);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.20);
+}
+
+.kx-about__ctaBox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 84px 84px;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.kx-about__ctaInner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.kx-about__ctaTitle {
+    margin: 0;
+    max-width: 640px;
+    color: #fff;
+    font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+}
+
+.kx-about__ctaText {
+    margin: 16px 0 0;
+    max-width: 640px;
+    color: rgba(255,255,255,0.70);
+    font-size: 17px;
+    line-height: 1.76;
+}
+
+/* ---- CTA: Responsive — START ---- */
+@media (max-width: 798px) {
+    .kx-about__ctaTitle { font-size: 26px; }
+    .kx-about__ctaInner { flex-direction: column; align-items: flex-start; }
+    .kx-about__ctaBox   { padding: 34px 24px; border-radius: 24px; }
+}
+
+@media (max-width: 800px) {
+    .kx-about__ctaText { font-size: 15px; }
+}
+/* ---- CTA: Responsive — END ---- */
+
+</style>
+
+<section class="kx-about__cta">
+    <canvas class="kx-about__canvas"
+            data-type="wave" data-count="50" data-color="10,80,110"
+            data-speed="0.22" data-opacity="0.10"></canvas>
+    <div class="kx-about__container">
+        <div class="kx-about__ctaBox kx-about__reveal">
+            <div class="kx-about__ctaInner">
+                <div>
+                    <h2 class="kx-about__ctaTitle">See how KryptoX enables institutional crypto-to-bank infrastructure.</h2>
+                    <p class="kx-about__ctaText">
+                        Request a demo to explore how the platform can support your organization's digital asset operations — from compliance and liquidity to settlement and governance.
+                    </p>
+                </div>
+
+                <a class="kx-about__btn kx-about__btnPrimary" href="/request-demo">
+                    Request a Demo
+                    <svg class="kx-about__btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 5.2a1 1 0 0 1 1.4 0l6.2 6.2a1 1 0 0 1 0 1.4l-6.2 6.2a1 1 0 1 1-1.4-1.4l4.5-4.5H4a1 1 0 1 1 0-2h13.7l-4.5-4.5a1 1 0 0 1 0-1.4Z"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- CTA: wave particles on light bg (very subtle), initialized via global init --- */
+</script>
+
+<!-- ============================================================
+     SECTION 7: CTA — END
+     ============================================================ -->
+
+<!-- GLOBAL wrapper close -->
+</section>
+
+
+<style>
+        
+    .iconCont{
+        position: relative;
+        border: 0px;
+        background-color: transparent;
+        box-shadow: none;
+
+    }
+    .cardIcon{
+        height: 45px;
+        float: left;
+        position: relative;
+        width: auto;
+    }
+</style>
+</BaseLayout>

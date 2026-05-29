@@ -1,0 +1,435 @@
+---
+/**
+ * NonCustodial.astro
+ * ------------------
+ * 1:1 migration of part/sub/security/non_custodial.php. Fully replaces the
+ * earlier scaffold component (which was not a port). HTML, CSS and inline
+ * script are ported verbatim.
+ */
+---
+
+<section class="kx-nc" id="kxNC">
+  <div class="kx-nc__inner">
+
+    <!-- Visual -->
+    <div class="kx-nc__visual kx-nc__reveal">
+      <div class="kx-nc__frame" aria-hidden="true"></div>
+
+      <div class="kx-nc__stat" aria-hidden="true">
+        <strong>Non-Custodial</strong>
+        <span>Orchestration without holding client funds.</span>
+        <div class="kx-nc__spark"></div>
+      </div>
+
+      <div class="kx-nc__mock" aria-hidden="true">
+        <div class="kx-nc__mockTop">
+          <div>Risk Segregation</div>
+          <div class="kx-nc__mockBadge">Controls Active</div>
+        </div>
+        <div class="kx-nc__mockBody">
+          <div class="kx-nc__row">
+            <span>Orchestration Layer</span>
+            <span class="kx-nc__pill"><span class="kx-nc__dot"></span>Policy-Driven</span>
+          </div>
+          <div class="kx-nc__row">
+            <span>Liquidity Providers</span>
+            <span class="kx-nc__pill"><span class="kx-nc__dot"></span>Separated</span>
+          </div>
+          <div class="kx-nc__row">
+            <span>Custody / Wallets</span>
+            <span class="kx-nc__pill"><span class="kx-nc__dot"></span>External</span>
+          </div>
+          <div class="kx-nc__row">
+            <span>Banking Rails</span>
+            <span class="kx-nc__pill"><span class="kx-nc__dot"></span>Independent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="kx-nc__content kx-nc__reveal">
+      <h2 class="kx-nc__title">
+        Non-Custodial<br>
+        &amp; <span class="kx-nc__accent">Risk Segregation</span>
+      </h2>
+
+      <p class="kx-nc__desc">
+        KryptoX is an orchestration layer—not a bank, not a custodian. Funds remain with your chosen
+        custody and liquidity partners while we enforce policy, route execution, and maintain clear separation
+        across the settlement stack.
+      </p>
+
+      <div class="kx-nc__features">
+        <div class="kx-nc__feat">
+          <div class="kx-nc__icon" aria-hidden="true">
+            <!-- shield -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4Z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="kx-nc__featTitle">Clear Responsibility Boundaries</div>
+            <p class="kx-nc__featDesc">
+              Orchestration, liquidity, custody, and banking remain distinct—reducing counterparty and operational risk.
+            </p>
+          </div>
+        </div>
+
+        <div class="kx-nc__feat">
+          <div class="kx-nc__icon" aria-hidden="true">
+            <!-- layers -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3l9 5-9 5-9-5 9-5Z"></path>
+              <path d="M3 12l9 5 9-5"></path>
+              <path d="M3 16l9 5 9-5"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="kx-nc__featTitle">Non-Custodial by Design</div>
+            <p class="kx-nc__featDesc">
+              KryptoX never holds client funds—execution is routed through your approved providers and bank rails.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ===== Security & Compliance — Non-Custodial & Risk Segregation ===== */
+
+  .kx-nc{
+    background:#ffffff;
+    padding:120px 28px;
+    overflow:hidden;
+  }
+
+  .kx-nc__inner{
+    max-width: var(--innerWidth);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap:60px;
+    align-items:center;
+  }
+
+  /* Left visual stack */
+  .kx-nc__visual{
+    position:relative;
+    min-height: 480px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .kx-nc__frame{
+    width:min(520px, 100%);
+    height: 520px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(1,220,220,0.14), rgba(0,0,0,0.00));
+    box-shadow:
+      0 40px 120px rgba(0,0,0,0.10),
+      inset 0 0 0 1px rgba(0,0,0,0.06);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .kx-nc__frame::before{
+    content:"";
+    position:absolute;
+    inset:-120px -120px auto auto;
+    width:360px;
+    height:360px;
+    background: radial-gradient(circle, rgba(46,68,240,0.20), transparent 70%);
+    pointer-events:none;
+  }
+
+  .kx-nc__frame::after{
+    content:"";
+    position:absolute;
+    inset:auto auto -140px -140px;
+    width:420px;
+    height:420px;
+    background: radial-gradient(circle, rgba(212,106,24,0.18), transparent 70%);
+    pointer-events:none;
+  }
+
+  /* mock "dashboard" card */
+  .kx-nc__mock{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-52%, -52%);
+    width:min(420px, 86%);
+    border-radius: 22px;
+    background: rgba(255,255,255,0.92);
+    box-shadow:
+      0 28px 80px rgba(0,0,0,0.18),
+      inset 0 0 0 1px rgba(0,0,0,0.06);
+    overflow:hidden;
+  }
+
+  .kx-nc__mockTop{
+    padding:16px 18px 12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color:#0a0f12;
+    font-weight:700;
+  }
+
+  .kx-nc__mockBadge{
+    font-size:12px;
+    font-weight:800;
+    padding:6px 10px;
+    border-radius:999px;
+    background: rgba(1,220,220,0.14);
+    color: #0a0f12;
+  }
+
+  .kx-nc__mockBody{
+    padding:18px;
+    display:grid;
+    gap:12px;
+  }
+
+  .kx-nc__row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    font-size:13px;
+    color: rgba(10,15,18,0.72);
+  }
+
+  .kx-nc__pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 10px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.04);
+    color:#0a0f12;
+    font-weight:700;
+    white-space:nowrap;
+  }
+
+  .kx-nc__dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: var(--mainColor);
+    box-shadow: 0 0 0 3px rgba(1,220,220,0.18);
+  }
+
+  /* small stat card (left) */
+  .kx-nc__stat{
+    position:absolute;
+    left: 60px;
+    top: 22px;
+    width: 440px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.92);
+    box-shadow:
+      0 22px 70px rgba(0,0,0,0.14),
+      inset 0 0 0 1px rgba(0,0,0,0.06);
+    padding:16px 14px;
+    transform: translateX(-8%);
+  }
+
+  .kx-nc__stat strong{
+    display:block;
+    font-size:20px;
+    color:#0a0f12;
+    letter-spacing:-0.02em;
+  }
+
+  .kx-nc__stat span{
+    display:block;
+    margin-top:6px;
+    font-size:12px;
+    color: rgba(10,15,18,0.56);
+    line-height:1.35;
+  }
+
+  .kx-nc__spark{
+    height:46px;
+    margin-top:10px;
+    border-radius:12px;
+    background:
+      linear-gradient(90deg,
+        rgba(46,68,240,0.10),
+        rgba(1,220,220,0.18),
+        rgba(212,106,24,0.10)
+      );
+    position:relative;
+    overflow:hidden;
+  }
+
+  .kx-nc__spark::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: translateX(-60%);
+    animation: kx-nc-shine 2.8s ease-in-out infinite;
+  }
+
+  @keyframes kx-nc-shine{
+    0%{ transform: translateX(-60%); }
+    55%{ transform: translateX(60%); }
+    100%{ transform: translateX(60%); }
+  }
+
+  /* Right content */
+  .kx-nc__title{
+    margin:0 0 18px;
+    font-size: clamp(38px, 4.6vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight:200; /* requested */
+    color:#0a0f12;
+  }
+
+  .kx-nc__title .kx-nc__accent{
+    color: color-mix(in srgb, var(--mainColor) 78%, #2E44F0 22%);
+  }
+
+  .kx-nc__desc{
+    margin:0 0 26px;
+    max-width: 680px;
+    font-size:16px; /* requested */
+    line-height:1.75;
+    color: rgba(10,15,18,0.62);
+  }
+
+  .kx-nc__features{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:18px 26px;
+    margin-top: 12px;
+  }
+
+  .kx-nc__feat{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+
+  .kx-nc__icon{
+    width:44px;
+    height:44px;
+    border-radius:999px;
+    display:grid;
+    place-items:center;
+    background: rgba(1,220,220,0.14);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    flex-shrink:0;
+    color:#0a0f12;
+  }
+
+  .kx-nc__icon svg{
+    width:22px;
+    height:22px;
+    stroke: currentColor;
+    fill:none;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  .kx-nc__featTitle{
+    margin:2px 0 6px;
+    font-size:18px;
+    font-weight:800;
+    color:#0a0f12;
+  }
+
+  .kx-nc__featDesc{
+    margin:0;
+    font-size:13px;
+    line-height:1.65;
+    color: rgba(10,15,18,0.58);
+  }
+
+  /* reveal */
+  .kx-nc__reveal{
+    opacity:0;
+    transform: translateY(14px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+  .kx-nc.is-inview .kx-nc__reveal{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1060px){
+    .kx-nc__inner{
+      grid-template-columns:1fr;
+      gap:38px;
+    }
+    .kx-nc__visual{
+      min-height: 420px;
+    }
+    .kx-nc__stat{
+      left: 12px;
+      transform:none;
+    }
+    .kx-nc__features{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media (max-width: 560px){
+    .kx-nc{
+      padding:96px 18px;
+    }
+    .kx-nc__cardPad{
+      padding:0;
+    }
+    .kx-nc__stat{
+      display:none;
+    }
+    .kx-nc__frame{
+      height: 460px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-nc__reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .kx-nc__spark::after{ animation:none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxNC');
+    if(!el) return;
+
+    // main color fallback
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if(!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#01DCDC');
+      }
+    }catch(e){}
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          el.classList.add('is-inview');
+          io.disconnect();
+        }
+      },{threshold:0.18});
+      io.observe(el);
+    }else{
+      el.classList.add('is-inview');
+    }
+  })();
+</script>

@@ -1,0 +1,85 @@
+/* ============================================================
+   KryptoX — Design Tokens
+   ------------------------------------------------------------
+   Tokens are aligned to the LIVE PHP code, not to the docs in
+   ai/MD_KRYPTOX_UI_TOKENS_v1.0.0.md (which use #00BFC2 and a
+   different scale). Confirm with client which set is canonical
+   before launch.
+   ============================================================ */
+
+:root {
+  /* --- Brand accents ------------------------------------- */
+  --kx-color-crypto: #00D7D7;   /* live code uses this */
+  --kx-color-fiat: #FF8A00;
+  --kx-color-main: var(--kx-color-crypto);
+
+  /* --- Surfaces ------------------------------------------ */
+  --kx-bg-dark: #0A0E1A;
+  --kx-bg-dark-elev: #131826;
+  --kx-bg-light: #FFFFFF;
+  --kx-bg-light-elev: #F7F8FA;
+
+  /* --- Text ---------------------------------------------- */
+  --kx-text-on-dark: #FFFFFF;
+  --kx-text-on-dark-muted: rgba(255, 255, 255, 0.68);
+  --kx-text-on-dark-subtle: rgba(255, 255, 255, 0.42);
+  --kx-text-on-light: #0A0E1A;
+  --kx-text-on-light-muted: rgba(10, 14, 26, 0.62);
+  --kx-text-on-light-subtle: rgba(10, 14, 26, 0.38);
+
+  /* --- Borders ------------------------------------------- */
+  --kx-border-on-dark: rgba(255, 255, 255, 0.08);
+  --kx-border-on-light: rgba(10, 14, 26, 0.08);
+
+  /* --- Shadows (from design system: Soft / Medium / Deep)  */
+  --kx-shadow-soft: 0 1px 2px rgba(10, 14, 26, 0.04),
+                    0 2px 8px rgba(10, 14, 26, 0.06);
+  --kx-shadow-medium: 0 4px 12px rgba(10, 14, 26, 0.06),
+                      0 12px 32px rgba(10, 14, 26, 0.10);
+  --kx-shadow-deep: 0 8px 24px rgba(10, 14, 26, 0.10),
+                    0 24px 64px rgba(10, 14, 26, 0.18);
+  --kx-glow-cyan: 0 0 0 1px rgba(0, 215, 215, 0.18),
+                  0 12px 40px rgba(0, 215, 215, 0.18);
+
+  /* --- Radii --------------------------------------------- */
+  --kx-radius-xs: 0.25rem;
+  --kx-radius-sm: 0.5rem;
+  --kx-radius-md: 0.875rem;
+  --kx-radius-lg: 1.25rem;
+  --kx-radius-pill: 999px;
+
+  /* --- Spacing scale ------------------------------------- */
+  --kx-space-1: 0.25rem;
+  --kx-space-2: 0.5rem;
+  --kx-space-3: 0.75rem;
+  --kx-space-4: 1rem;
+  --kx-space-5: 1.25rem;
+  --kx-space-6: 1.5rem;
+  --kx-space-8: 2rem;
+  --kx-space-10: 2.5rem;
+  --kx-space-12: 3rem;
+  --kx-space-16: 4rem;
+  --kx-space-20: 5rem;
+  --kx-space-24: 6rem;
+
+  /* --- Layout -------------------------------------------- */
+  --kx-container: 1200px;
+  --kx-container-narrow: 760px;
+
+  /* --- Typography ---------------------------------------- */
+  /* The PHP original uses Inter everywhere (no display typeface).
+     --kx-font-display is kept as an alias of the body font for
+     compatibility with any existing references. */
+  --kx-font-display: 'Inter', -apple-system, BlinkMacSystemFont,
+                     'Segoe UI', sans-serif;
+  --kx-font-body: 'Inter', -apple-system, BlinkMacSystemFont,
+                  'Segoe UI', sans-serif;
+  --kx-font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* --- Motion -------------------------------------------- */
+  --kx-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --kx-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --kx-duration-fast: 150ms;
+  --kx-duration-base: 250ms;
+  --kx-duration-slow: 400ms;
+}

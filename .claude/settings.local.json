@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd .. && ls -la && echo \"---KRYPTOX---\" && ls kryptox/part/page/ 2>/dev/null | head -50)"
+    ]
+  }
+}

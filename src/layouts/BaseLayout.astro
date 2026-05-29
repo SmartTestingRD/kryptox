@@ -1,0 +1,58 @@
+---
+/**
+ * BaseLayout.astro
+ * ----------------
+ * The page shell. Replaces flexr/head.php + part/header.php + part/footer.php
+ * as a single composable layout. Pages wrap their content in <BaseLayout>.
+ */
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Set to true for pages that should render dark hero into header (transparent header) */
+  transparentHeader?: boolean;
+}
+
+const {
+  title,
+  description = 'KryptoX — crypto-to-bank liquidity infrastructure built for performance and discretion.',
+  transparentHeader = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- No webfonts: the PHP original never loads Inter, so the
+         `font-family: Inter, system-ui, ...` stacks fall back to system-ui
+         (Segoe UI on Windows) exactly as the live PHP site does. -->
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Global tokens from the PHP original (index.php inline :root) —
+         consumed verbatim by Header/Footer/Hero ported CSS. -->
+    <style is:global>
+      :root{
+        --innerWidth: 1380px;
+        --mainColor: #00D7D7;
+        --titleSize: clamp(38px, 3.6vw, 48px);
+      }
+    </style>
+  </head>
+  <body>
+    <Header transparent={transparentHeader} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

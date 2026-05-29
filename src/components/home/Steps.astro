@@ -1,0 +1,334 @@
+---
+/**
+ * Steps.astro
+ * -----------
+ * 1:1 migration of part/sub/home/steps.php. HTML, CSS and inline scripts
+ * ported verbatim. The canvas reuses the shared KXHomeParticles engine
+ * defined in Whatis.astro (which renders earlier on the page).
+ */
+---
+
+<section class="kx-audit" id="kxAudit">
+  <canvas class="kx-home__canvas" data-color="10,80,110" data-count="24" data-speed="0.14" data-opacity="0.16" aria-hidden="true"></canvas>
+  <div class="kx-audit__inner">
+    <div class="kx-audit__reveal">
+      <h2 class="kx-audit__title">From Wallet to Bank – Fully Auditable</h2>
+      <p class="kx-audit__subtitle">
+        Track every transaction across wallets, compliance checks, approvals, liquidity execution, and bank settlement.
+      </p>
+
+      <div class="kx-audit__steps" id="kxAuditSteps" aria-label="Auditable flow steps">
+        <div class="kx-audit__step" data-step>
+          <span class="kx-audit__label" data-label>Wallet</span>
+          <span class="kx-audit__arrow" aria-hidden="true"><i>→</i></span>
+        </div>
+
+        <div class="kx-audit__step" data-step>
+          <span class="kx-audit__label" data-label>KYT</span>
+          <span class="kx-audit__arrow" aria-hidden="true"><i>→</i></span>
+        </div>
+
+        <div class="kx-audit__step" data-step>
+          <span class="kx-audit__label" data-label>Approval</span>
+          <span class="kx-audit__arrow" aria-hidden="true"><i>→</i></span>
+        </div>
+
+        <div class="kx-audit__step" data-step>
+          <span class="kx-audit__label" data-label>Liquidor</span>
+          <span class="kx-audit__arrow" aria-hidden="true"><i>→</i></span>
+        </div>
+
+        <div class="kx-audit__step" data-step>
+          <span class="kx-audit__label" data-label>Bank</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* KryptoX — Section: From Wallet to Bank (Auditable) */
+    .kx-audit{
+    position: relative;
+    background: #ffffff;
+    color: #0b0f12;
+    padding: 170px 0 170px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .kx-audit__inner{
+    position: relative;
+    z-index: 2;
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .kx-audit__title{
+    margin: 0 0 14px 0;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-size: var(--titleSize);
+    color: #0a0f12;
+  }
+
+  .kx-audit__subtitle{
+    margin: 0 auto;
+    max-width: 920px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(10,15,18,0.66);
+  }
+
+  /* Steps row */
+  .kx-audit__steps{
+    margin-top: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 38px;
+    flex-wrap: wrap;
+  }
+
+  .kx-audit__step{
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .kx-audit__label{
+    font-size: clamp(22px, 2.2vw, 30px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: #0a0f12; /* base (black) */
+    transition: color 420ms ease, text-shadow 420ms ease;
+    text-transform: none;
+  }
+
+  .kx-audit__label.is-on{
+    color: var(--kx-accent, #00BFC2);
+    text-shadow: 0 18px 50px rgba(0,191,194,0.18);
+  }
+
+  .kx-audit__arrow{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(10,15,18,0.30);
+    font-size: 32px;
+    line-height: 1;
+    transform: translateY(-1px);
+    user-select: none;
+  }
+
+  /* subtle arrow animation synced-ish */
+  .kx-audit__arrow i{
+    display: inline-block;
+    transition: opacity 360ms ease, transform 360ms ease;
+    opacity: 0.7;
+  }
+
+  .kx-audit__step.is-on .kx-audit__arrow i{
+    opacity: 1;
+    transform: translateX(2px);
+  }
+
+  /* Entrance reveal */
+  .kx-audit__reveal{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+
+  .kx-audit.is-inview .kx-audit__reveal{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 760px){
+    .kx-audit{
+      padding: 88px 0 96px;
+    }
+    .kx-audit__steps{
+      gap: 18px 18px;
+    }
+    .kx-audit__arrow{
+      font-size: 28px;
+      opacity: 0.7;
+    }
+  }
+
+
+  /* ---- STEPS: Responsive ≤677px — START ---- */
+  @media (max-width: 677px){
+    .kx-audit__label{
+      font-size: clamp(19px, 2.2vw, 27px);
+    }
+  }
+  /* ---- STEPS: Responsive ≤677px — END ---- */
+  @media (prefers-reduced-motion: reduce){
+    .kx-audit__label{
+      transition: none;
+    }
+    .kx-audit__arrow i{
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var root = document.getElementById('kxAudit');
+    if (!root){
+      console.warn('[KryptoX] #kxAudit not found.');
+      return;
+    }
+
+    // ===== Config =====
+    // Total time (ms) to go from first to last step (full sweep)
+    // Adjust this number to speed up or slow down the whole sequence.
+    var SWEEP_MS = 4600;
+
+    // Portion of each step time that remains "lit" (0..1)
+    // Example: 0.55 means it stays colored for 55% of its slice, then fades to black.
+    var LIT_RATIO = 0.62;
+
+    // Accent color for the lit state
+    root.style.setProperty('--kx-accent', '#00BFC2');
+
+    // ===== Logic =====
+    var stepsWrap = document.getElementById('kxAuditSteps');
+    if (!stepsWrap){
+      console.warn('[KryptoX] #kxAuditSteps not found.');
+      return;
+    }
+
+    var steps = Array.prototype.slice.call(stepsWrap.querySelectorAll('[data-step]'));
+    if (!steps.length){
+      console.warn('[KryptoX] No steps found inside #kxAuditSteps.');
+      return;
+    }
+
+    // If reduced motion, keep all in base state (no loop)
+    var reduce = false;
+    try {
+      reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch(e){}
+
+    function clearAll(){
+      for (var i=0;i<steps.length;i++){
+        steps[i].classList.remove('is-on');
+        var lab = steps[i].querySelector('[data-label]');
+        if (lab) lab.classList.remove('is-on');
+      }
+    }
+
+    var timers = [];
+    function stopTimers(){
+      while (timers.length) {
+        clearTimeout(timers.pop());
+      }
+    }
+
+    function lightIndex(idx, sliceMs){
+      clearAll();
+
+      var step = steps[idx];
+      if (!step) return;
+
+      step.classList.add('is-on');
+      var label = step.querySelector('[data-label]');
+      if (label) label.classList.add('is-on');
+
+      // turn off after lit duration
+      var offMs = Math.max(120, Math.floor(sliceMs * LIT_RATIO));
+      timers.push(setTimeout(function(){
+        step.classList.remove('is-on');
+        if (label) label.classList.remove('is-on');
+      }, offMs));
+    }
+
+    function loop(){
+      stopTimers();
+      if (reduce) return;
+
+      var n = steps.length;
+      var slice = Math.max(200, Math.floor(SWEEP_MS / n));
+      var t = 0;
+
+      for (var i=0;i<n;i++){
+        (function(ii, delay){
+          timers.push(setTimeout(function(){
+            lightIndex(ii, slice);
+          }, delay));
+        })(i, t);
+        t += slice;
+      }
+
+      // restart after full sweep
+      timers.push(setTimeout(loop, t));
+    }
+
+    // Reveal on scroll + start loop once visible
+    var started = false;
+    function startOnce(){
+      if (started) return;
+      started = true;
+      loop();
+    }
+
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        for (var i=0;i<entries.length;i++){
+          if (entries[i].isIntersecting){
+            root.classList.add('is-inview');
+            startOnce();
+            io.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.22 });
+
+      io.observe(root);
+    } else {
+      root.classList.add('is-inview');
+      startOnce();
+    }
+
+    // Expose minimal config hook (optional)
+    // window.KX_AUDIT = { setSweepMs: fn, setLitRatio: fn }
+    window.KX_AUDIT = window.KX_AUDIT || {};
+    window.KX_AUDIT.setSweepMs = function(ms){
+      if (typeof ms !== 'number' || !isFinite(ms) || ms < 600) {
+        console.warn('[KryptoX] setSweepMs(ms) expects a number >= 600.');
+        return;
+      }
+      SWEEP_MS = ms;
+      if (started) loop();
+    };
+    window.KX_AUDIT.setLitRatio = function(r){
+      if (typeof r !== 'number' || !isFinite(r) || r <= 0 || r > 1) {
+        console.warn('[KryptoX] setLitRatio(r) expects a number in (0..1].');
+        return;
+      }
+      LIT_RATIO = r;
+      if (started) loop();
+    };
+  })();
+</script>
+
+<script is:inline>
+/* --- STEPS: init canvas particles (engine defined in whatis) --- */
+(function(){
+    var canvas = document.querySelector('#kxAudit .kx-home__canvas');
+    if (!canvas || typeof KXHomeParticles === 'undefined') return;
+    KXHomeParticles(canvas, {
+        color:   canvas.dataset.color   || '10,80,110',
+        count:   parseInt(canvas.dataset.count  || '24', 10),
+        speed:   parseFloat(canvas.dataset.speed  || '0.14'),
+        opacity: parseFloat(canvas.dataset.opacity || '0.06')
+    });
+})();
+</script>

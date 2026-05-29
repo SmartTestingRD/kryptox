@@ -1,0 +1,316 @@
+---
+/**
+ * Providers.astro
+ * ---------------
+ * 1:1 migration of part/sub/home/providers.php. HTML, CSS and inline script
+ * ported verbatim. `$raiz` resolves to `/`.
+ */
+import { Image } from 'astro:assets';
+import globalLogo from '../../assets/provider/global.png';
+import chainalysisLogo from '../../assets/provider/chainalysis.png';
+---
+
+<section class="kx-providers" id="kxProviders">
+  <div class="kx-providers__inner">
+    <div class="kx-providers__panel">
+      <div class="kx-providers__head kx-providers__reveal">
+        <h2 class="kx-providers__title">Best-in-Class Providers.<br>One Control Layer.</h2>
+        <p class="kx-providers__subtitle">
+          KryptoX integrates leading providers across custody, compliance, liquidity, and banking—bringing them together
+          into a single, auditable workflow.
+        </p>
+      </div>
+
+      <div class="kx-providers__grid kx-providers__reveal" aria-label="Providers">
+        <article class="kx-providers__card">
+          <div class="kx-providers__brand">
+            <img class="kx-providers__logo" src="/media/provider/zodia.svg" alt="Zodia Markets">
+          </div>
+          <p class="kx-providers__desc">
+            Regulated custody infrastructure with asset segregation and bank-grade standards.
+          </p>
+        </article>
+
+        <article class="kx-providers__card">
+          <div class="kx-providers__brand">
+            <img class="kx-providers__logo is-tall" src="/media/provider/1konto.svg" alt="Konto">
+          </div>
+          <p class="kx-providers__desc">
+            Institutional multi-asset liquidity and competitive pricing for payments and settlements.
+          </p>
+        </article>
+
+        <article class="kx-providers__card">
+          <div class="kx-providers__brand">
+            <img class="kx-providers__logo" src="/media/provider/utila.svg" alt="Utila">
+          </div>
+          <p class="kx-providers__desc">
+            Wallet control, policies, and approvals to operate securely with full auditability at scale.
+          </p>
+        </article>
+
+        <article class="kx-providers__card">
+          <div class="kx-providers__brand">
+            <img class="kx-providers__logo" src="/media/provider/sumsub.svg" alt="Sumsub">
+          </div>
+          <p class="kx-providers__desc">
+            Identity verification, KYB/KYC workflows, and risk checks designed for compliance-heavy operations.
+          </p>
+        </article>
+
+        <article class="kx-providers__card">
+          <div class="kx-providers__brand longLogo">
+            <Image class="kx-providers__logo" src={globalLogo} alt="Global Orion" />
+          </div>
+          <p class="kx-providers__desc">
+            Banking partner enabling fast, compliant fiat settlements and audit-ready reporting.
+          </p>
+        </article>
+
+        <article class="kx-providers__card">
+          <div class="kx-providers__brand longLogo">
+            <Image class="kx-providers__logo" src={chainalysisLogo} alt="Chainalysis" />
+          </div>
+          <p class="kx-providers__desc">
+            Funds traceability, risk signals, and continuous compliance for crypto operations.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* KryptoX — Section: Providers */
+  .kx-providers{
+    position: relative;
+    background: #ffffff;
+    color: #0b0f12;
+    padding: 120px 0 130px;
+    padding: 0px 0 130px;
+    overflow: hidden;
+  }
+
+  /* Top black band (behind the rounded white panel) */
+  .kx-providers::before{
+    content:"";
+    position:absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    height: 150px;
+    background: #000;
+    pointer-events:none;
+  }
+
+  .kx-providers__inner{
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* White rounded panel */
+  .kx-providers__panel{
+    background: #ffffff;
+    border-radius: 34px;
+    padding: 84px 0 76px;
+  }
+
+  .kx-providers__head{
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto 56px;
+  }
+
+  .kx-providers__title{
+    margin: 0;
+    font-size: var(--titleSize);
+    line-height: 1.08;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    color: #0a0f12;
+  }
+
+  .kx-providers__subtitle{
+    margin: 18px auto 0;
+    max-width: 720px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(10,15,18,0.66);
+  }
+
+  /* Cards grid */
+  .kx-providers__grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+
+  .kx-providers__card{
+    background: #0b0f12;
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.16);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    min-height: 116px;
+    display: grid;
+    align-content: space-between;
+    gap: 10px;
+  }
+
+  .kx-providers__card:hover{
+    /*transform: translateY(-3px);*/
+    border-color: rgba(255,255,255,0.14);
+    box-shadow: 0 26px 80px rgba(0,0,0,0.20);
+  }
+
+  .kx-providers__brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 26px;
+  }
+
+  .kx-providers__logo{
+    height: 22px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.35));
+  }
+
+  .longLogo{
+    gap: 3px;
+  }
+  .longLogo .kx-providers__logo{
+    height: 35px;
+  }
+
+  /* Allow some logos to be taller if needed */
+  .kx-providers__logo.is-tall{
+    height: 26px;
+  }
+
+  .kx-providers__desc{
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.70);
+    max-width: 290px;
+  }
+
+  /* subtle accent microline (brand polish) */
+  .kx-providers__card::after{
+    content:"";
+    width: 52px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.10);
+    margin-top: 2px;
+    transition: background 220ms ease, width 220ms ease;
+    display: none;
+  }
+
+  .kx-providers__card:hover::after{
+    background: rgba(0,0,0,0.0);
+    width: 66px;
+  }
+
+  /* Reveal */
+  .kx-providers__reveal{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+
+  .kx-providers.is-inview .kx-providers__reveal{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Use brand main color subtly on hover */
+  .kx-providers__card:hover .kx-providers__desc{
+    color: rgba(255,255,255,0.78);
+  }
+
+  /* Responsive */
+  @media (max-width: 980px){
+    .kx-providers{
+      padding: 96px 0 110px;
+    }
+
+    .kx-providers::before{
+      height: 160px;
+    }
+
+    .kx-providers__panel{
+      padding: 72px 0 66px;
+      border-radius: 28px;
+    }
+
+    .kx-providers__grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px){
+    .kx-providers__grid{
+      grid-template-columns: 1fr;
+    }
+    .kx-providers__panel{
+      padding: 62px 0 54px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-providers__reveal{
+      transition: none;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .kx-providers__card{
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxProviders');
+    if (!el){
+      console.warn('[KryptoX] #kxProviders not found.');
+      return;
+    }
+
+    // ensure brand variable exists (defensive)
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if (!mc || !String(mc).trim()){
+        // fallback to something close to your palette
+        document.documentElement.style.setProperty('--mainColor', '#00BFC2');
+      }
+    } catch(e){}
+
+    // reveal on view
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        for (var i=0;i<entries.length;i++){
+          if (entries[i].isIntersecting){
+            el.classList.add('is-inview');
+            io.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.18 });
+
+      io.observe(el);
+    } else {
+      el.classList.add('is-inview');
+    }
+  })();
+</script>

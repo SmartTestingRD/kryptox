@@ -1,0 +1,425 @@
+---
+/**
+ * DataProtection.astro
+ * --------------------
+ * 1:1 migration of part/sub/security/data_protection.php. HTML, CSS and
+ * inline script ported verbatim. `$raiz` resolves to `/`.
+ */
+import { Image } from 'astro:assets';
+import secured from '../../assets/security/secured.png';
+---
+
+<section class="kx-dpsi" id="kxDpsi">
+  <div class="kx-dpsi__inner">
+
+    <div class="kx-dpsi__eyebrow kx-dpsi__reveal">Data Protection &amp; System Integrity</div>
+
+    <h2 class="kx-dpsi__title kx-dpsi__reveal">
+      Protect sensitive data and preserve operational integrity in regulated environments
+    </h2>
+
+    <div class="kx-dpsi__layout">
+
+      <div class="kx-dpsi__visual kx-dpsi__reveal" aria-hidden="true" align="center">
+          <Image src={secured} alt="" class="secureIMG" />
+      </div>
+
+      <div class="kx-dpsi__copy kx-dpsi__reveal">
+        <p class="kx-dpsi__p">
+          KryptoX is engineered to safeguard sensitive information and maintain system stability under strict compliance,
+          audit, and risk requirements—without compromising performance across the settlement workflow.
+        </p>
+
+        <ul class="kx-dpsi__bullets">
+          <li>
+            <span class="kx-dpsi__tick">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            Strong controls around data access, encryption boundaries, and evidence retention policies.
+          </li>
+          <li>
+            <span class="kx-dpsi__tick">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            Integrity-first workflows with deterministic logs and tamper-resistant operational records.
+          </li>
+          <li>
+            <span class="kx-dpsi__tick">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            Stability safeguards for high-throughput activity (timeouts, thresholds, fallbacks, and controlled retries).
+          </li>
+          <li>
+            <span class="kx-dpsi__tick">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            Audit-ready monitoring signals tied to each operation across compliance and settlement execution.
+          </li>
+        </ul>
+
+        <div class="kx-dpsi__ctaRow">
+          <div class="ctaCols">
+            <a class="kx-dpsi__btn" href="/contact">
+              Request a demo
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h12"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+            <span>&nbsp;</span>
+          </div>
+          <div class="kx-dpsi__note">Our product is designed for institutions with strict controls and audit requirements.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== Security & Compliance — Data Protection & System Integrity ===== */
+
+  .kx-dpsi {
+    position: relative;
+    background: #ffffff;
+    padding: 110px 28px;
+    overflow: hidden;
+  }
+
+  /* soft background wash (like the reference) */
+  /*.kx-dpsi::before{
+    content:"";
+    position:absolute;
+    inset:-120px -120px -120px -120px;
+    background:
+      radial-gradient(900px 520px at 12% 55%, rgba(0,0,0,0.05), transparent 62%),
+      radial-gradient(980px 620px at 78% 40%, rgba(1,220,220,0.14), transparent 62%),
+      linear-gradient(90deg, rgba(0,0,0,0.015), rgba(0,0,0,0.0));
+    pointer-events:none;
+    z-index: 0;
+    filter: blur(0px);
+  }*/
+
+  .kx-dpsi__inner{
+    position: relative;
+    z-index: 1;
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+  }
+
+  .kx-dpsi__eyebrow{
+    text-align:center;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(10, 15, 18, 0.55);
+    margin-bottom: 16px;
+  }
+
+  .kx-dpsi__title{
+    text-align:center;
+    margin: 0 auto 22px;
+    max-width: 1140px;
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    font-weight: 200;
+    color: #0a0f12;
+  }
+
+  .kx-dpsi__layout{
+    margin-top: 54px;
+    display: grid;
+    grid-template-columns: 520px 1fr;
+    gap: 90px;
+    align-items: center;
+  }
+
+  /* left visual stack */
+  .kx-dpsi__visual{
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+  }
+
+  .kx-dpsi__imgMain{
+    width: 100%;
+    height: 330px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #1a1f24;
+    box-shadow: 0 26px 70px rgba(0,0,0,0.14);
+    position: relative;
+  }
+
+  .kx-dpsi__imgMain img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display:block;
+    filter: saturate(0.95) contrast(1.02);
+  }
+
+  /* bottom-right floating image */
+  .kx-dpsi__imgFloat{
+    position: absolute;
+    right: -18px;
+    bottom: -44px;
+    width: min(320px, 70%);
+    height: 260px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #101418;
+    box-shadow: 0 30px 75px rgba(0,0,0,0.18);
+    transform: rotate(-1.2deg);
+  }
+
+  .kx-dpsi__imgFloat img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display:block;
+  }
+
+  /* stats pill */
+  .kx-dpsi__stat{
+    position: absolute;
+    left: 22px;
+    bottom: 22px;
+    width: 220px;
+    border-radius: 14px;
+    background: rgba(46, 68, 57, 0.0);
+    background: linear-gradient(180deg, rgba(46,68,57,0.08), rgba(46,68,57,0.04));
+    box-shadow:
+      0 18px 45px rgba(0,0,0,0.14),
+      inset 0 0 0 1px rgba(255,255,255,0.16);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 18px 18px 16px;
+    color: #ffffff;
+  }
+
+  .kx-dpsi__stat::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(1,220,220,0.06);
+    border-radius: 14px;
+    pointer-events:none;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+  }
+
+  .kx-dpsi__statVal{
+    position: relative;
+    z-index: 1;
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  }
+
+  .kx-dpsi__statLbl{
+    position: relative;
+    z-index: 1;
+    font-size: 13px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.78);
+    font-weight: 500;
+  }
+
+  /* right content */
+  .kx-dpsi__copy{
+    max-width: 640px;
+    justify-self: start;
+  }
+
+  .kx-dpsi__p{
+    margin: 0 0 18px;
+    font-size: 16px;
+    line-height: 1.85;
+    color: rgba(10, 15, 18, 0.62);
+  }
+
+  .kx-dpsi__bullets{
+    margin: 18px 0 26px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .kx-dpsi__bullets li{
+    display:flex;
+    gap: 10px;
+    align-items:flex-start;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(10, 15, 18, 0.62);
+    margin: 10px 0;
+  }
+
+  .kx-dpsi__tick{
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    border-radius: 6px;
+    background: rgba(1,220,220,0.18);
+    display:grid;
+    place-items:center;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+  }
+  .kx-dpsi__tick svg{
+    width: 12px;
+    height: 12px;
+    stroke: #0a0f12;
+    stroke-width: 2.4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.9;
+  }
+
+  .kx-dpsi__ctaRow{
+    display:grid;
+    grid-template-columns: 1fr;
+    align-items:center;
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .ctaCols{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .kx-dpsi__btn{
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    border-radius: 100px;
+    padding: 12px 18px;
+    background: var(--mainColor);
+    color: #001014;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    box-shadow: 0 18px 45px rgba(1,220,220,0.18);
+    transition: transform 160ms ease, filter 160ms ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .kx-dpsi__btn:hover{
+    transform: translateY(-1px);
+    filter: brightness(0.98);
+  }
+
+  .kx-dpsi__btn svg{
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.95;
+  }
+
+  .kx-dpsi__note{
+    font-size: 13px;
+    color: rgba(10, 15, 18, 0.50);
+  }
+
+  /* reveal */
+  .kx-dpsi__reveal{
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+  .kx-dpsi.is-inview .kx-dpsi__reveal{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .secureIMG{
+    height: auto;
+    text-align: center;
+    width: 70%;
+  }
+
+  @media (max-width: 1020px){
+    .kx-dpsi__layout{
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+    .kx-dpsi__copy{
+      max-width: 760px;
+      justify-self: center;
+      text-align: left;
+    }
+    .kx-dpsi__visual{
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .kx-dpsi__imgFloat{
+      right: 10px;
+    }
+  }
+
+  @media (max-width: 640px){
+    .kx-dpsi{
+      padding: 92px 18px;
+    }
+    .kx-dpsi__imgMain{
+      height: 290px;
+    }
+    .kx-dpsi__imgFloat{
+      width: 78%;
+      height: 220px;
+      bottom: -36px;
+    }
+    .kx-dpsi__stat{
+      width: 200px;
+    }
+    .kx-dpsi__statVal{
+      font-size: 42px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-dpsi__reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .kx-dpsi__btn{ transition:none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxDpsi');
+    if(!el) return;
+
+    // Ensure brand variable exists (fallback only)
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if(!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#01DCDC');
+      }
+    }catch(e){}
+
+    // in-view reveal
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          el.classList.add('is-inview');
+          io.disconnect();
+        }
+      }, { threshold: 0.14 });
+      io.observe(el);
+    }else{
+      el.classList.add('is-inview');
+    }
+  })();
+</script>

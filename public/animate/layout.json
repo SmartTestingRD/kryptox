@@ -1,0 +1,281 @@
+{
+  "wallets": [
+    {
+      "id": "w1",
+      "x": 2,
+      "y": 3,
+      "label": "Wallet #1"
+    },
+    {
+      "id": "w2",
+      "x": 2,
+      "y": 7,
+      "label": "Wallet #2"
+    },
+    {
+      "id": "w3",
+      "x": 2,
+      "y": 11,
+      "label": "Wallet #3"
+    },
+    {
+      "id": "w4",
+      "x": 2,
+      "y": 15,
+      "label": "Wallet #4"
+    },
+    {
+      "id": "w5",
+      "x": 2,
+      "y": 19,
+      "label": "Wallet #5"
+    }
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "x": 18,
+      "y": 4,
+      "type": "instant",
+      "name": "Instant Settlement"
+    },
+    {
+      "id": "m2",
+      "x": 18,
+      "y": 9,
+      "type": "periodic",
+      "name": "Periodic Settlement"
+    },
+    {
+      "id": "m3",
+      "x": 18,
+      "y": 14,
+      "type": "approval",
+      "name": "Manual Approval"
+    },
+    {
+      "id": "m4",
+      "x": 18,
+      "y": 19,
+      "type": "volume",
+      "name": "Volume Threshold",
+      "volumeSteps": [
+        {
+          "value": 0,
+          "delay": 1
+        },
+        {
+          "value": 62,
+          "delay": 3.5
+        },
+        {
+          "value": 100,
+          "delay": 7
+        },
+        {
+          "value": 0,
+          "delay": 2
+        }
+      ],
+      "currentVolume": 0
+    },
+    {
+      "id": "liq1",
+      "x": 42,
+      "y": 11,
+      "type": "liquidator",
+      "name": "Liquidators"
+    },
+    {
+      "id": "bank1",
+      "x": 58,
+      "y": 3,
+      "type": "bank",
+      "name": "Bank account #1"
+    },
+    {
+      "id": "bank2",
+      "x": 58,
+      "y": 8,
+      "type": "bank",
+      "name": "Bank account #2"
+    },
+    {
+      "id": "bank3",
+      "x": 58,
+      "y": 13,
+      "type": "bank",
+      "name": "Bank account #3"
+    },
+    {
+      "id": "bank4",
+      "x": 58,
+      "y": 18,
+      "type": "bank",
+      "name": "Bank account #4"
+    },
+    {
+      "id": "bank5",
+      "x": 58,
+      "y": 23,
+      "type": "bank",
+      "name": "Bank account #5"
+    }
+  ],
+  "lines": [
+    {
+      "id": "l1",
+      "start": {
+        "x": 11,
+        "y": 3
+      },
+      "end": {
+        "x": 18,
+        "y": 4
+      }
+    },
+    {
+      "id": "l2",
+      "start": {
+        "x": 11,
+        "y": 11
+      },
+      "end": {
+        "x": 18,
+        "y": 9
+      }
+    },
+    {
+      "id": "l3",
+      "start": {
+        "x": 11,
+        "y": 15
+      },
+      "end": {
+        "x": 18,
+        "y": 14
+      }
+    },
+    {
+      "id": "l4",
+      "start": {
+        "x": 11,
+        "y": 19
+      },
+      "end": {
+        "x": 18,
+        "y": 19
+      }
+    },
+    {
+      "id": "l5",
+      "start": {
+        "x": 11,
+        "y": 7
+      },
+      "end": {
+        "x": 18,
+        "y": 4
+      }
+    },
+    {
+      "id": "l6",
+      "start": {
+        "x": 58,
+        "y": 3
+      },
+      "end": {
+        "x": 54,
+        "y": 9
+      }
+    },
+    {
+      "id": "l7",
+      "start": {
+        "x": 37,
+        "y": 4
+      },
+      "end": {
+        "x": 42,
+        "y": 10
+      }
+    },
+    {
+      "id": "l8",
+      "start": {
+        "x": 58,
+        "y": 13
+      },
+      "end": {
+        "x": 54,
+        "y": 11
+      }
+    },
+    {
+      "id": "l9",
+      "start": {
+        "x": 58,
+        "y": 18
+      },
+      "end": {
+        "x": 54,
+        "y": 12
+      }
+    },
+    {
+      "id": "l10",
+      "start": {
+        "x": 58,
+        "y": 8
+      },
+      "end": {
+        "x": 54,
+        "y": 10
+      }
+    },
+    {
+      "id": "l11",
+      "start": {
+        "x": 58,
+        "y": 23
+      },
+      "end": {
+        "x": 54,
+        "y": 13
+      }
+    },
+    {
+      "id": "l12",
+      "start": {
+        "x": 37,
+        "y": 9
+      },
+      "end": {
+        "x": 42,
+        "y": 11
+      }
+    },
+    {
+      "id": "l13",
+      "start": {
+        "x": 37,
+        "y": 19
+      },
+      "end": {
+        "x": 42,
+        "y": 13
+      }
+    },
+    {
+      "id": "l14",
+      "start": {
+        "x": 42,
+        "y": 12
+      },
+      "end": {
+        "x": 37,
+        "y": 14
+      }
+    }
+  ]
+}

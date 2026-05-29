@@ -1,0 +1,126 @@
+---
+/**
+ * privacy.astro
+ * -------------
+ * 1:1 migration of part/page/privacy.php — feeds page/base.legal.php via
+ * the LegalPage component. Title, date and body HTML are verbatim.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/legal/LegalPage.astro';
+---
+
+<BaseLayout title="Privacy Policy">
+  <LegalPage title="Privacy Policy" date="March 9, 2026">
+    <p>
+      This Privacy Policy explains how <strong>KryptoX</strong> collects, uses, stores and protects information when you visit the KryptoX website, review its pages, interact with its forms or otherwise communicate with us through the digital channels made available on this website.
+    </p>
+
+    <p>
+      In this Privacy Policy, the words <strong>“KryptoX”</strong>, <strong>“we”</strong>, <strong>“our”</strong> and <strong>“us”</strong> refer to the KryptoX website, its related digital properties and the project team responsible for operating, maintaining or evolving the website experience. The words <strong>“you”</strong> and <strong>“your”</strong> refer to any visitor, representative, user, institution or company interacting with the website.
+    </p>
+
+    <p>
+      We are committed to handling information in a transparent and responsible way. This Privacy Policy is intended to provide a clear overview of the categories of information we may collect, the purposes for which we may use it and the circumstances in which it may be processed, stored or disclosed.
+    </p>
+
+    <h2>1. Information we may collect</h2>
+    <p>
+      Depending on how you use the website, KryptoX may collect information that you voluntarily submit and certain technical information that is generated automatically through your interaction with the site.
+    </p>
+
+    <ul>
+      <li>Contact information such as your name, email address, company name, phone number or job title when submitted through forms or communication channels.</li>
+      <li>Business-related information that you choose to share when requesting a demo, discussing a use case or contacting us regarding services or partnerships.</li>
+      <li>Technical information such as browser type, operating system, device type, language settings, approximate geographic signals, referring pages and interaction patterns.</li>
+      <li>Usage and analytics data that helps us understand how visitors navigate the website, which sections are visited and how the experience may be improved.</li>
+    </ul>
+
+    <h2>2. How we use information</h2>
+    <p>
+      KryptoX may use the information collected through the website to operate the website effectively, respond to inquiries, improve the experience and support legitimate communication and business development activities.
+    </p>
+
+    <ul>
+      <li>To respond to contact requests, demo inquiries, partnership requests or other communications initiated by you.</li>
+      <li>To improve website content, structure, messaging, usability, performance and reliability.</li>
+      <li>To understand how visitors interact with the website and identify areas that require clarification, enhancement or optimization.</li>
+      <li>To maintain security, detect misuse, monitor integrity and prevent unauthorized activity affecting the website or its supporting systems.</li>
+      <li>To comply with legal, regulatory or operational obligations where such obligations apply.</li>
+    </ul>
+
+    <h2>3. Legal basis and responsible processing</h2>
+    <p>
+      Where applicable, KryptoX processes personal information on the basis of legitimate interest, consent, contractual necessity, legal compliance or another appropriate legal basis permitted under the relevant data protection framework.
+    </p>
+
+    <p>
+      Where you voluntarily submit information through a form, you acknowledge that such information may be processed for the purpose reasonably connected to that request, including follow-up communications and internal evaluation of your inquiry.
+    </p>
+
+    <h2>4. Cookies and analytics technologies</h2>
+    <p>
+      The KryptoX website may use cookies, pixels, analytics scripts or similar technologies to understand website traffic, improve user experience, remember preferences and measure site performance. Some of these technologies may be operated directly by KryptoX, while others may be provided by third-party analytics or infrastructure services.
+    </p>
+
+    <p>
+      Additional information about how cookies and related tools may be used is provided in the Cookie Policy published on the website. Where required by law, cookie choices may be presented through a consent or preference mechanism.
+    </p>
+
+    <div class="legal_template__divider"></div>
+
+    <h2>5. Sharing and disclosure</h2>
+    <p>
+      KryptoX does not sell personal information collected through the website. We may, however, share limited information with trusted service providers, hosting partners, analytics tools, technical contractors or legal advisers where such disclosure is reasonably necessary to operate the website, secure the platform, respond to inquiries or comply with legal obligations.
+    </p>
+
+    <p>
+      Information may also be disclosed where required by applicable law, court order, regulatory obligation or other lawful process, or where such disclosure is necessary to protect the rights, property, safety or security of KryptoX, its users or third parties.
+    </p>
+
+    <h2>6. Data retention</h2>
+    <p>
+      KryptoX retains information only for as long as it is reasonably necessary for the purposes described in this Privacy Policy, including maintaining communications, improving the website, preserving security records, complying with legal obligations or resolving disputes.
+    </p>
+
+    <p>
+      Retention periods may vary depending on the type of information, the context in which it was provided and the legal or operational requirements associated with it.
+    </p>
+
+    <h2>7. Data security</h2>
+    <p>
+      KryptoX takes reasonable technical and organizational measures to protect information against unauthorized access, misuse, disclosure, alteration or destruction. However, no internet-based service, website or transmission environment can be guaranteed to be completely secure.
+    </p>
+
+    <p>
+      You should use discretion when submitting information online and avoid transmitting sensitive information through channels that are not expressly designated for secure exchange.
+    </p>
+
+    <h2>8. International access and jurisdiction</h2>
+    <p>
+      The KryptoX website may be accessed from different countries and jurisdictions. By using the website, you understand that information may be processed in locations where data protection laws differ from those in your jurisdiction, subject to the safeguards and practices applied by KryptoX and its service providers.
+    </p>
+
+    <h2>9. Your rights</h2>
+    <p>
+      Depending on the laws applicable to you, you may have rights relating to the personal information processed through the website, including the right to request access, correction, deletion, restriction or objection in certain circumstances. You may also have the right to withdraw consent where processing depends on consent.
+    </p>
+
+    <p>
+      Requests relating to privacy rights may be submitted through the contact channels indicated on the website. KryptoX may request reasonable verification before responding to a request.
+    </p>
+
+    <h2>10. Changes to this Privacy Policy</h2>
+    <p>
+      KryptoX may update this Privacy Policy from time to time in order to reflect changes to the website, legal requirements, analytics practices, operational workflows or other relevant developments. When changes are made, the effective date at the top of the page may be updated accordingly.
+    </p>
+
+    <h2>11. Contact</h2>
+    <p>
+      If you have questions about this Privacy Policy, how information is handled on the KryptoX website or how to exercise applicable privacy rights, you may contact the project team through the channels indicated on the website or write to <a href="#">privacy@KryptoX.example</a> as placeholder contact information for design purposes.
+    </p>
+
+    <p>
+      By continuing to use the KryptoX website, you acknowledge that you have reviewed this Privacy Policy and understand how information may be handled in connection with the website.
+    </p>
+  </LegalPage>
+</BaseLayout>

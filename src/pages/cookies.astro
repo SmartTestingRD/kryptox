@@ -1,0 +1,108 @@
+---
+/**
+ * cookies.astro
+ * -------------
+ * 1:1 migration of part/page/cookies.php — feeds page/base.legal.php via
+ * the LegalPage component. Title, date and body HTML are verbatim.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/legal/LegalPage.astro';
+---
+
+<BaseLayout title="Cookie Policy">
+  <LegalPage title="Cookie Policy" date="March 9, 2026">
+    <p>
+      This Cookie Policy explains how <strong>KryptoX</strong> may use cookies, pixels, local storage objects, analytics tools and similar technologies when you visit the KryptoX website, review its pages or interact with its content.
+    </p>
+
+    <p>
+      In this Cookie Policy, the words <strong>“KryptoX”</strong>, <strong>“we”</strong>, <strong>“our”</strong> and <strong>“us”</strong> refer to the KryptoX website and the project team responsible for operating or maintaining it. The words <strong>“you”</strong> and <strong>“your”</strong> refer to any visitor, user or representative accessing the site.
+    </p>
+
+    <p>
+      This policy is intended to help you understand what these technologies are, why they may be used and what choices may be available to you in relation to them.
+    </p>
+
+    <h2>1. What are cookies?</h2>
+    <p>
+      Cookies are small text files that may be stored on your browser or device when you visit a website. Similar technologies may include tracking pixels, embedded analytics scripts, local storage tools, session identifiers or other mechanisms used to recognize a browser, remember preferences, analyze traffic or support website functionality.
+    </p>
+
+    <p>
+      Some cookies remain only for the duration of your session, while others may remain on your device for a longer period depending on their purpose, expiration period and browser settings.
+    </p>
+
+    <h2>2. Why KryptoX may use cookies</h2>
+    <p>
+      KryptoX may use cookies and similar technologies for a number of legitimate operational and analytical purposes relating to the website.
+    </p>
+
+    <ul>
+      <li>To support core website functionality and ensure pages load and operate properly.</li>
+      <li>To remember user preferences, language selections or consent choices where applicable.</li>
+      <li>To understand how visitors use the website, including which pages are visited and how the content performs.</li>
+      <li>To improve performance, usability, structure and communication effectiveness across the site.</li>
+      <li>To help detect suspicious behavior, misuse, abuse or malicious automated interactions.</li>
+    </ul>
+
+    <h2>3. Types of cookies that may be used</h2>
+    <p>
+      Depending on how the website is configured at a given time, KryptoX may use one or more of the following categories of cookies or related technologies:
+    </p>
+
+    <ul>
+      <li><strong>Strictly necessary cookies</strong> that help basic site functionality operate correctly.</li>
+      <li><strong>Preference cookies</strong> that remember settings or prior choices made during your visit.</li>
+      <li><strong>Analytics cookies</strong> that help us understand traffic, interactions, content usage and website performance.</li>
+      <li><strong>Security-related cookies</strong> that assist in identifying abuse, maintaining integrity and protecting the website environment.</li>
+    </ul>
+
+    <h2>4. Third-party technologies</h2>
+    <p>
+      Some cookies or similar technologies may be placed or managed by third-party tools used by KryptoX for hosting, analytics, performance measurement, form handling, embedded content, security monitoring or communication services. These providers may process certain technical information in accordance with their own privacy notices and policies.
+    </p>
+
+    <p>
+      KryptoX does not control the policies of third-party technology providers and encourages you to review their documentation where relevant.
+    </p>
+
+    <div class="legal_template__divider"></div>
+
+    <h2>5. Consent and control</h2>
+    <p>
+      Where required by applicable law, KryptoX may present a cookie banner, preference center or consent mechanism that allows you to accept, reject or customize the use of certain categories of cookies. In some cases, certain cookies may still be used where they are strictly necessary for the website to function.
+    </p>
+
+    <p>
+      You may also be able to manage cookie behavior through your browser settings. Most browsers allow you to block, remove or limit cookies, although doing so may affect website functionality or your browsing experience.
+    </p>
+
+    <h2>6. Browser-based controls</h2>
+    <p>
+      Most web browsers offer controls that allow you to view existing cookies, delete stored cookies or block future cookies. The exact method depends on the browser and device you use. Please note that disabling some cookies may impact page performance, saved preferences or interactive features.
+    </p>
+
+    <h2>7. Analytics and performance measurement</h2>
+    <p>
+      KryptoX may use analytics tools to understand how visitors navigate the website, which pages are most useful, where users exit the experience and how content can be improved. These tools may collect aggregated or pseudonymous information relating to site usage and technical behavior.
+    </p>
+
+    <p>
+      Analytics information is used to improve the website experience, not to make hidden profiling decisions about you for unrelated purposes.
+    </p>
+
+    <h2>8. Changes to this Cookie Policy</h2>
+    <p>
+      KryptoX may update this Cookie Policy from time to time to reflect changes to the technologies used on the website, legal requirements, analytics practices or site functionality. When changes are made, the effective date at the top of the page may be updated.
+    </p>
+
+    <h2>9. Contact</h2>
+    <p>
+      If you have questions about this Cookie Policy, the use of cookies on the KryptoX website or the technologies that support the site experience, you may contact the project team through the channels indicated on the website or write to <a href="#">privacy@KryptoX.example</a> as placeholder contact information for design purposes.
+    </p>
+
+    <p>
+      By continuing to use the KryptoX website, you acknowledge that cookies and similar technologies may be used as described in this Cookie Policy, subject to the controls and choices made available where applicable.
+    </p>
+  </LegalPage>
+</BaseLayout>

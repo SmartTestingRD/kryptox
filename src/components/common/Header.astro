@@ -1,0 +1,885 @@
+---
+/**
+ * Header.astro
+ * ------------
+ * 1:1 migration of part/header.php. Structure, classes, IDs, CSS and the
+ * inline init script are ported verbatim from the PHP original.
+ * `$raiz` (site root) resolves to `/` in the Astro build.
+ */
+import { Image } from 'astro:assets';
+import logo from '../../assets/logo.png';
+---
+
+<header class="kx-header" id="kxHeader">
+    <div class="kx-header__inner">
+
+        <!-- Brand -->
+        <a class="kx-brand" href="/">
+            <Image
+                class="kx-brand__logo"
+                src={logo}
+                alt="KryptoX"
+                loading="eager"
+            />
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="kx-nav" aria-label="Primary">
+
+            <!-- Solutions dropdown -->
+            <span class="kx-nav__ddWrap">
+                <a class="kx-nav__item kx-nav__item--has-dd"
+                   href="/solutions"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    <span>Solutions</span>
+                    <svg class="kx-nav__chev" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6.7 9.2a1 1 0 0 1 1.4 0L12 13.1l3.9-3.9a1 1 0 1 1 1.4 1.4l-4.6 4.6a1 1 0 0 1-1.4 0L6.7 10.6a1 1 0 0 1 0-1.4Z"/>
+                    </svg>
+                </a>
+
+                <span class="kx-nav__dd-bridge" aria-hidden="true"></span>
+
+                <div class="kx-nav__dd" role="menu" aria-label="Solutions menu">
+                    <ul class="kx-nav__ddList">
+                        <li>
+                            <a class="kx-nav__ddItem" href="/solutions?i=financial" role="menuitem">
+                                <span class="kx-nav__ddIcon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm4 1h5a1 1 0 1 0 0-2H8a1 1 0 0 0 0 2Zm0 4h7a1 1 0 1 0 0-2H8a1 1 0 1 0 0 2Zm0 4h7a1 1 0 1 0 0-2H8a1 1 0 1 0 0 2Z"/></svg>
+                                </span>
+                                <span>
+                                    <div class="kx-nav__ddTitle">Financial Institutions</div>
+                                    <div class="kx-nav__ddDesc">Institutional control for crypto-to-bank operations.</div>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="kx-nav__ddItem" href="/solutions?i=payments" role="menuitem">
+                                <span class="kx-nav__ddIcon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M7 7a3 3 0 1 1 3 3H9v4h2a3 3 0 1 1-3 3H6a1 1 0 1 1 0-2h2a1 1 0 1 0 0-2H8a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2a1 1 0 1 0 0-2H6a1 1 0 1 1 0-2h4Zm10 0a3 3 0 1 0-3 3h1v4h-2a3 3 0 1 0 3 3h2a1 1 0 1 0 0-2h-2a1 1 0 1 1 0-2h1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1a1 1 0 1 1 0-2h4a1 1 0 1 0 0-2h-4Z"/></svg>
+                                </span>
+                                <span>
+                                    <div class="kx-nav__ddTitle">Payment Providers</div>
+                                    <div class="kx-nav__ddDesc">Coordinate payouts, liquidity, and settlements.</div>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="kx-nav__ddItem" href="/solutions?i=crypto" role="menuitem">
+                                <span class="kx-nav__ddIcon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 1 9 9c0 6-9 11-9 11S3 17 3 11a9 9 0 0 1 9-9Zm0 2a7 7 0 0 0-7 7c0 4.3 5.4 8.4 7 9.5 1.6-1.1 7-5.2 7-9.5a7 7 0 0 0-7-7Zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/></svg>
+                                </span>
+                                <span>
+                                    <div class="kx-nav__ddTitle">Crypto Platforms</div>
+                                    <div class="kx-nav__ddDesc">Connect digital asset platforms to banking rails.</div>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="kx-nav__ddItem" href="/solutions?i=treasury" role="menuitem">
+                                <span class="kx-nav__ddIcon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Zm0 2.2L6 6.8V12c0 4 2.7 7.6 6 8 3.3-.4 6-4 6-8V6.8l-6-2.6Z"/></svg>
+                                </span>
+                                <span>
+                                    <div class="kx-nav__ddTitle">Treasury &amp; Finance Teams</div>
+                                    <div class="kx-nav__ddDesc">Manage liquidity, approvals, and financial execution.</div>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="kx-nav__ddItem" href="/solutions?i=compliance" role="menuitem">
+                                <span class="kx-nav__ddIcon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Zm0 2.2L6 6.8V12c0 4 2.7 7.6 6 8 3.3-.4 6-4 6-8V6.8l-6-2.6Z"/></svg>
+                                </span>
+                                <span>
+                                    <div class="kx-nav__ddTitle">Compliance &amp; Risk Teams</div>
+                                    <div class="kx-nav__ddDesc">Monitor flows, enforce controls, and reduce risk.</div>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </span>
+
+            <a class="kx-nav__item" href="/about">What is KryptoX</a>
+            <a class="kx-nav__item" href="/security">Security &amp; Compliance</a>
+            <a class="kx-nav__item" href="/contact">Contact</a>
+        </nav>
+
+
+        <!-- CTA — always visible -->
+        <div class="kx-cta">
+            <a class="kx-btn" href="/request-demo">
+                <span class="kx-btn__full">Request a demo</span>
+                <span class="kx-btn__short">Demo</span>
+            </a>
+        </div>
+
+
+        <!-- Hamburger button (visible ≤1060px) -->
+        <button
+            class="kx-hamburger"
+            id="kxHamburger"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="kxMobileNav"
+            type="button"
+        >
+            <span class="kx-hamburger__icon" aria-hidden="true">
+                <span class="kx-hamburger__line"></span>
+                <span class="kx-hamburger__line"></span>
+                <span class="kx-hamburger__line"></span>
+            </span>
+        </button>
+
+    </div><!-- /.kx-header__inner -->
+</header>
+
+
+<!-- Mobile nav panel (outside header to avoid clipping) -->
+<nav
+    class="kx-mobile-nav"
+    id="kxMobileNav"
+    aria-label="Mobile navigation"
+    aria-hidden="true"
+  >
+    <div class="kx-mobile-nav__inner">
+
+        <!-- Solutions (expandable) -->
+        <div class="kx-mobile-nav__expand" id="kxMobileSolutionsToggle" role="button" tabindex="0" aria-expanded="false">
+            <span>Solutions</span>
+            <svg class="kx-mobile-nav__expand-chev" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.7 9.2a1 1 0 0 1 1.4 0L12 13.1l3.9-3.9a1 1 0 1 1 1.4 1.4l-4.6 4.6a1 1 0 0 1-1.4 0L6.7 10.6a1 1 0 0 1 0-1.4Z"/>
+            </svg>
+        </div>
+
+        <div class="kx-mobile-nav__sub" id="kxMobileSolutionsSub">
+            <a class="kx-mobile-nav__sub-item" href="/solutions?i=financial">
+                <span class="kx-mobile-nav__sub-title">Financial Institutions</span>
+                <span class="kx-mobile-nav__sub-desc">Institutional control for crypto-to-bank operations.</span>
+            </a>
+            <a class="kx-mobile-nav__sub-item" href="/solutions?i=payments">
+                <span class="kx-mobile-nav__sub-title">Payment Providers</span>
+                <span class="kx-mobile-nav__sub-desc">Coordinate payouts, liquidity, and settlements.</span>
+            </a>
+            <a class="kx-mobile-nav__sub-item" href="/solutions?i=crypto">
+                <span class="kx-mobile-nav__sub-title">Crypto Platforms</span>
+                <span class="kx-mobile-nav__sub-desc">Connect digital asset platforms to banking rails.</span>
+            </a>
+            <a class="kx-mobile-nav__sub-item" href="/solutions?i=treasury">
+                <span class="kx-mobile-nav__sub-title">Treasury &amp; Finance Teams</span>
+                <span class="kx-mobile-nav__sub-desc">Manage liquidity, approvals, and financial execution.</span>
+            </a>
+            <a class="kx-mobile-nav__sub-item" href="/solutions?i=compliance">
+                <span class="kx-mobile-nav__sub-title">Compliance &amp; Risk Teams</span>
+                <span class="kx-mobile-nav__sub-desc">Monitor flows, enforce controls, and reduce risk.</span>
+            </a>
+        </div>
+
+        <div class="kx-mobile-nav__sep"></div>
+
+        <a class="kx-mobile-nav__item" href="/about">What is KryptoX</a>
+        <a class="kx-mobile-nav__item" href="/security">Security &amp; Compliance</a>
+        <a class="kx-mobile-nav__item" href="/contact">Contact</a>
+
+    </div>
+</nav>
+
+<style>
+/* --- BASE: Header fixed bar --- */
+.kx-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 2147483647;
+    background: rgba(0,0,0,0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    transition: background 260ms ease,
+                backdrop-filter 260ms ease,
+                -webkit-backdrop-filter 260ms ease,
+                border-color 260ms ease;
+    border-bottom: 1px solid rgba(255,255,255,0);
+}
+
+.kx-header.is-scrolled {
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* --- BASE: Inner bar --- */
+.kx-header__inner {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 28px;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* --- BASE: Brand --- */
+.kx-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.kx-brand__logo {
+    width: auto;
+    height: 44px;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+}
+
+.kx-brand__name {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.kx-brand__x { color: #00D7D7; }
+
+/* --- BASE: Nav (desktop) --- */
+.kx-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kx-nav__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.92);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 10px;
+    border-radius: 12px;
+    transition: transform 180ms ease, background 180ms ease, color 180ms ease, opacity 180ms ease;
+    will-change: transform;
+}
+
+.kx-nav__item:hover {
+    background: rgba(255,255,255,0.06);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.kx-nav__item:focus-visible {
+    outline: 2px solid rgba(0,215,215,0.55);
+    outline-offset: 2px;
+}
+
+.kx-nav__item.active {
+    background: rgba(255,255,255,0.06);
+    color: var(--mainColor);
+}
+
+/* --- BASE: Chevron --- */
+.kx-nav__chev {
+    fill: currentColor;
+    opacity: 0.9;
+    transition: transform 200ms ease, opacity 200ms ease;
+}
+
+/* --- BASE: Dropdown wrapper --- */
+.kx-nav__ddWrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.kx-nav__ddWrap:hover .kx-nav__dd,
+.kx-nav__ddWrap:focus-within .kx-nav__dd {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.kx-nav__ddWrap:hover .kx-nav__chev,
+.kx-nav__ddWrap:focus-within .kx-nav__chev {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+
+/* --- BASE: Dropdown panel --- */
+.kx-nav__dd {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    width: 420px;
+    border-radius: 14px;
+    background: rgb(20,20,20);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 30px 90px rgb(0,0,0);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 170ms ease, transform 170ms ease;
+    z-index: 999999;
+}
+
+.kx-nav__dd::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(255,255,255,0.02), rgba(255,255,255,0));
+    pointer-events: none;
+}
+
+.kx-nav__dd-bridge {
+    position: absolute;
+    top: 100%; left: 0;
+    width: 440px;
+    height: 18px;
+}
+
+.kx-nav__ddList {
+    position: relative;
+    z-index: 2;
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+}
+
+.kx-nav__ddItem {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: rgba(255,255,255,0.92);
+    transition: background 160ms ease;
+}
+
+.kx-nav__ddItem + .kx-nav__ddItem {
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.kx-nav__ddItem:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--mainColor);
+}
+
+.kx-nav__ddIcon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: none;
+    place-items: center;
+}
+
+.kx-nav__ddIcon svg {
+    width: 25px;
+    height: auto;
+    fill: rgba(255,255,255,0.78);
+    opacity: 0.95;
+}
+
+.kx-nav__ddItem.is-accent .kx-nav__ddIcon {
+    background: color-mix(in srgb, var(--mainColor) 22%, rgba(255,255,255,0.06));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mainColor) 55%, rgba(255,255,255,0.10));
+}
+
+.kx-nav__ddItem.is-accent .kx-nav__ddIcon svg { fill: var(--mainColor); }
+
+.kx-nav__ddTitle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+}
+
+.kx-nav__ddDesc {
+    margin: 6px 0 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.64);
+}
+
+/* --- BASE: CTA button area --- */
+.kx-cta {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.kx-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: #00D7D7;
+    color: #001718;
+    font-weight: 800;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+    box-shadow: 0 14px 30px rgba(0,215,215,0.18);
+    will-change: transform;
+}
+
+.kx-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+    box-shadow: 0 16px 34px rgba(0,215,215,0.22);
+}
+
+.kx-btn:active  { transform: translateY(0px) scale(0.99); }
+.kx-btn:focus-visible { outline: 2px solid rgba(255,255,255,0.65); outline-offset: 2px; }
+
+/* Button text spans — default: show full text, hide short text */
+.kx-btn__full  { display: inline;  }
+.kx-btn__short { display: none; }
+
+/* --- HAMBURGER: Toggle button --- */
+.kx-hamburger {
+    display: none;         /* hidden on desktop */
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    /*margin-left: auto;*/
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 12px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.kx-hamburger:hover {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-1px);
+}
+
+.kx-hamburger:focus-visible {
+    outline: 2px solid rgba(0,215,215,0.55);
+    outline-offset: 2px;
+}
+
+/* Three-line icon */
+.kx-hamburger__icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    pointer-events: none;
+}
+
+.kx-hamburger__line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.90);
+    transform-origin: center;
+    transition: transform 240ms ease, opacity 200ms ease, width 200ms ease;
+}
+
+/* Animated X state */
+.kx-hamburger.is-open .kx-hamburger__line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.kx-hamburger.is-open .kx-hamburger__line:nth-child(2) { opacity: 0; width: 0; }
+.kx-hamburger.is-open .kx-hamburger__line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* --- MOBILE NAV PANEL --- */
+.kx-mobile-nav {
+    display: none;          /* block only on mobile breakpoint */
+    position: fixed;
+    top: 76px;              /* below header bar */
+    left: 0; right: 0;
+    z-index: 2147483646;    /* just below header */
+    background: rgba(6,6,10,0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    overflow-y: auto;
+    max-height: calc(100vh - 76px);
+
+    /* Slide animation */
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.kx-mobile-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.kx-mobile-nav__inner {
+    padding: 16px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Mobile nav links */
+.kx-mobile-nav__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 12px;
+    border-radius: 12px;
+    color: rgba(255,255,255,0.88);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.kx-mobile-nav__item:hover,
+.kx-mobile-nav__item:focus-visible {
+    background: rgba(255,255,255,0.07);
+    color: #fff;
+}
+
+.kx-mobile-nav__item.active {
+    background: rgba(255,255,255,0.06);
+    color: var(--mainColor);
+}
+
+/* Solutions sub-items inside mobile panel */
+.kx-mobile-nav__sub {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0 0 4px 12px;
+    padding: 0 0 0 14px;
+    border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+.kx-mobile-nav__sub-item {
+    display: flex;
+    flex-direction: column;
+    padding: 11px 10px;
+    border-radius: 10px;
+    color: rgba(255,255,255,0.70);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.kx-mobile-nav__sub-item:hover {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.90);
+}
+
+.kx-mobile-nav__sub-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.2;
+}
+
+.kx-mobile-nav__sub-desc {
+    margin-top: 3px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.44);
+    line-height: 1.4;
+}
+
+/* Solutions parent row with expand chevron */
+.kx-mobile-nav__expand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 12px;
+    border-radius: 12px;
+    color: rgba(255,255,255,0.88);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 160ms ease, color 160ms ease;
+    user-select: none;
+}
+
+.kx-mobile-nav__expand:hover { background: rgba(255,255,255,0.07); color: #fff; }
+
+.kx-mobile-nav__expand-chev {
+    width: 16px; height: 16px;
+    fill: rgba(255,255,255,0.55);
+    flex-shrink: 0;
+    transition: transform 220ms ease;
+}
+
+.kx-mobile-nav__expand.is-open .kx-mobile-nav__expand-chev {
+    transform: rotate(180deg);
+}
+
+/* Sub-list collapse */
+.kx-mobile-nav__sub {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 300ms ease, opacity 260ms ease;
+    opacity: 0;
+}
+
+.kx-mobile-nav__sub.is-open {
+    max-height: 600px;
+    opacity: 1;
+}
+
+/* Divider */
+.kx-mobile-nav__sep {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin: 8px 0;
+}
+
+/* --- RESPONSIVE: 1060px — show hamburger, hide desktop nav --- */
+@media (max-width: 1060px) {
+    .kx-nav        { display: none !important; }
+    .kx-hamburger  { display: flex; }
+    .kx-mobile-nav { display: block; }
+    .kx-cta        { margin-left: auto; }
+    .kx-header__inner { gap: 12px; }
+}
+
+/* --- RESPONSIVE: 480px — CTA compact mode --- */
+@media (max-width: 480px) {
+    .kx-btn__full  { display: none; }
+    .kx-btn__short { display: inline; }
+    .kx-btn {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0 16px;
+        height: 40px;
+    }
+    .kx-header__inner { padding: 0 16px; }
+    .kx-hamburger { width: 40px; height: 40px; }
+}
+
+/* --- RESPONSIVE: dropdown clamp on mobile --- */
+@media (max-width: 980px) {
+    .kx-nav__dd       { width: min(92vw, 420px); }
+    .kx-nav__dd-bridge{ width: min(92vw, 440px); }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .kx-nav__dd,
+    .kx-nav__chev,
+    .kx-hamburger__line,
+    .kx-mobile-nav,
+    .kx-mobile-nav__sub { transition: none; }
+}
+</style>
+
+<!-- Body scroll lock when menu is open — global (body lives outside this component) -->
+<style is:global>
+body.kx-menu-open { overflow: hidden; }
+</style>
+
+<script is:inline>
+(function(){
+    /* --- Defensive mainColor default --- */
+    try {
+        var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+        if (!mc || !String(mc).trim()) {
+            document.documentElement.style.setProperty('--mainColor', '#00BFC2');
+        }
+    } catch(e){}
+
+    /* =====================================================
+       1. Scroll: transparent → black header
+    ===================================================== */
+    var header = document.getElementById('kxHeader');
+    if (header) {
+        var threshold = 4;
+        var lastState = null;
+
+        function updateScroll() {
+            var y = window.scrollY || document.documentElement.scrollTop || 0;
+            var should = y > threshold;
+            if (lastState === should) return;
+            lastState = should;
+            header.classList.toggle('is-scrolled', should);
+        }
+
+        updateScroll();
+        window.addEventListener('scroll', updateScroll, { passive: true });
+        window.addEventListener('resize', updateScroll, { passive: true });
+    }
+
+    /* =====================================================
+       2. Desktop dropdown — accessibility
+    ===================================================== */
+    var wrap    = document.querySelector('.kx-nav__ddWrap');
+    var dd      = wrap && wrap.querySelector('.kx-nav__dd');
+    var trigger = wrap && wrap.querySelector('.kx-nav__item--has-dd');
+
+    if (wrap && trigger) {
+        function setExpanded(v) {
+            trigger.setAttribute('aria-expanded', v ? 'true' : 'false');
+        }
+
+        wrap.addEventListener('mouseenter', function(){ setExpanded(true); });
+        wrap.addEventListener('mouseleave', function(){ setExpanded(false); });
+        wrap.addEventListener('focusin',    function(){ setExpanded(true); });
+        wrap.addEventListener('focusout',   function(){ setExpanded(false); });
+
+        wrap.addEventListener('keydown', function(e){
+            if (e.key === 'Escape') {
+                try { document.activeElement && document.activeElement.blur(); } catch(err){}
+            }
+        });
+
+        /* Clamp dropdown position */
+        function clampDropdown() {
+            if (!dd) return;
+            var r = dd.getBoundingClientRect();
+            var overflowRight = r.right - window.innerWidth;
+            if (overflowRight > 8) {
+                dd.style.left  = 'auto';
+                dd.style.right = '0';
+            } else {
+                dd.style.right = 'auto';
+                dd.style.left  = '0';
+            }
+        }
+        window.addEventListener('resize', clampDropdown);
+        clampDropdown();
+    }
+
+    /* =====================================================
+       3. Hamburger menu toggle
+    ===================================================== */
+    var hamburger   = document.getElementById('kxHamburger');
+    var mobileNav   = document.getElementById('kxMobileNav');
+    var menuIsOpen  = false;
+
+    function openMenu() {
+        menuIsOpen = true;
+        hamburger.classList.add('is-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        hamburger.setAttribute('aria-label', 'Close navigation menu');
+        mobileNav.classList.add('is-open');
+        mobileNav.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('kx-menu-open');
+    }
+
+    function closeMenu() {
+        menuIsOpen = false;
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        mobileNav.classList.remove('is-open');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('kx-menu-open');
+    }
+
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', function(){
+            menuIsOpen ? closeMenu() : openMenu();
+        });
+
+        /* Close on Escape */
+        document.addEventListener('keydown', function(e){
+            if (e.key === 'Escape' && menuIsOpen) closeMenu();
+        });
+
+        /* Close when clicking outside panel */
+        document.addEventListener('click', function(e){
+            if (!menuIsOpen) return;
+            var insideHeader = header && header.contains(e.target);
+            var insidePanel  = mobileNav.contains(e.target);
+            if (!insideHeader && !insidePanel) closeMenu();
+        });
+
+        /* Close on nav link click (navigates away) */
+        mobileNav.querySelectorAll('a').forEach(function(link){
+            link.addEventListener('click', function(){ closeMenu(); });
+        });
+
+        /* Close when resizing back to desktop */
+        window.addEventListener('resize', function(){
+            if (window.innerWidth > 1060 && menuIsOpen) closeMenu();
+        }, { passive: true });
+    }
+
+    /* =====================================================
+       4. Mobile Solutions sub-menu toggle
+    ===================================================== */
+    var solutionsToggle = document.getElementById('kxMobileSolutionsToggle');
+    var solutionsSub    = document.getElementById('kxMobileSolutionsSub');
+
+    if (solutionsToggle && solutionsSub) {
+        solutionsToggle.addEventListener('click', function(){
+            var isOpen = solutionsSub.classList.toggle('is-open');
+            solutionsToggle.classList.toggle('is-open', isOpen);
+            solutionsToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        /* Keyboard: Enter / Space */
+        solutionsToggle.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                solutionsToggle.click();
+            }
+        });
+    }
+
+    /* =====================================================
+       5. menuActive — mark correct nav item
+    ===================================================== */
+    window.menuActive = function(slug) {
+        slug = String(slug || '').trim().replace(/^\/+|\/+$/g, '');
+
+        var desktopItems = document.querySelectorAll('.kx-nav__item');
+        var mobileItems  = document.querySelectorAll('.kx-mobile-nav__item');
+
+        desktopItems.forEach(function(a){ a.classList.remove('active'); });
+        mobileItems.forEach(function(a){ a.classList.remove('active'); });
+
+        if (!slug) return;
+
+        function hrefToSlug(href) {
+            try {
+                var u    = new URL(href, window.location.href);
+                var path = (u.pathname || '').replace(/^\/+/, '').replace(/\/+$/, '');
+                if (path.includes('/')) path = path.split('/').filter(Boolean).pop() || '';
+                var hash = (u.hash || '').replace(/^#/, '');
+                return hash ? (path ? (path + '#' + hash) : ('#' + hash)) : path;
+            } catch(e) {
+                return String(href || '').replace(/^\/+/, '');
+            }
+        }
+
+        function markActive(items) {
+            for (var i = 0; i < items.length; i++) {
+                var itemSlug = hrefToSlug(items[i].getAttribute('href') || '');
+                if (itemSlug === slug || itemSlug.startsWith(slug + '#')) {
+                    items[i].classList.add('active');
+                    break;
+                }
+            }
+        }
+
+        markActive(desktopItems);
+        markActive(mobileItems);
+    };
+})();
+</script>

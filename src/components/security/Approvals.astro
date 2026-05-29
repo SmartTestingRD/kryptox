@@ -1,0 +1,271 @@
+---
+/**
+ * Approvals.astro
+ * ---------------
+ * 1:1 migration of part/sub/security/approvals.php. HTML, CSS and inline
+ * script ported verbatim. `$raiz` resolves to `/`.
+ */
+---
+
+<section class="kx-ops" id="kxOps">
+  <div class="kx-ops__inner">
+
+    <div class="kx-ops__left kx-ops__reveal">
+      <h2 class="kx-ops__title">Operational Controls &amp; Approvals</h2>
+      <p class="kx-ops__desc">
+        Configure approvals, operational limits, and programmable rules that govern how settlements
+        are executed—so every payout follows policy, thresholds, and accountability by default.
+      </p>
+    </div>
+
+    <div class="kx-ops__right kx-ops__reveal">
+      <div class="kx-ops__cards">
+
+        <div class="kx-ops__card">
+          <div class="kx-ops__icon" aria-hidden="true">
+            <!-- limits -->
+            <img src="/media/security/speedometer.svg" alt="">
+          </div>
+          <div class="kx-ops__num">01</div>
+          <h3 class="kx-ops__cardTitle">Operational Limits</h3>
+          <p class="kx-ops__cardDesc">
+            Set per-user, per-account, and per-time-window thresholds to prevent out-of-policy settlement activity.
+          </p>
+        </div>
+
+        <div class="kx-ops__card">
+          <div class="kx-ops__icon" aria-hidden="true">
+            <!-- approvals -->
+            <img src="/media/security/steps.svg" alt="">
+          </div>
+          <div class="kx-ops__num">02</div>
+          <h3 class="kx-ops__cardTitle">Approval Workflows</h3>
+          <p class="kx-ops__cardDesc">
+            Require one or multiple approvers for sensitive operations, based on risk level and amount.
+          </p>
+        </div>
+
+        <div class="kx-ops__card">
+          <div class="kx-ops__icon" aria-hidden="true">
+            <!-- rules -->
+            <img src="/media/security/iteration.svg" alt="">
+          </div>
+          <div class="kx-ops__num">03</div>
+          <h3 class="kx-ops__cardTitle">Programmable Rules</h3>
+          <p class="kx-ops__cardDesc">
+            Define conditions for batching, cutoffs, routing, and exception handling—without changing core systems.
+          </p>
+        </div>
+
+        <div class="kx-ops__card">
+          <div class="kx-ops__icon" aria-hidden="true">
+            <!-- audit -->
+            <img src="/media/security/search.svg" alt="">
+          </div>
+          <div class="kx-ops__num">04</div>
+          <h3 class="kx-ops__cardTitle">Audit-Ready Controls</h3>
+          <p class="kx-ops__cardDesc">
+            Track who approved what, when, and why—capturing the full decision trail for internal and external audits.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ===== Security & Compliance — Operational Controls & Approvals ===== */
+
+  .kx-ops{
+    background:#ffffff;
+    padding:120px 28px;
+    background: #8e9eab;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #eef2f37a, #8e9eab4f);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #eef2f37a, #8e9eab4f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+  .kx-ops__inner{
+    max-width: var(--innerWidth);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items:start;
+  }
+
+  .kx-ops__title{
+    margin:0 0 20px;
+    font-size: clamp(40px, 4.6vw, 56px);
+    line-height:1.04;
+    letter-spacing:-0.02em;
+    font-weight:200; /* requested default for non-bold titles */
+    color:#0a0f12;
+  }
+
+  .kx-ops__desc{
+    margin:0 0 36px;
+    max-width: 760px;
+    font-size:16px; /* requested */
+    line-height:1.75;
+    color: rgba(10,15,18,0.62);
+  }
+
+  .kx-ops__cards{
+    display:grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 6px;
+  }
+
+  .kx-ops__card{
+    background:#f6f6f8;
+    border-radius:18px;
+    padding:22px 22px 20px;
+    box-shadow:
+      0 16px 50px rgba(0,0,0,0.06),
+      inset 0 0 0 1px rgba(0,0,0,0.06);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    min-height: 210px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .kx-ops__card:hover{
+    transform: translateY(-4px);
+    box-shadow:
+      0 22px 70px rgba(0,0,0,0.10),
+      inset 0 0 0 1px rgba(0,0,0,0.06);
+  }
+
+  .kx-ops__icon{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    margin-bottom: 18px;
+    color:#1b1f24;
+  }
+
+  .kx-ops__icon img{
+    width:auto;
+    height: 40px;
+    stroke: currentColor;
+    fill:none;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  /* accent top dot like the sample (subtle) */
+  .kx-ops__card::before{
+    content:"";
+    position:absolute;
+    top:-90px;
+    left:-90px;
+    width:220px;
+    height:220px;
+    background: radial-gradient(circle, rgba(1,220,220,0.16), transparent 70%);
+    opacity:0.9;
+    pointer-events:none;
+    display: none;
+  }
+
+  .kx-ops__num{
+    font-size:14px;
+    font-weight:700;
+    color: rgba(10,15,18,0.42);
+    margin-bottom: 8px;
+  }
+
+  .kx-ops__cardTitle{
+    margin:0 0 10px;
+    font-size:18px;
+    font-weight:800;
+    color:#0a0f12;
+  }
+
+  .kx-ops__cardDesc{
+    margin:0;
+    font-size:13px;
+    line-height:1.65;
+    color: rgba(10,15,18,0.58);
+  }
+
+  /* right column: optional alignment helper to keep cards centered vertically like the reference */
+  .kx-ops__right{
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+  }
+
+  /* reveal */
+  .kx-ops__reveal{
+    opacity:0;
+    transform: translateY(14px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+  .kx-ops.is-inview .kx-ops__reveal{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  @media (max-width:1100px){
+    .kx-ops__inner{
+      grid-template-columns:1fr;
+      gap:36px;
+    }
+    .kx-ops__cards{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .kx-ops__right{
+      justify-content:flex-start;
+    }
+  }
+
+  @media (max-width:640px){
+    .kx-ops__cards{
+      grid-template-columns:1fr;
+    }
+    .kx-ops__card{
+      min-height:auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-ops__reveal{
+      opacity:1 !important;
+      transform:none !important;
+      transition:none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxOps');
+    if(!el) return;
+
+    // ensure main color fallback
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if(!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#01DCDC');
+      }
+    }catch(e){}
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          el.classList.add('is-inview');
+          io.disconnect();
+        }
+      },{threshold:0.18});
+      io.observe(el);
+    }else{
+      el.classList.add('is-inview');
+    }
+  })();
+</script>

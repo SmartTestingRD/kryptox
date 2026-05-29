@@ -1,0 +1,539 @@
+---
+/**
+ * contact.astro
+ * -------------
+ * 1:1 migration of part/page/contact.php. HTML, CSS and inline scripts
+ * ported verbatim. `$raiz` resolves to `/`.
+ *
+ * NOTE (ported as-is, NOT fixed): the original contact form has no real
+ * backend — and its init IIFE bails early (`#kxThemeToggle` does not exist
+ * in the markup), so even the `preventDefault` submit handler never runs.
+ * Behaviour is preserved verbatim per the faithful-migration rules.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact">
+  <section class="kx-contact" id="kxContactMain" data-theme="light">
+    <div class="kx-contact__inner">
+
+      <div class="kx-contact__panel">
+        <h2 class="kx-contact__heading">How can we get in touch?</h2>
+        <p class="kx-contact__sub">Share your contact details and we’ll reach out shortly.</p>
+
+        <form class="kx-contact__form" id="kxContactForm" action="#" method="post">
+          <div class="kx-contact__row">
+            <div class="kx-contact__label">First name</div>
+            <input class="kx-contact__input" type="text" name="first_name" placeholder="Louise">
+          </div>
+
+          <div class="kx-contact__row">
+            <div class="kx-contact__label">Last name</div>
+            <input class="kx-contact__input" type="text" name="last_name" placeholder="Rodriguez">
+          </div>
+
+          <div class="kx-contact__row">
+            <div class="kx-contact__label">Phone number</div>
+            <input class="kx-contact__input" type="tel" name="phone" placeholder="Type your phone number">
+          </div>
+
+          <div class="kx-contact__row">
+            <div class="kx-contact__label">Company website</div>
+            <input class="kx-contact__input" type="url" name="website" placeholder="example.com">
+          </div>
+
+          <div class="kx-contact__row">
+            <div class="kx-contact__label">
+              Anything else?
+              <small>Optional</small>
+            </div>
+            <textarea class="kx-contact__textarea" name="message" placeholder="Tell us about your use case, expected volumes, timeline, or any constraints."></textarea>
+          </div>
+
+          <label class="kx-contact__noteRow">
+            <input class="kx-contact__check" type="checkbox" name="marketing_optin">
+            <span>
+              I agree to receive KryptoX updates, product news, and occasional invitations.
+              You can unsubscribe at any time.
+            </span>
+          </label>
+
+          <div class="kx-contact__footerRow">
+            <!-- <a class="kx-contact__back" href="/">Back</a> -->
+
+            <button class="kx-contact__btn" type="submit">
+              Send
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 5.2a1 1 0 0 1 1.4 0l6.2 6.2a1 1 0 0 1 0 1.4l-6.2 6.2a1 1 0 1 1-1.4-1.4l4.5-4.5H4a1 1 0 1 1 0-2h13.7l-4.5-4.5a1 1 0 0 1 0-1.4Z"/></svg>
+            </button>
+          </div>
+
+          <div class="kx-contact__legal">
+            Your information is handled according to our <a href="/privacy">Privacy Policy</a>.
+          </div>
+        </form>
+      </div>
+
+      <div class="kx-contact__cards">
+        <div class="kx-contact__card">
+          <div class="kx-contact__cardIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4l4 3 4-3h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM4 4h16v12h-4.7L12 18.3 8.7 16H4V4Z"/></svg>
+          </div>
+          <div class="kx-contact__cardTitle">Chat with sales</div>
+          <div class="kx-contact__cardDesc">Talk to our team about your use case and integration.</div>
+          <a class="kx-contact__cardLink" href="mailto:sales@kryptox.com">sales@kryptox.com</a>
+        </div>
+
+        <div class="kx-contact__card">
+          <div class="kx-contact__cardIcon" aria-hidden="true">
+            <img src="/media/chat.svg" class="chat" alt="">
+          </div>
+          <div class="kx-contact__cardTitle">Chat with support</div>
+          <div class="kx-contact__cardDesc">We’re here to help with technical questions.</div>
+          <a class="kx-contact__cardLink" href="mailto:support@kryptox.com">support@kryptox.com</a>
+        </div>
+
+        <div class="kx-contact__card">
+          <div class="kx-contact__cardIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.3 8 12 8 12s8-6.7 8-12a8 8 0 0 0-8-8Zm0 10.5A2.5 2.5 0 1 1 12 7.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          </div>
+          <div class="kx-contact__cardTitle">Visit us</div>
+          <div class="kx-contact__cardDesc">Schedule a visit to meet the team in person.</div>
+          <a class="kx-contact__cardLink" href="#" onclick="return false;">View on Google Maps</a>
+        </div>
+
+        <div class="kx-contact__card">
+          <div class="kx-contact__cardIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .4 2.1.6 3.2.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.1 21 3 13.9 3 5a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1c0 1.1.2 2.2.6 3.2a1 1 0 0 1-.2 1l-2.2 2.2Z"/></svg>
+          </div>
+          <div class="kx-contact__cardTitle">Call us</div>
+          <div class="kx-contact__cardDesc">Mon–Fri from 8am to 5pm (ET).</div>
+          <a class="kx-contact__cardLink" href="tel:+18005550000">+1 (800) 555-0000</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Header override — el componente <Header> es un Astro aparte. Astro scopea
+       su regla como `.kx-header[data-astro-cid-…]` (especificidad 0,2,0), así que
+       un `:global(.kx-header)` (0,1,0) pierde sin `!important`. En vez de usar
+       `!important`, se apunta por ID (`#kxHeader`, 0,1,0,0 → 1,0,0) que gana
+       determinísticamente sin depender del orden de carga. -->
+  <style>
+    :global(#kxHeader){ background-color: #000; }
+  </style>
+
+<style>
+  /* ===== KryptoX — Contact (Main Section) ===== */
+  .kx-contact{
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --text: #0a0f12;
+    --muted: rgba(10,15,18,0.68);
+    --muted2: rgba(10,15,18,0.52);
+    --border: rgba(10,15,18,0.10);
+    --inputBg: #F6F8FA;
+    --shadow: 0 26px 70px rgba(0,0,0,0.18);
+
+    background: var(--bg);
+    color: var(--text);
+    padding: 110px  0 90px;
+  }
+  .kx-contact:before{
+    content: '';
+    position: absolute;
+    height: 400px;
+    background-color: #000;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+  }
+
+  /* Dark mode via attribute */
+  .kx-contact[data-theme="dark"]{
+    --bg: #000000;
+    --panel: rgba(255,255,255,0.06);
+    --text: rgba(255,255,255,0.94);
+    --muted: rgba(255,255,255,0.74);
+    --muted2: rgba(255,255,255,0.60);
+    --border: rgba(255,255,255,0.12);
+    --inputBg: rgba(255,255,255,0.08);
+    --shadow: 0 30px 90px rgba(0,0,0,0.55);
+  }
+
+  .kx-contact__inner{
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+    z-index: 4;
+    position: relative;
+  }
+
+  /* Theme toggle */
+  .kx-contact__topbar{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    margin-bottom: 18px;
+  }
+
+  .kx-contact__toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+    cursor:pointer;
+    user-select:none;
+    color: var(--text);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+
+  .kx-contact__toggleIcon{
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    display:grid;
+    place-items:center;
+    background: color-mix(in srgb, var(--mainColor) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--mainColor) 38%, transparent);
+  }
+
+  .kx-contact__toggleIcon svg{
+    width: 16px;
+    height: 16px;
+    fill: var(--mainColor);
+  }
+
+  /* Main panel */
+  .kx-contact__panel{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 30px 30px 26px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .kx-contact__heading{
+    margin: 0 0 6px 0;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+  }
+
+  .kx-contact__sub{
+    margin: 0 0 26px 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .kx-contact__form{
+    display:grid;
+    gap: 14px;
+  }
+
+  .kx-contact__row{
+    display:grid;
+    grid-template-columns: 190px 1fr;
+    gap: 16px;
+    align-items:center;
+  }
+
+  .kx-contact__label{
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .kx-contact__label small{
+    display:block;
+    font-weight: 700;
+    color: var(--muted2);
+    margin-top: 4px;
+  }
+
+  .kx-contact__input,
+  .kx-contact__textarea{
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: var(--inputBg);
+    color: var(--text);
+    padding: 11px 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  }
+
+  .kx-contact__textarea{
+    min-height: 78px;
+    resize: vertical;
+  }
+
+  .kx-contact__input::placeholder,
+  .kx-contact__textarea::placeholder{
+    color: color-mix(in srgb, var(--muted2) 65%, transparent);
+  }
+
+  .kx-contact__input:focus,
+  .kx-contact__textarea:focus{
+    border-color: color-mix(in srgb, var(--mainColor) 55%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--mainColor) 18%, transparent);
+    background: color-mix(in srgb, var(--inputBg) 86%, #ffffff);
+  }
+
+  .kx-contact[data-theme="dark"] .kx-contact__input:focus,
+  .kx-contact[data-theme="dark"] .kx-contact__textarea:focus{
+    background: color-mix(in srgb, var(--inputBg) 92%, rgba(255,255,255,0.10));
+  }
+
+  .kx-contact__noteRow{
+    display:flex;
+    gap: 10px;
+    align-items:flex-start;
+    margin-top: 4px;
+    color: var(--muted2);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .kx-contact__check{
+    margin-top: 2px;
+  }
+
+  .kx-contact__noteRow a{
+    color: var(--mainColor);
+    text-decoration: none;
+    font-weight: 800;
+  }
+
+  .kx-contact__footerRow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .kx-contact__back{
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration:none;
+  }
+
+  .kx-contact__back:hover{
+    color: var(--text);
+  }
+
+  .kx-contact__btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background:
+    color-mix(in srgb, var(--mainColor) 88%, #000);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 68px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 18px 60px
+    color-mix(in srgb, var(--mainColor) 20%, rgba(0, 0, 0, 0.45));
+    transition: transform 160ms ease, filter 160ms ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .kx-contact__btn:hover{
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+  }
+
+  .kx-contact__btn svg{
+    width: 18px;
+    height: 19px;
+    fill: currentColor;
+  }
+
+  .kx-contact__legal{
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--muted2);
+    text-align: center;
+  }
+
+  .kx-contact__legal a{
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+  }
+
+  /* Bottom cards */
+  .kx-contact__cards{
+    margin: 34px auto 0;
+    max-width: 980px;
+    display:grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .kx-contact__card{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 14px 45px rgba(0,0,0,0.08);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+    min-height: 132px;
+  }
+
+  .kx-contact__card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 18px 60px rgba(0,0,0,0.12);
+  }
+
+  .kx-contact__cardIcon{
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display:grid;
+    place-items:center;
+    background: color-mix(in srgb, var(--mainColor) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--mainColor) 22%, transparent);
+    margin-bottom: 10px;
+  }
+
+  .kx-contact__cardIcon svg{
+    width: auto;
+    height: 18px;
+    fill: var(--text);
+    opacity: 0.9;
+  }
+  .kx-contact__cardIcon img.chat{
+    width: auto;
+    height: 25px;
+  }
+
+  .kx-contact__cardTitle{
+    margin: 0 0 6px 0;
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .kx-contact__cardDesc{
+    margin: 0 0 10px 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .kx-contact__cardLink{
+    color: var(--text);
+    font-weight: 900;
+    font-size: 12px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .kx-contact__cardLink:hover{
+    color: var(--mainColor);
+    border-color: color-mix(in srgb, var(--mainColor) 55%, transparent);
+  }
+
+  /* Responsive */
+  @media (max-width: 980px){
+    .kx-contact__panel{
+      padding: 26px 18px 22px;
+    }
+    .kx-contact__row{
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+    .kx-contact__cards{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .kx-contact__footerRow{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 560px){
+    .kx-contact__cards{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-contact__card,
+    .kx-contact__btn{
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>  menuActive('contact');  </script>
+
+<script is:inline>
+  (function(){
+    // Defensive: ensure main color exists
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if (!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#00BFC2');
+      }
+    } catch(e){}
+
+    var root = document.getElementById('kxContactMain');
+    var btn = document.getElementById('kxThemeToggle');
+    var lbl = document.getElementById('kxThemeToggleLabel');
+
+    if (!root || !btn || !lbl) return;
+
+    // Persist theme (optional)
+    var saved = null;
+    try{ saved = localStorage.getItem('kxContactTheme'); } catch(e){}
+
+    function applyTheme(t){
+      root.setAttribute('data-theme', t);
+      lbl.textContent = (t === 'dark') ? 'Light mode' : 'Dark mode';
+      // swap icon (moon/sun)
+      var icon = btn.querySelector('.kx-contact__toggleIcon svg');
+      if (icon){
+        icon.innerHTML = (t === 'dark')
+          ? '<path d="M12 18a6 6 0 1 1 6-6 6 6 0 0 1-6 6Zm0-10a4 4 0 1 0 4 4 4 4 0 0 0-4-4ZM12 1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm0 19a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM3.2 4.6a1 1 0 0 1 1.4 0L6 6a1 1 0 1 1-1.4 1.4L3.2 6a1 1 0 0 1 0-1.4ZM18 18a1 1 0 0 1 1.4 0l1.4 1.4A1 1 0 1 1 19.4 21L18 19.4a1 1 0 0 1 0-1.4ZM1 13a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2H1Zm20 0a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2h-2ZM4.6 19.4A1 1 0 1 1 6 18l1.4 1.4A1 1 0 1 1 6 20.8l-1.4-1.4ZM18 6a1 1 0 0 1 1.4-1.4L20.8 6A1 1 0 1 1 19.4 7.4L18 6Z"/>'
+          : '<path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5Z"/>';
+      }
+      try{ localStorage.setItem('kxContactTheme', t); } catch(e){}
+    }
+
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+
+    btn.addEventListener('click', function(){
+      var current = root.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Prevent actual submit for now
+    var form = document.getElementById('kxContactForm');
+    if (form){
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        // hook for later (ajax / backend)
+        console.log('[KryptoX] Contact form submitted (demo).');
+      });
+    }
+  })();
+</script>
+</BaseLayout>

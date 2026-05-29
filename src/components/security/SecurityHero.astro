@@ -1,0 +1,153 @@
+---
+/**
+ * SecurityHero.astro
+ * ------------------
+ * 1:1 migration of part/sub/security/hero.php. HTML, CSS and inline script
+ * ported verbatim.
+ */
+---
+
+<section class="kx-sec-hero" id="kxSecHero">
+  <div class="kx-sec-hero__inner kx-sec-hero__reveal">
+
+    <div class="kx-sec-hero__badge">
+      Security &amp; Compliance
+    </div>
+
+    <h1 class="kx-sec-hero__title">
+      Built for <strong>Regulated Environments.</strong><br>
+      Designed for <strong>Operational Control.</strong>
+    </h1>
+
+    <p class="kx-sec-hero__desc">
+      KryptoX delivers security and compliance by design—integrating KYT, AML, approvals,
+      and audit-ready controls directly into every crypto-to-fiat settlement workflow.
+      No shortcuts. No blind spots.
+    </p>
+
+    <button class="kx-sec-hero__cta">
+      Request a demo today
+    </button>
+
+  </div>
+</section>
+
+<style>
+
+  /* ===== KryptoX — Security & Compliance | Hero ===== */
+
+  .kx-sec-hero{
+    /*background: linear-gradient(180deg, #ffffff 0%, #f7f9fb 100%);*/
+    padding: 150px 28px 80px;
+    text-align: center;
+  }
+
+  .kx-sec-hero__inner{
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+  }
+
+  .kx-sec-hero__badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.04);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.65);
+    margin-bottom: 26px;
+  }
+
+  .kx-sec-hero__title{
+    margin: 0 0 22px;
+    font-size: clamp(42px, 5vw, 65px);
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #0a0f12;
+  }
+
+  .kx-sec-hero__title strong{
+    font-weight: 200;
+  }
+
+  .kx-sec-hero__desc{
+    margin: 0 auto 42px;
+    max-width: 820px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(10,15,18,0.65);
+  }
+
+  .kx-sec-hero__cta{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border-radius: 300px;
+    background: var(--mainColor);
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow:
+      0 10px 30px color-mix(in srgb, var(--mainColor) 45%, transparent),
+      inset 0 0 0 1px rgba(255,255,255,0.15);
+    transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  }
+
+  .kx-sec-hero__cta:hover{
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow:
+      0 14px 38px color-mix(in srgb, var(--mainColor) 55%, transparent),
+      inset 0 0 0 1px rgba(255,255,255,0.2);
+  }
+
+  .kx-sec-hero__cta:active{
+    transform: translateY(0);
+  }
+
+  /* subtle entrance */
+  .kx-sec-hero__reveal{
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+
+  .kx-sec-hero.is-inview .kx-sec-hero__reveal{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-sec-hero__reveal{
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxSecHero');
+    if(!el) return;
+
+    // ensure main color fallback
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if(!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#00BFC2');
+      }
+    }catch(e){}
+
+    // instant reveal (hero is above the fold)
+    el.classList.add('is-inview');
+  })();
+</script>

@@ -1,0 +1,84 @@
+---
+/**
+ * Feature.astro
+ * -------------
+ * Single feature card. Designed to live inside <FeatureGrid> in MDX:
+ *
+ *   <FeatureGrid>
+ *     <Feature title="Orchestrate flows">Body copy here.</Feature>
+ *   </FeatureGrid>
+ */
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<article class="kx-feat">
+  <div class="kx-feat__bullet" aria-hidden="true">
+    <svg viewBox="0 0 16 16" width="14" height="14">
+      <path
+        d="M3 8l3 3 7-7"
+        stroke="currentColor"
+        stroke-width="2"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+  <h3 class="kx-feat__title">{title}</h3>
+  <div class="kx-feat__body">
+    <slot />
+  </div>
+</article>
+
+<style>
+  .kx-feat {
+    padding: var(--kx-space-6);
+    background: var(--kx-bg-dark-elev);
+    border: 1px solid var(--kx-border-on-dark);
+    border-radius: var(--kx-radius-md);
+    transition: border-color var(--kx-duration-base) var(--kx-ease-out);
+  }
+
+  .kx-feat:hover {
+    border-color: rgba(0, 215, 215, 0.3);
+  }
+
+  .kx-feat__bullet {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-content: center;
+    border-radius: var(--kx-radius-xs);
+    background: rgba(0, 215, 215, 0.1);
+    color: var(--kx-color-crypto);
+    margin-bottom: var(--kx-space-4);
+  }
+
+  .kx-feat__title {
+    font-family: var(--kx-font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-bottom: var(--kx-space-2);
+    color: var(--kx-text-on-dark);
+  }
+
+  .kx-feat__body {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--kx-text-on-dark-muted);
+  }
+
+  .kx-feat__body :global(p) {
+    margin: 0;
+  }
+
+  .kx-feat__body :global(strong) {
+    color: var(--kx-text-on-dark);
+    font-weight: 500;
+  }
+</style>

@@ -1,0 +1,339 @@
+---
+/**
+ * Footer.astro
+ * ------------
+ * 1:1 migration of part/footer.php. Structure, classes, IDs, CSS and the
+ * inline init script are ported verbatim from the PHP original.
+ * `$raiz` (site root) resolves to `/` in the Astro build.
+ */
+import { Image } from 'astro:assets';
+import logoW from '../../assets/logo.w.png';
+---
+
+<footer class="kx-footer" id="kxFooter">
+  <div class="kx-footer__top">
+    <div class="kx-footer__inner">
+      <div class="kx-footer__grid">
+
+        <!-- Brand -->
+        <div class="kx-footer__brand">
+          <a href="/"><Image class="kx-footer__logo" src={logoW} alt="KryptoX logo" /></a>
+          <p class="kx-footer__desc">
+            KryptoX is a crypto-to-bank liquidity infrastructure built for performance and discretion.
+          </p>
+
+          <div class="kx-footer__social" aria-label="Social links">
+            <a href="#" aria-label="LinkedIn">
+              <img src="/media/icons/in.svg" alt="">
+            </a>
+            <a href="#" aria-label="Facebook">
+              <img src="/media/icons/fb.svg" alt="">
+            </a>
+            <a href="#" aria-label="Instagram">
+              <img src="/media/icons/ig.svg" alt="">
+            </a>
+            <a href="#" aria-label="YouTube">
+              <img src="/media/icons/yt.svg" alt="">
+            </a>
+          </div>
+        </div>
+
+        <!-- PRODUCT -->
+        <div class="kx-footer__col kx-footer__col--product">
+          <div class="kx-footer__colTitle">PRODUCT</div>
+          <ul class="kx-footer__links">
+            <li><a href="/about">What is KryptoX</a></li>
+            <li><a href="/about?i=how-it-works">How it Works</a></li>
+            <li><a href="/about?i=capabilities">Capabilities</a></li>
+            <li><a href="/about?i=cryptofiat">Crypto → Fiat Orchestration</a></li>
+            <li><a href="/about?i=liquidity">Liquidity &amp; Settlements</a></li>
+            <li><a href="/about?i=security">Security &amp; Compliance</a></li>
+          </ul>
+        </div>
+
+        <!-- SOLUTIONS -->
+        <div class="kx-footer__col">
+          <div class="kx-footer__colTitle">SOLUTIONS</div>
+          <ul class="kx-footer__links">
+            <li><a href="/solutions?i=financial">Financial Institutions</a></li>
+            <li><a href="/solutions?i=payments">Payment Providers</a></li>
+            <li><a href="/solutions?i=crypto">Crypto Platforms</a></li>
+            <li><a href="/solutions?i=treasury">Treasury &amp; Finance Teams</a></li>
+            <li><a href="/solutions?i=compliance">Compliance &amp; Risk Teams</a></li>
+          </ul>
+        </div>
+
+        <!-- COMPANY -->
+        <div class="kx-footer__col company">
+          <div class="kx-footer__colTitle">COMPANY</div>
+          <ul class="kx-footer__links">
+            <li><a href="/about">About KryptoX</a></li>
+            <li><a href="/requestDemo">Request a Demo</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- TRUST & LEGAL -->
+        <div class="kx-footer__col">
+          <div class="kx-footer__colTitle">TRUST &amp; LEGAL</div>
+          <ul class="kx-footer__links">
+            <li><a href="/security">Security &amp; Compliance</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/cookies">Cookies Policy</a></li>
+            <li><a href="/terms">Terms of Use</a></li>
+            <li><a href="/risk-disclosure">Risk Disclosure</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="kx-footer__bottom">
+    <div class="kx-footer__bottomInner">
+      <span>© 2026 KryptoX. All rights reserved.</span>
+      <span>Operated by KryptoX, LLC.</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* KryptoX — Footer */
+  .kx-footer{
+    position: relative;
+    background: #ffffff;
+    color: #0b0f12;
+  }
+
+  .kx-footer__top{
+    padding: 92px 0 64px;
+  }
+
+  .kx-footer__inner{
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .kx-footer__grid{
+    display: grid;
+    grid-template-columns: 1.35fr  1.1fr repeat(3, 0.8fr);
+    gap: 54px;
+    align-items: start;
+  }
+
+  /* Brand column */
+  .kx-footer__brand{
+    max-width: 420px;
+  }
+
+  .kx-footer__logo{
+    width: 210px;
+    height: auto;
+    display: block;
+    margin-bottom: 18px;
+    /*mix-blend-mode: exclusion; */
+    filter: invert(1);
+    opacity: 0.95;
+  }
+
+  .kx-footer__desc{
+    margin: 0 0 26px 0;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(10,15,18,0.70);
+  }
+
+  /* Social */
+  .kx-footer__social{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .kx-footer__social a{
+    width: 66px;
+    height: 66px;
+    border-radius: 999px;
+    background: var(--mainColor);
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.12);
+  }
+
+  .kx-footer__social a:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.16);
+    filter: brightness(0.98);
+  }
+
+  .kx-footer__social img{
+    width: 26px;
+    height: 26px;
+    display: block;
+    /*filter: invert(1);*/
+    opacity: 0.95;
+  }
+
+  /* Links columns */
+  .kx-footer__colTitle{
+    margin: 0 0 16px 0;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgba(10,15,18,0.45);
+  }
+
+  .kx-footer__links{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .kx-footer__links a{
+    color: rgba(10,15,18,0.92);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    transition: color 180ms ease, transform 180ms ease, opacity 180ms ease;
+    display: inline-block;
+  }
+
+  .kx-footer__links a:hover{
+    color: var(--mainColor);
+    transform: translateX(2px);
+  }
+
+  /* Bottom black bar */
+  .kx-footer__bottom{
+    background: #000;
+    color: rgba(255,255,255,0.92);
+    padding: 26px 0;
+  }
+
+  .kx-footer__bottomInner{
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 16px;
+  }
+
+  .kx-footer__bottomInner span{
+    color: rgba(255,255,255,0.90);
+  }
+
+  /* ---- FOOTER: Responsive — START ---- */
+
+  /* 1348px: ocultar columna Product, ajustar grid */
+  @media (max-width: 1348px){
+    .kx-footer__col--product{
+      display: none;
+    }
+    .kx-footer__grid{
+      grid-template-columns: 1.35fr repeat(3, 0.9fr);
+      gap: 44px;
+    }
+  }
+
+  @media (max-width: 1100px){
+    .kx-footer__col.company{
+      display: none;
+    }
+  }
+  /* 1100px: compactar a 3 columnas */
+  @media (max-width: 1100px){
+    .kx-footer__grid{
+      grid-template-columns: 1.35fr repeat(2, 1fr);
+      gap: 40px;
+    }
+  }
+
+  /* 878px: todo en 1 columna, centrado */
+  @media (max-width: 878px){
+    .kx-footer__col--product{
+      display: none !important;
+    }
+    .kx-footer__top{
+      padding: 72px 0 54px;
+    }
+
+    .kx-footer__grid{
+      grid-template-columns: 1fr;
+      gap: 38px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .kx-footer__brand{
+      max-width: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .kx-footer__col{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .kx-footer__links{
+      align-items: center;
+    }
+
+    .kx-footer__social{
+      justify-content: center;
+    }
+
+    .kx-footer__links a:hover{
+      transform: none;
+    }
+
+    .kx-footer__bottomInner{
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  /* 340px: reducir tamaño de íconos sociales */
+  @media (max-width: 340px){
+    .kx-footer__social a{
+      width: 52px;
+      height: 52px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-footer__social a,
+    .kx-footer__links a{
+      transition: none;
+    }
+  }
+
+  /* ---- FOOTER: Responsive — END ---- */
+</style>
+
+<script is:inline>
+  (function(){
+    // Defensive: ensure main color exists so social buttons show correctly.
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if (!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#00BFC2');
+      }
+    } catch(e){}
+  })();
+</script>

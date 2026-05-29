@@ -1,0 +1,386 @@
+---
+/**
+ * ControlLayer.astro
+ * ------------------
+ * 1:1 migration of part/sub/home/control_layer.php. HTML, CSS and inline
+ * scripts ported verbatim. `$raiz` resolves to `/`.
+ */
+---
+
+<section class="kx-control" id="kxControl">
+  <div class="kx-control__inner">
+    <div class="kx-control__rows">
+
+      <!-- ROW 1 -->
+      <div class="kx-control__row kx-control__row--top">
+        <article class="kx-control__card kx-c1 kx-control__reveal">
+          <div class="kx-control__icon"><img src="/media/control/1.svg" alt=""></div>
+          <h4>Multi-Custody<br>Management</h4>
+          <p>Connect your preferred wallets and custodians under a single institutional control interface.</p>
+        </article>
+
+        <article class="kx-control__card kx-c2 kx-control__reveal">
+          <div class="kx-control__icon"><img src="/media/control/2.svg" alt=""></div>
+          <h4>Settlement<br>Optimization</h4>
+          <p>Optimize execution paths across providers to improve speed and capital efficiency.</p>
+        </article>
+
+        <div class="kx-control__text kx-control__reveal">
+          <h2 class="kx-control__title">
+            The <span class="t-cyan">control</span> layer your<br>
+            financial ecosystem needs.
+          </h2>
+          <p class="kx-control__lead">
+            We don’t replace your existing services; we orchestrate them by integrating your strategic providers
+            into a single auditable workflow.
+          </p>
+        </div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="kx-control__row kx-control__row--bottom">
+        <article class="kx-control__card kx-c3 kx-control__reveal">
+          <div class="kx-control__icon"><img src="/media/control/3.svg" alt=""></div>
+          <h4>Automated<br>Compliance</h4>
+          <p>Integrated KYT and AML screening at every step with audit-ready reporting.</p>
+        </article>
+
+        <article class="kx-control__card kx-c4 kx-control__reveal">
+          <div class="kx-control__icon"><img src="/media/control/4.svg" alt=""></div>
+          <h4>End-to-End<br>Traceability</h4>
+          <p>Full visibility from wallet to bank account with status control and auditable records.</p>
+        </article>
+
+        <article class="kx-control__card kx-c5 kx-control__reveal">
+          <div class="kx-control__icon"><img src="/media/control/5.svg" alt=""></div>
+          <h4>Programmable<br>Settlement Rules</h4>
+          <p>Define batching, approval thresholds, timing windows, and operational limits.</p>
+        </article>
+
+        <article class="kx-control__card kx-c6 kx-control__reveal">
+          <div class="kx-control__icon"><img src="/media/control/6.svg" alt=""></div>
+          <h4>End-to-End<br>Traceability</h4>
+          <p>Full visibility from wallet to bank account with status control and auditable records.</p>
+        </article>
+
+        <article class="kx-control__card kx-c7 kx-control__reveal">
+          <div class="kx-control__icon"><img src="/media/control/7.svg" alt=""></div>
+          <h4>Programmable<br>Settlement Rules</h4>
+          <p>Define batching, approval thresholds, timing windows, and operational limits.</p>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Global: the ≤1100px restructure script rebuilds .kx-control__rows via
+     innerHTML, creating fresh .kx-control__mobileWrap / .kx-control__cardGrid
+     nodes that lack Astro's scope attribute — so this block must be global. -->
+<style is:global>
+  /* KryptoX — Section: Control layer (rows constrained) */
+  .kx-control{
+    position: relative;
+    background: #f5f5f5;
+    color: #0b0f12;
+    padding: 170px 0;
+    overflow: hidden;
+  }
+
+  .kx-control__inner{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ===== ROW WRAPPER ===== */
+  .kx-control__rows{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+  }
+
+  .kx-control__row{
+    display: flex;
+    width: 100%;
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  /* Row 1: 5 slots */
+  .kx-control__row--top{
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0,1fr));
+    width: 100%;
+    gap: 22px;
+  }
+
+  /* Row 2: 5 slots (only first 3 used) */
+  .kx-control__row--bottom{
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0,1fr));
+    width: 100%;
+    gap: 22px;
+  }
+
+  /* Cards */
+  .kx-control__card{
+    background: #ffffff;
+    /*border: 1px solid rgba(10,15,18,0.10);*/
+    border-radius: 16px;
+    padding: 22px 18px 18px;
+    /*box-shadow: 0 18px 50px rgba(0,0,0,0.06);*/
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    min-height: 210px;
+  }
+
+  .kx-control__card:hover{
+    /*transform: translateY(-3px);
+    border-color: rgba(10,15,18,0.16);
+    box-shadow: 0 26px 70px rgba(0,0,0,0.09);*/
+  }
+
+  .kx-control__icon{
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    margin-top: 4px;
+    margin-bottom: 10px;
+  }
+
+  .kx-control__icon img{
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .kx-control__card h4{
+    margin: 2px 0 8px 0;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: rgba(10,15,18,0.92);
+    line-height: 1.4;
+  }
+
+  .kx-control__card p{
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.45;
+    color: rgba(10,15,18,0.60);
+    max-width: 220px;
+  }
+
+  /* Text block (occupies 3 slots in row 1) */
+  .kx-control__text{
+    grid-column: 3 / span 3;
+    padding: 6px 6px 0 18px;
+  }
+
+  .kx-control__title{
+    margin: 0 0 14px 0;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-size: var(--titleSize);
+    color: #0a0f12;
+  }
+
+  .kx-control__title .t-cyan{ color:#00BFC2; }
+
+  .kx-control__lead{
+    margin: 0;
+    max-width: 560px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(10,15,18,0.70);
+  }
+
+  /* Explicit placement */
+  .kx-c1{ grid-column:1; }
+  .kx-c2{ grid-column:2; }
+  .kx-c3{ grid-column:1; }
+  .kx-c4{ grid-column:2; }
+  .kx-c5{ grid-column:3; }
+
+  /* Reveal */
+  .kx-control__reveal{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+
+  .kx-control.is-inview .kx-control__reveal{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  /* ---- CONTROL: Mobile restructure layout — START ---- */
+  .kx-control__mobileWrap{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+  }
+
+  .kx-control__mobileWrap .kx-control__text{
+    grid-column: auto;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .kx-control__cardGrid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 22px;
+  }
+
+  @media (max-width: 700px){
+    .kx-control__cardGrid{
+      grid-template-columns: 1fr;
+    }
+    .kx-control{
+      padding: 88px 0 96px;
+    }
+  }
+  /* ---- CONTROL: Mobile restructure layout — END ---- */
+
+  /* Responsive (desktop-only, overridden by JS restructure on mobile) */
+  @media (max-width: 1100px){
+    .kx-control__cardGrid  {
+      display: flex;
+      justify-content: revert;
+      flex-wrap: wrap;
+    }
+    .kx-control__card{
+      width: calc(50% - 11px);
+    }
+    .kx-control__row--top,
+    .kx-control__row--bottom{
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .kx-control__text{
+      grid-column: 1 / -1;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 740px){
+    .kx-control{
+      padding: 88px 0 96px;
+    }
+
+    .kx-control__row--top,
+    .kx-control__row--bottom{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-control__reveal{
+      transition:none;
+      opacity:1!important;
+      transform:none!important;
+    }
+    .kx-control__card{ transition:none; }
+  }
+  @media (max-width: 490px){
+    .kx-control__card{
+      width: 100%;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxControl');
+    if (!el){
+      console.warn('[KryptoX] #kxControl not found.');
+      return;
+    }
+
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        for (var i=0;i<entries.length;i++){
+          if (entries[i].isIntersecting){
+            el.classList.add('is-inview');
+            io.disconnect();
+            break;
+          }
+        }
+      },{ threshold:0.18 });
+      io.observe(el);
+    } else {
+      el.classList.add('is-inview');
+    }
+  })();
+</script>
+
+<script is:inline>
+/* ---- CONTROL: DOM restructure for ≤1100px ---- */
+(function(){
+    var el       = document.getElementById('kxControl');
+    if (!el) return;
+    var rowsWrap = el.querySelector('.kx-control__rows');
+    if (!rowsWrap) return;
+
+    /* Save original markup once */
+    var originalHTML = rowsWrap.innerHTML;
+    var currentMode  = null; /* 'mobile' | 'desktop' | null */
+
+    function buildMobile(){
+        /* Collect text block and all cards from both rows */
+        var textBlock = rowsWrap.querySelector('.kx-control__text');
+        var allCards  = rowsWrap.querySelectorAll('.kx-control__card');
+        if (!textBlock) return;
+
+        var cardsHTML = '';
+        allCards.forEach(function(card){ cardsHTML += card.outerHTML; });
+
+        rowsWrap.innerHTML =
+            '<div class="kx-control__mobileWrap">' +
+                '<div class="kx-control__text kx-control__reveal">' + textBlock.innerHTML + '</div>' +
+                '<div class="kx-control__cardGrid kx-control__reveal">' + cardsHTML + '</div>' +
+            '</div>';
+
+        /* If section already visible, force reveal classes */
+        if (el.classList.contains('is-inview')){
+            rowsWrap.querySelectorAll('.kx-control__reveal').forEach(function(r){
+                r.style.opacity   = '1';
+                r.style.transform = 'translateY(0)';
+            });
+        }
+    }
+
+    function restoreDesktop(){
+        rowsWrap.innerHTML = originalHTML;
+        /* Re-trigger reveal if already in view */
+        if (el.classList.contains('is-inview')){
+            rowsWrap.querySelectorAll('.kx-control__reveal').forEach(function(r){
+                r.style.opacity   = '1';
+                r.style.transform = 'translateY(0)';
+            });
+        }
+    }
+
+    function update(){
+        var nowMobile = window.innerWidth <= 1100;
+        var mode      = nowMobile ? 'mobile' : 'desktop';
+        if (mode === currentMode) return;
+        currentMode = mode;
+        if (nowMobile){ buildMobile(); } else { restoreDesktop(); }
+    }
+
+    update();
+    window.addEventListener('resize', update, { passive: true });
+})();
+</script>

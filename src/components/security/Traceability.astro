@@ -1,0 +1,282 @@
+---
+/**
+ * Traceability.astro
+ * ------------------
+ * 1:1 migration of part/sub/security/trazabilidad.php. HTML, CSS and inline
+ * script ported verbatim. `$raiz` resolves to `/`.
+ */
+---
+
+<section class="kx-audit" id="kxAudit">
+  <div class="kx-audit__inner">
+
+    <div class="kx-audit__eyebrow kx-audit__reveal">Auditability &amp; Traceability</div>
+
+    <h2 class="kx-audit__title kx-audit__reveal">
+      A complete operational trail—ready for internal and external audits
+    </h2>
+
+    <p class="kx-audit__desc kx-audit__reveal">
+      Every step of a settlement is recorded across approvals, compliance checks, liquidity execution, and banking rails.
+      Generate evidence on demand and maintain consistent, reviewable controls across your workflow.
+    </p>
+
+    <div class="kx-audit__grid kx-audit__reveal">
+      <article class="kx-audit__card">
+        <div class="kx-audit__icon" aria-hidden="true">
+          <!-- timeline -->
+          <img src="/media/security/roadmap.svg" alt="">
+
+        </div>
+        <h3 class="kx-audit__cardTitle">End-to-End Traceability</h3>
+        <p class="kx-audit__cardDesc">
+          Link every operation to its approvals, KYT outcomes, execution quotes, and settlement confirmations—no blind spots.
+        </p>
+      </article>
+
+      <article class="kx-audit__card">
+        <div class="kx-audit__icon" aria-hidden="true">
+          <!-- file-check -->
+          <img src="/media/security/analysis.svg" alt="">
+        </div>
+        <h3 class="kx-audit__cardTitle">Evidence Generation</h3>
+        <p class="kx-audit__cardDesc">
+          Produce audit-ready bundles (events, documents, and decisions) aligned to your internal controls and regulatory needs.
+        </p>
+      </article>
+
+      <article class="kx-audit__card">
+        <div class="kx-audit__icon" aria-hidden="true">
+          <!-- lock + list -->
+          <img src="/media/security/log-in.svg" alt="">
+        </div>
+        <h3 class="kx-audit__cardTitle">Controlled Access to Logs</h3>
+        <p class="kx-audit__cardDesc">
+          Keep audit trails protected with role-based access and immutable records—ready for reviews without exposing sensitive data.
+        </p>
+      </article>
+
+      <article class="kx-audit__card">
+        <div class="kx-audit__icon" aria-hidden="true">
+          <!-- magnifier -->
+          <img src="/media/security/magnifying-glass.svg" alt="">
+        </div>
+        <h3 class="kx-audit__cardTitle">Exception Review</h3>
+        <p class="kx-audit__cardDesc">
+          Investigate alerts and exceptions with full context—what triggered them, who approved, and how the case was resolved.
+        </p>
+      </article>
+
+      <article class="kx-audit__card">
+        <div class="kx-audit__icon" aria-hidden="true">
+          <img src="/media/security/slider.svg" alt="">
+        </div>
+        <h3 class="kx-audit__cardTitle">Audit-Aligned Controls</h3>
+        <p class="kx-audit__cardDesc">
+          Enforce thresholds, approval rules, and compliance checkpoints that can be demonstrated and verified at any time.
+        </p>
+      </article>
+
+      <article class="kx-audit__card">
+        <div class="kx-audit__icon" aria-hidden="true">
+          <!-- export -->
+          <img src="/media/security/export.svg" alt="">
+        </div>
+        <h3 class="kx-audit__cardTitle">Exportable Reporting</h3>
+        <p class="kx-audit__cardDesc">
+          Provide structured reports for internal audit teams, external reviewers, and compliance stakeholders—fast and consistent.
+        </p>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ===== Security & Compliance — Auditability & Traceability ===== */
+
+  .kx-audit {
+    padding: 120px 28px;
+
+    background: #f7faff;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f7faff, #ededed);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f7faff, #ededed); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+
+  .kx-audit__inner {
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+  }
+
+  .kx-audit__eyebrow {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(10, 15, 18, 0.50);
+    margin-bottom: 14px;
+  }
+
+  .kx-audit__title {
+    text-align: center;
+    margin: 0 auto 18px;
+    font-size: clamp(34px, 4.2vw, 56px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    font-weight: 200; /* requested */
+    color: #0a0f12;
+    max-width: 900px;
+  }
+
+  .kx-audit__desc {
+    text-align: center;
+    margin: 0 auto 52px;
+    max-width: 820px;
+    font-size: 16px; /* requested */
+    line-height: 1.75;
+    color: rgba(10, 15, 18, 0.62);
+  }
+
+  .kx-audit__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .kx-audit__card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 26px 26px 24px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+    transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kx-audit__card::before {
+    content: "";
+    position: absolute;
+    inset: -60px -60px auto auto;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(1,220,220,0.18), transparent 65%);
+    opacity: 0;
+    transform: translate(18px, -18px);
+    transition: opacity 240ms ease, transform 240ms ease;
+    pointer-events: none;
+  }
+
+  .kx-audit__card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 18px 55px rgba(0,0,0,0.10),
+      inset 0 0 0 1px rgba(0,0,0,0.04);
+  }
+  .kx-audit__card:hover::before {
+    opacity: 1;
+    transform: translate(0,0);
+  }
+
+  .kx-audit__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: #0a0f12;
+    margin-bottom: 14px;
+  }
+
+  .kx-audit__icon img{
+    width:auto;
+    height: 40px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .kx-audit__cardTitle {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0a0f12;
+  }
+
+  .kx-audit__cardDesc {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(10, 15, 18, 0.62);
+  }
+
+  /* subtle top divider hint like the reference (optional) */
+  .kx-audit__divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+    margin: 26px 0 0;
+    display: none;
+  }
+
+  /* reveal */
+  .kx-audit__reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+  .kx-audit.is-inview .kx-audit__reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 980px){
+    .kx-audit__grid{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px){
+    .kx-audit{
+      padding: 96px 18px;
+    }
+    .kx-audit__grid{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-audit__reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .kx-audit__card{ transition:none !important; }
+    .kx-audit__card::before{ transition:none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxAudit');
+    if(!el) return;
+
+    // fallback main color if missing
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if(!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#01DCDC');
+      }
+    }catch(e){}
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          el.classList.add('is-inview');
+          io.disconnect();
+        }
+      }, { threshold: 0.14 });
+      io.observe(el);
+    }else{
+      el.classList.add('is-inview');
+    }
+  })();
+</script>

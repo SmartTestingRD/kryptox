@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "note": "Migrated and reorganized from kryptox/_tradu.json. Restructured to mirror the new IA (Product + Solutions as separate groups)."
+  },
+  "nav": {
+    "product":   "Product",
+    "solutions": "Solutions",
+    "security":  "Security",
+    "company":   "Company",
+    "contact":   "Contact",
+    "demo":      "Request a demo"
+  },
+  "product": {
+    "orchestration": "Crypto ↔ Fiat Orchestration",
+    "liquidity":     "Liquidity Coordination",
+    "settlement":    "Settlement Management",
+    "controls":      "Institutional Controls",
+    "compliance":    "Compliance Integration"
+  },
+  "solutions": {
+    "financial_institutions": "Financial Institutions",
+    "payment_providers":      "Payment Providers",
+    "crypto_platforms":       "Crypto Platforms",
+    "treasury":               "Treasury & Finance",
+    "compliance_risk":        "Compliance & Risk"
+  },
+  "hero": {
+    "eyebrow":  "Institutional infrastructure",
+    "title_crypto":        "Crypto",
+    "title_fiat":          "Fiat",
+    "title_orchestration": "Orchestration",
+    "subtitle": "The definitive bridge between digital assets and financial infrastructure. Total control, absolute compliance, and zero counterparty risk.",
+    "rail_left":   "Your customer's wallets",
+    "rail_center": "This is what we orchestrate",
+    "rail_right":  "Your destination fiat accounts"
+  },
+  "footer": {
+    "tagline": "A crypto-to-bank liquidity infrastructure built for performance and discretion.",
+    "rights":  "All rights reserved.",
+    "entity":  "Operated by KryptoX, LLC."
+  }
+}

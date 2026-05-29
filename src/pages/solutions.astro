@@ -1,0 +1,1514 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImg from '../assets/solutions/1.hero.png';
+import financialImg from '../assets/solutions/2.finantial.png';
+import paymentImg from '../assets/solutions/3.payment.png';
+import cryptoImg from '../assets/solutions/4.crypto.png';
+import treasuryImg from '../assets/solutions/5.treasury.png';
+import complianceImg from '../assets/solutions/6.compliance.png';
+---
+
+<BaseLayout title="Solutions">
+  <script is:inline>menuActive('solutions')</script>
+
+<!-- ============================================================
+     GLOBAL BASE — START
+     Variables CSS, reset, tipografía, helpers de layout
+     ============================================================ -->
+
+<style>
+/* --- GLOBAL: Design Tokens --- */
+:root {
+    --kx-bg-deep:       #060b13;
+    --kx-bg-surface:    #0b1320;
+    --kx-bg-card:       #0f1c2e;
+    --kx-bg-card-hover: #142236;
+    --kx-accent:        #00D7D7;
+    --kx-accent-dim:    rgba(0, 212, 255, 0.12);
+    --kx-accent-glow:   rgba(0, 212, 255, 0.25);
+    --kx-blue:          #1AECFF;
+    --kx-blue-dim:      rgba(26, 211, 255, 0.12);
+    --kx-text-primary:  #eef2ff;
+    --kx-text-secondary:#7AA6BB;
+    --kx-text-muted:    #3D6675;
+    --kx-border:        rgba(255,255,255,0.06);
+    --kx-border-accent: rgba(0, 212, 255, 0.2);
+    --kx-radius:        12px;
+    --kx-radius-lg:     20px;
+    --kx-section-v:     110px;
+    --kx-max-w:         1240px;
+    --kx-col-gap:       80px;
+}
+
+/* --- GLOBAL: Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.kx-solutions-page {
+    background-color: var(--kx-bg-deep);
+    color: var(--kx-text-primary);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- GLOBAL: Layout Helpers --- */
+.kx-container {
+    max-width: var(--kx-max-w);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.kx-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--kx-col-gap);
+    align-items: center;
+}
+
+.kx-two-col--reverse { direction: rtl; }
+.kx-two-col--reverse > * { direction: ltr; }
+
+.kx-section {
+    padding: var(--kx-section-v) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- GLOBAL: Eyebrow / Label --- */
+.kx-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--kx-accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.kx-eyebrow::before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--kx-accent);
+}
+
+/* --- GLOBAL: Typography Scale --- */
+.kx-title-xl {
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--kx-text-primary);
+}
+
+.kx-title-lg {
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 200;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--kx-text-primary);
+}
+
+.kx-title-md {
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--kx-text-primary);
+}
+
+.kx-body {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--kx-text-secondary);
+}
+
+.kx-body--lg {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--kx-text-secondary);
+}
+
+/* --- GLOBAL: Bullet List --- */
+.kx-bullet-list {
+    list-style: none;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.kx-bullet-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--kx-text-secondary);
+}
+
+.kx-bullet-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--kx-accent);
+    box-shadow: 0 0 8px var(--kx-accent-glow);
+}
+
+/* --- GLOBAL: Illustration Block --- */
+.kx-illus-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kx-illus-wrap img {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    /*filter: drop-shadow(0 0 60px rgba(0,180,255,0.18));*/
+}
+
+.kx-illus-glow {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    /*background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);*/
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- GLOBAL: Canvas Particle Layer --- */
+.kx-canvas-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- GLOBAL: Scroll Reveal --- */
+.kx-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.kx-reveal.kx-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.kx-reveal-delay-1 { transition-delay: 0.1s; }
+.kx-reveal-delay-2 { transition-delay: 0.22s; }
+.kx-reveal-delay-3 { transition-delay: 0.34s; }
+.kx-reveal-delay-4 { transition-delay: 0.46s; }
+
+/* --- GLOBAL: Separator line --- */
+.kx-section-sep {
+    width: 100%;
+    height: 1px;
+    background: var(--kx-border);
+}
+
+@media (max-width: 900px) {
+    .kx-two-col,
+    .kx-two-col--reverse { grid-template-columns: 1fr; }
+    .kx-two-col--reverse { direction: ltr; }
+    .kx-container { padding: 0 24px; }
+    :root { --kx-section-v: 72px; --kx-col-gap: 48px; }
+}
+</style>
+
+<!-- GLOBAL wrapper open -->
+<div class="kx-solutions-page">
+
+<script is:inline>
+/* --- GLOBAL: Particle Engine --- */
+(function() {
+    window.KXParticles = function(canvasEl, opts) {
+        var canvas = canvasEl;
+        var ctx    = canvas.getContext('2d');
+        var W, H;
+        var nodes  = [];
+        var raf;
+        var defaults = {
+            type:      'network',   // 'network' | 'flow' | 'glow' | 'grid' | 'scanner' | 'wave'
+            count:     55,
+            color:     '0,212,255',
+            speed:     0.35,
+            opacity:   0.5,
+        };
+        var o = Object.assign({}, defaults, opts || {});
+
+        function resize() {
+            W = canvas.width  = canvas.offsetWidth;
+            H = canvas.height = canvas.offsetHeight;
+        }
+
+        function rand(a, b) { return a + Math.random() * (b - a); }
+
+        function initNodes() {
+            nodes = [];
+            var count = o.count;
+            for (var i = 0; i < count; i++) {
+                nodes.push({
+                    x: rand(0, W),
+                    y: rand(0, H),
+                    vx: rand(-o.speed, o.speed),
+                    vy: rand(-o.speed * 0.6, o.speed * 0.6),
+                    r:  rand(1.2, 2.8),
+                    phase: rand(0, Math.PI * 2),
+                    speed: rand(0.003, 0.007)
+                });
+            }
+        }
+
+        function drawNetwork(t) {
+            ctx.clearRect(0, 0, W, H);
+            /* connections */
+            for (var i = 0; i < nodes.length; i++) {
+                for (var j = i + 1; j < nodes.length; j++) {
+                    var dx = nodes[i].x - nodes[j].x;
+                    var dy = nodes[i].y - nodes[j].y;
+                    var dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 130) {
+                        var a = (1 - dist/130) * 0.22 * o.opacity;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = 'rgba(' + o.color + ',' + a + ')';
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+            /* nodes */
+            for (var i = 0; i < nodes.length; i++) {
+                var pulse = 0.4 + 0.6 * Math.sin(t * nodes[i].speed + nodes[i].phase);
+                var a = pulse * o.opacity * 0.8;
+                ctx.beginPath();
+                ctx.arc(nodes[i].x, nodes[i].y, nodes[i].r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(' + o.color + ',' + a + ')';
+                ctx.fill();
+            }
+        }
+
+        function drawFlow(t) {
+            ctx.clearRect(0, 0, W, H);
+            for (var i = 0; i < nodes.length; i++) {
+                var nd = nodes[i];
+                var wave = Math.sin(t * 0.6 + nd.phase) * 18;
+                var a = (0.3 + 0.3 * Math.sin(t * nd.speed * 2 + nd.phase)) * o.opacity;
+                ctx.beginPath();
+                ctx.arc(nd.x, nd.y + wave, nd.r * 0.9, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(' + o.color + ',' + a + ')';
+                ctx.fill();
+            }
+        }
+
+        function drawGlow(t) {
+            ctx.clearRect(0, 0, W, H);
+            for (var i = 0; i < nodes.length; i++) {
+                var nd = nodes[i];
+                var pulse = 0.5 + 0.5 * Math.sin(t * nd.speed + nd.phase);
+                var a = pulse * o.opacity * 0.6;
+                var r = nd.r * (1 + pulse * 1.5);
+                var grad = ctx.createRadialGradient(nd.x, nd.y, 0, nd.x, nd.y, r * 6);
+                grad.addColorStop(0, 'rgba(' + o.color + ',' + a + ')');
+                grad.addColorStop(1, 'rgba(' + o.color + ',0)');
+                ctx.beginPath();
+                ctx.arc(nd.x, nd.y, r * 6, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+            }
+        }
+
+        function drawGrid(t) {
+            ctx.clearRect(0, 0, W, H);
+            var cols = Math.floor(W / 55);
+            var rows = Math.floor(H / 55);
+            for (var ci = 0; ci <= cols; ci++) {
+                for (var ri = 0; ri <= rows; ri++) {
+                    var x = ci * 55;
+                    var y = ri * 55;
+                    var dist = Math.sqrt(Math.pow(x - W/2, 2) + Math.pow(y - H/2, 2));
+                    var wave = Math.sin(t * 0.5 - dist * 0.012);
+                    var a = (0.08 + 0.08 * wave) * o.opacity;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 1.2, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba(' + o.color + ',' + a + ')';
+                    ctx.fill();
+                }
+            }
+        }
+
+        function drawScanner(t) {
+            ctx.clearRect(0, 0, W, H);
+            /* scan line */
+            var scanY = ((t * 28) % (H + 60)) - 30;
+            var grad = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
+            grad.addColorStop(0,   'rgba(' + o.color + ',0)');
+            grad.addColorStop(0.5, 'rgba(' + o.color + ',' + (0.06 * o.opacity) + ')');
+            grad.addColorStop(1,   'rgba(' + o.color + ',0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, scanY - 50, W, 100);
+            /* dots */
+            for (var i = 0; i < nodes.length; i++) {
+                var nd = nodes[i];
+                var a = (0.15 + 0.1 * Math.sin(t * nd.speed + nd.phase)) * o.opacity;
+                ctx.beginPath();
+                ctx.arc(nd.x, nd.y, nd.r * 0.8, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(' + o.color + ',' + a + ')';
+                ctx.fill();
+            }
+        }
+
+        function drawWave(t) {
+            ctx.clearRect(0, 0, W, H);
+            for (var i = 0; i < nodes.length; i++) {
+                var nd = nodes[i];
+                var waveOffset = Math.sin(t * 0.4 + nd.x * 0.015 + nd.phase) * 30;
+                var a = (0.2 + 0.15 * Math.sin(t * nd.speed + nd.phase)) * o.opacity;
+                ctx.beginPath();
+                ctx.arc(nd.x, nd.y + waveOffset, nd.r, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(' + o.color + ',' + a + ')';
+                ctx.fill();
+            }
+        }
+
+        function moveNodes() {
+            for (var i = 0; i < nodes.length; i++) {
+                var nd = nodes[i];
+                nd.x += nd.vx;
+                nd.y += nd.vy;
+                if (nd.x < -20) nd.x = W + 20;
+                if (nd.x > W + 20) nd.x = -20;
+                if (nd.y < -20) nd.y = H + 20;
+                if (nd.y > H + 20) nd.y = -20;
+            }
+        }
+
+        var startTime = null;
+        function loop(ts) {
+            if (!startTime) startTime = ts;
+            var t = (ts - startTime) * 0.001;
+            moveNodes();
+            if      (o.type === 'network') drawNetwork(t);
+            else if (o.type === 'flow')    drawFlow(t);
+            else if (o.type === 'glow')    drawGlow(t);
+            else if (o.type === 'grid')    drawGrid(t);
+            else if (o.type === 'scanner') drawScanner(t);
+            else if (o.type === 'wave')    drawWave(t);
+            raf = requestAnimationFrame(loop);
+        }
+
+        function init() {
+            resize();
+            initNodes();
+            raf = requestAnimationFrame(loop);
+        }
+
+        window.addEventListener('resize', function() {
+            resize();
+            initNodes();
+        });
+
+        init();
+
+        return {
+            destroy: function() { cancelAnimationFrame(raf); }
+        };
+    };
+
+    /* --- GLOBAL: Scroll Reveal Observer --- */
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('kx-visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.kx-reveal').forEach(function(el) {
+            revealObserver.observe(el);
+        });
+    });
+})();
+</script>
+
+<!-- ============================================================
+     GLOBAL BASE — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 1: HERO — START
+     ============================================================ -->
+
+<style>
+/* --- HERO --- */
+#kx-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 100px;
+    background:
+        radial-gradient(ellipse 900px 600px at 65% 50%, rgba(0,212,255,0.055) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 10% 80%, rgba(26,111,255,0.06) 0%, transparent 70%),
+        var(--kx-bg-deep);
+}
+
+#kx-hero .kx-hero__text-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    z-index: 2;
+    position: relative;
+}
+
+#kx-hero .kx-hero__title {
+    margin-bottom: 24px;
+}
+
+#kx-hero .kx-hero__title em {
+    font-style: normal;
+    background: linear-gradient(92deg, #ffffff 0%, var(--kx-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#kx-hero .kx-hero__desc {
+    max-width: 490px;
+    margin-bottom: 40px;
+}
+
+#kx-hero .kx-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: var(--kx-accent);
+    color: #050b14;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border-radius: 300px;
+    text-decoration: none;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+#kx-hero .kx-hero__cta:hover {
+    filter: brightness(.92);
+    transform: translateY(-2px);
+}
+
+#kx-hero .kx-hero__cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--kx-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 300px;
+    border: 1px solid var(--kx-border);
+    text-decoration: none;
+    transition: filter 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+#kx-hero .kx-hero__cta-ghost:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+    border-color: var(--kx-border-accent);
+}
+
+#kx-hero .kx-hero__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#kx-hero .kx-hero__illus-col {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 480px;
+    z-index: 2;
+}
+
+#kx-hero .kx-hero__illus-col img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    /*filter: drop-shadow(0 0 80px rgba(0,212,255,0.22));*/
+    animation: kx-hero-float 6s ease-in-out infinite;
+}
+
+@keyframes kx-hero-float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-14px); }
+}
+
+#kx-hero .kx-hero__illus-glow {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+    animation: kx-glow-pulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes kx-glow-pulse {
+    0%   { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1;   transform: scale(1.12); }
+}
+
+#kx-hero-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Tag strip below hero title */
+#kx-hero .kx-hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+#kx-hero .kx-hero__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--kx-accent-dim);
+    border: 1px solid var(--kx-border-accent);
+    border-radius: 40px;
+    font-size: 12px;
+    color: var(--kx-accent);
+    letter-spacing: 0.04em;
+}
+</style>
+
+<section id="kx-hero" class="kx-section" scroll="how-it-works">
+    <canvas id="kx-hero-canvas" class="kx-canvas-layer"></canvas>
+    <div class="kx-container">
+        <div class="kx-two-col">
+
+            <div class="kx-hero__text-col">
+                <span class="kx-eyebrow kx-reveal">Solutions</span>
+                <h1 class="kx-title-xl kx-hero__title kx-reveal kx-reveal-delay-1">
+                    Solutions for<br>
+                    <em>Modern Financial</em><br>
+                    Infrastructure
+                </h1>
+                <div class="kx-hero__tags kx-reveal kx-reveal-delay-2">
+                    <span class="kx-hero__tag">Multi-Liquidator</span>
+                    <span class="kx-hero__tag">KYT / AML</span>
+                    <span class="kx-hero__tag">Compliance-by-Design</span>
+                    <span class="kx-hero__tag">Bank-Grade</span>
+                </div>
+                <p class="kx-body--lg kx-hero__desc kx-reveal kx-reveal-delay-2">
+                    KryptoX provides a unified operational layer for institutions that need to move value
+                    between crypto markets, liquidity providers, and banking infrastructure.
+                </p>
+                <div class="kx-hero__actions kx-reveal kx-reveal-delay-3">
+                    <a href="/request-demo" class="kx-hero__cta">Request a Demo</a>
+                    <!-- <a href="/request-demo" class="kx-hero__cta-ghost">Explore Platform →</a> -->
+                </div>
+            </div>
+
+            <div class="kx-hero__illus-col kx-reveal kx-reveal-delay-2">
+                <div class="kx-hero__illus-glow"></div>
+                <Image
+                    src={heroImg}
+                    alt="KryptoX infrastructure orchestration"
+                    loading="eager"
+                />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- HERO: Particles — network nodes, protagonist speed --- */
+document.addEventListener('DOMContentLoaded', function() {
+    var c = document.getElementById('kx-hero-canvas');
+    if (c) {
+        KXParticles(c, {
+            type:    'network',
+            count:   70,
+            color:   '0,212,255',
+            speed:   0.55,
+            opacity: 0.55
+        });
+    }
+});
+</script>
+
+<!-- ============================================================
+     SECTION 1: HERO — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 2: FINANCIAL INSTITUTIONS — START
+     ============================================================ -->
+
+<style>
+/* --- FINANCIAL INSTITUTIONS --- */
+#kx-financial {
+    background:
+        radial-gradient(ellipse 700px 500px at 90% 50%, rgba(26,111,255,0.05) 0%, transparent 70%),
+        var(--kx-bg-surface);
+    border-top: 1px solid var(--kx-border);
+    border-bottom: 1px solid var(--kx-border);
+}
+
+#kx-financial .kx-illus-wrap img {
+    max-width: 520px;
+    /*filter: drop-shadow(0 0 50px rgba(26,111,255,0.2));*/
+}
+</style>
+
+<section id="kx-financial" class="kx-section" scroll="financial">
+    <canvas class="kx-canvas-layer kx-section-canvas"
+            data-type="network" data-count="45" data-opacity="0.3"></canvas>
+    <div class="kx-container">
+        <div class="kx-two-col">
+
+            <div class="kx-reveal">
+                <span class="kx-eyebrow">Industry</span>
+                <h2 class="kx-title-lg" style="margin-bottom:20px;">Financial Institutions</h2>
+                <p class="kx-body">
+                    Banks and regulated financial institutions can use KryptoX to orchestrate
+                    crypto-to-bank operations with institutional control, governance, and
+                    settlement reliability.
+                </p>
+                <ul class="kx-bullet-list">
+                    <li>Institutional liquidity coordination</li>
+                    <li>Controlled settlement flows</li>
+                    <li>Operational oversight</li>
+                </ul>
+            </div>
+
+            <div class="kx-illus-wrap kx-reveal kx-reveal-delay-2">
+                <div class="kx-illus-glow"></div>
+                <Image
+                    src={financialImg}
+                    alt="Financial institutions orchestration"
+                    loading="lazy"
+                />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- FINANCIAL INSTITUTIONS: ambient network particles --- */
+/* Initialized via shared section canvas init (see bottom of file) */
+</script>
+
+<!-- ============================================================
+     SECTION 2: FINANCIAL INSTITUTIONS — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 3: PAYMENT PROVIDERS — START
+     ============================================================ -->
+
+<style>
+/* --- PAYMENT PROVIDERS --- */
+#kx-payment {
+    background:
+        radial-gradient(ellipse 700px 400px at 15% 60%, rgba(0,212,255,0.04) 0%, transparent 70%),
+        var(--kx-bg-deep);
+}
+
+#kx-payment .kx-illus-wrap img {
+    max-width: 520px;
+    /*filter: drop-shadow(0 0 50px rgba(0,212,255,0.18));*/
+}
+</style>
+
+<section id="kx-payment" class="kx-section" scroll="payments">
+    <canvas class="kx-canvas-layer kx-section-canvas"
+            data-type="flow" data-count="55" data-opacity="0.28"></canvas>
+    <div class="kx-container">
+        <div class="kx-two-col kx-two-col--reverse">
+
+            <div class="kx-reveal">
+                <span class="kx-eyebrow">Industry</span>
+                <h2 class="kx-title-lg" style="margin-bottom:20px;">Payment Providers</h2>
+                <p class="kx-body">
+                    Payment platforms can integrate digital asset flows into existing payment
+                    infrastructure while maintaining operational control over liquidity
+                    and settlements.
+                </p>
+                <ul class="kx-bullet-list">
+                    <li>Payment rail integration</li>
+                    <li>Liquidity routing</li>
+                    <li>Automated settlements</li>
+                </ul>
+            </div>
+
+            <div class="kx-illus-wrap kx-reveal kx-reveal-delay-2">
+                <div class="kx-illus-glow"></div>
+                <Image
+                    src={paymentImg}
+                    alt="Payment provider infrastructure"
+                    loading="lazy"
+                />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- PAYMENT PROVIDERS: flow particles moving horizontally --- */
+/* Initialized via shared section canvas init */
+</script>
+
+<!-- ============================================================
+     SECTION 3: PAYMENT PROVIDERS — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 4: CRYPTO PLATFORMS — START
+     ============================================================ -->
+
+<style>
+/* --- CRYPTO PLATFORMS --- */
+#kx-crypto {
+    background:
+        radial-gradient(ellipse 700px 500px at 80% 40%, rgba(0,212,255,0.05) 0%, transparent 70%),
+        var(--kx-bg-surface);
+    border-top: 1px solid var(--kx-border);
+    border-bottom: 1px solid var(--kx-border);
+}
+
+#kx-crypto .kx-illus-wrap img {
+    max-width: 520px;
+    /*filter: drop-shadow(0 0 50px rgba(0,212,255,0.2));*/
+}
+</style>
+
+<section id="kx-crypto" class="kx-section" scroll="crypto">
+    <canvas class="kx-canvas-layer kx-section-canvas"
+            data-type="network" data-count="48" data-opacity="0.28"
+            data-color="26,111,255"></canvas>
+    <div class="kx-container">
+        <div class="kx-two-col">
+
+            <div class="kx-reveal">
+                <span class="kx-eyebrow">Industry</span>
+                <h2 class="kx-title-lg" style="margin-bottom:20px;">Crypto Platforms</h2>
+                <p class="kx-body">
+                    Exchanges, brokers, and crypto platforms can connect to institutional
+                    banking infrastructure through a controlled orchestration layer.
+                </p>
+                <ul class="kx-bullet-list">
+                    <li>Banking connectivity</li>
+                    <li>Compliance-aware flows</li>
+                    <li>Liquidity routing</li>
+                </ul>
+            </div>
+
+            <div class="kx-illus-wrap kx-reveal kx-reveal-delay-2">
+                <div class="kx-illus-glow"></div>
+                <Image
+                    src={cryptoImg}
+                    alt="Crypto platform banking connectivity"
+                    loading="lazy"
+                />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- CRYPTO PLATFORMS: transaction path particles --- */
+/* Initialized via shared section canvas init */
+</script>
+
+<!-- ============================================================
+     SECTION 4: CRYPTO PLATFORMS — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 5: TREASURY & FINANCE TEAMS — START
+     ============================================================ -->
+
+<style>
+/* --- TREASURY & FINANCE TEAMS --- */
+#kx-treasury {
+    background:
+        radial-gradient(ellipse 900px 500px at 50% 0%, rgba(0,212,255,0.04) 0%, transparent 60%),
+        var(--kx-bg-deep);
+}
+
+#kx-treasury .kx-treasury__header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 64px;
+}
+
+#kx-treasury .kx-treasury__header p { margin-top: 18px; }
+
+#kx-treasury .kx-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+#kx-treasury .kx-card {
+    background: var(--kx-bg-card);
+    border: 1px solid var(--kx-border);
+    border-radius: var(--kx-radius-lg);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#kx-treasury .kx-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--kx-accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#kx-treasury .kx-card:hover {
+    border-color: var(--kx-border-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(0,212,255,0.06);
+}
+
+#kx-treasury .kx-card:hover::before { opacity: 1; }
+
+#kx-treasury .kx-card__icon {
+    width: 44px;
+    height: 44px;
+    background: var(--kx-accent-dim);
+    border: 1px solid var(--kx-border-accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+
+#kx-treasury .kx-card__icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--kx-accent);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#kx-treasury .kx-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--kx-text-primary);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+#kx-treasury .kx-card__desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--kx-text-secondary);
+}
+
+#kx-treasury .kx-treasury__illus {
+    position: absolute;
+    right: 0; bottom: 0;
+    width: 380px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@media (max-width: 900px) {
+    #kx-treasury .kx-cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<section id="kx-treasury" class="kx-section" scroll="treasury">
+    <canvas class="kx-canvas-layer kx-section-canvas"
+            data-type="grid" data-count="0" data-opacity="0.35"></canvas>
+    <Image
+        class="kx-treasury__illus"
+        src={treasuryImg}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+    />
+    <div class="kx-container" style="position:relative; z-index:2;">
+
+        <div class="kx-treasury__header kx-reveal">
+            <span class="kx-eyebrow" style="justify-content:center;">Industry</span>
+            <h2 class="kx-title-lg">Treasury &amp; Finance Teams</h2>
+            <p class="kx-body">
+                Financial operations teams gain full visibility into crypto-to-fiat movements
+                while maintaining governance and operational control.
+            </p>
+        </div>
+
+        <div class="kx-cards-grid">
+
+            <div class="kx-card kx-reveal kx-reveal-delay-1">
+                <div class="kx-card__icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M3 12h2m14 0h2M12 3v2m0 14v2M5.6 5.6l1.4 1.4m9.6 9.6 1.4 1.4M5.6 18.4l1.4-1.4m9.6-9.6 1.4-1.4"/></svg>
+                </div>
+                <div class="kx-card__title">Operational Visibility</div>
+                <div class="kx-card__desc">
+                    Real-time status across every stage of the crypto-to-fiat flow,
+                    from wallet detection to final settlement confirmation.
+                </div>
+            </div>
+
+            <div class="kx-card kx-reveal kx-reveal-delay-2">
+                <div class="kx-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="kx-card__title">Liquidity Coordination</div>
+                <div class="kx-card__desc">
+                    Multi-liquidator routing and batching rules to optimize execution
+                    costs and maintain continuous operational resilience.
+                </div>
+            </div>
+
+            <div class="kx-card kx-reveal kx-reveal-delay-3">
+                <div class="kx-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+                </div>
+                <div class="kx-card__title">Settlement Monitoring</div>
+                <div class="kx-card__desc">
+                    Track every settlement event with full reference data and
+                    audit-ready evidence across crypto and fiat rails.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- TREASURY: grid ambient particles (no node data, handled by grid draw) --- */
+/* Initialized via shared section canvas init */
+</script>
+
+<!-- ============================================================
+     SECTION 5: TREASURY & FINANCE TEAMS — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 6: COMPLIANCE & RISK TEAMS — START
+     ============================================================ -->
+
+<style>
+/* --- COMPLIANCE & RISK TEAMS --- */
+#kx-compliance {
+    background:
+        radial-gradient(ellipse 700px 500px at 15% 50%, rgba(26,111,255,0.05) 0%, transparent 70%),
+        var(--kx-bg-surface);
+    border-top: 1px solid var(--kx-border);
+    border-bottom: 1px solid var(--kx-border);
+}
+
+#kx-compliance .kx-illus-wrap img {
+    max-width: 520px;
+    /*filter: drop-shadow(0 0 50px rgba(0,212,255,0.18));*/
+}
+
+/* Status badge in compliance section */
+#kx-compliance .kx-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0,255,140,0.07);
+    border: 1px solid rgba(0,255,140,0.18);
+    border-radius: 40px;
+    font-size: 12px;
+    color: #00e888;
+    font-weight: 500;
+    margin-top: 28px;
+    letter-spacing: 0.04em;
+}
+
+#kx-compliance .kx-status-badge .kx-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00e888;
+    box-shadow: 0 0 8px rgba(0,232,136,0.5);
+    animation: kx-status-blink 2.2s ease-in-out infinite;
+}
+
+@keyframes kx-status-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+</style>
+
+<section id="kx-compliance" class="kx-section" scroll="compliance">
+    <canvas class="kx-canvas-layer kx-section-canvas"
+            data-type="scanner" data-count="40" data-opacity="0.22"
+            data-color="0,212,255"></canvas>
+    <div class="kx-container">
+        <div class="kx-two-col kx-two-col--reverse">
+
+            <div class="kx-reveal">
+                <span class="kx-eyebrow">Industry</span>
+                <h2 class="kx-title-lg" style="margin-bottom:20px;">Compliance &amp; Risk Teams</h2>
+                <p class="kx-body">
+                    Compliance teams can monitor transaction flows, enforce policies, and maintain
+                    auditable records across crypto and fiat infrastructure.
+                </p>
+                <ul class="kx-bullet-list">
+                    <li>Transaction monitoring</li>
+                    <li>Audit traceability</li>
+                    <li>Risk oversight</li>
+                </ul>
+                <div class="kx-status-badge">
+                    <span class="kx-status-dot"></span>
+                    KYT Screening Active
+                </div>
+            </div>
+
+            <div class="kx-illus-wrap kx-reveal kx-reveal-delay-2">
+                <div class="kx-illus-glow"></div>
+                <Image
+                    src={complianceImg}
+                    alt="Compliance and risk monitoring"
+                    loading="lazy"
+                />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- COMPLIANCE: scanner-type particles, very subtle --- */
+/* Initialized via shared section canvas init */
+</script>
+
+<!-- ============================================================
+     SECTION 6: COMPLIANCE & RISK TEAMS — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 7: CROSS INDUSTRY VALUE — START
+     ============================================================ -->
+
+<style>
+/* --- CROSS INDUSTRY VALUE --- */
+#kx-cross {
+    background:
+        radial-gradient(ellipse 1000px 500px at 50% 50%, rgba(0,212,255,0.04) 0%, transparent 65%),
+        var(--kx-bg-deep);
+    text-align: center;
+}
+
+#kx-cross .kx-cross__header {
+    max-width: 600px;
+    margin: 0 auto 64px;
+}
+
+#kx-cross .kx-cross__header p { margin-top: 18px; }
+
+#kx-cross .kx-cross__icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+#kx-cross .kx-icon-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 40px 24px;
+    background: var(--kx-bg-card);
+    border: 1px solid var(--kx-border);
+    border-radius: var(--kx-radius-lg);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+#kx-cross .kx-icon-tile:hover {
+    border-color: var(--kx-border-accent);
+    transform: translateY(-4px);
+}
+
+#kx-cross .kx-icon-tile__icon {
+    width: 52px;
+    height: 52px;
+    background: var(--kx-accent-dim);
+    border: 1px solid var(--kx-border-accent);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#kx-cross .kx-icon-tile__icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--kx-accent);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#kx-cross .kx-icon-tile__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--kx-text-primary);
+    letter-spacing: 0.02em;
+}
+
+#kx-cross .kx-cross__connector {
+    margin: 40px auto 0;
+    max-width: 690px;
+    padding: 20px 32px;
+    border: 1px solid var(--kx-border-accent);
+    background: var(--kx-accent-dim);
+    border-radius: var(--kx-radius);
+    font-size: 13px;
+    color: var(--kx-accent);
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    #kx-cross .kx-cross__icons { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+    #kx-cross .kx-cross__icons { grid-template-columns: 1fr; }
+}
+</style>
+
+<section id="kx-cross" class="kx-section">
+    <canvas class="kx-canvas-layer kx-section-canvas"
+            data-type="glow" data-count="30" data-opacity="0.4"></canvas>
+    <div class="kx-container" style="position:relative; z-index:2;">
+
+        <div class="kx-cross__header kx-reveal">
+            <span class="kx-eyebrow" style="justify-content:center;">Unified Platform</span>
+            <h2 class="kx-title-lg">A Unified Operational Layer</h2>
+            <p class="kx-body">
+                KryptoX connects crypto infrastructure, liquidity providers, and banking rails
+                through a single orchestration platform.
+            </p>
+        </div>
+
+        <div class="kx-cross__icons">
+
+            <div class="kx-icon-tile kx-reveal kx-reveal-delay-1">
+                <div class="kx-icon-tile__icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66 4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66 4.24-4.24"/></svg>
+                </div>
+                <span class="kx-icon-tile__label">Liquidity</span>
+            </div>
+
+            <div class="kx-icon-tile kx-reveal kx-reveal-delay-2">
+                <div class="kx-icon-tile__icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="kx-icon-tile__label">Governance</span>
+            </div>
+
+            <div class="kx-icon-tile kx-reveal kx-reveal-delay-3">
+                <div class="kx-icon-tile__icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>
+                </div>
+                <span class="kx-icon-tile__label">Traceability</span>
+            </div>
+
+            <div class="kx-icon-tile kx-reveal kx-reveal-delay-4">
+                <div class="kx-icon-tile__icon">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <span class="kx-icon-tile__label">Control</span>
+            </div>
+
+        </div>
+
+        <div class="kx-cross__connector kx-reveal kx-reveal-delay-3">
+            Crypto Infrastructure → KryptoX Orchestration Layer → Banking Rails
+        </div>
+
+    </div>
+</section>
+
+<script is:inline>
+/* --- CROSS INDUSTRY: soft glow particle field --- */
+/* Initialized via shared section canvas init */
+</script>
+
+<!-- ============================================================
+     SECTION 7: CROSS INDUSTRY VALUE — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 8: CTA — START
+     ============================================================ -->
+
+<style>
+/* --- CTA --- */
+#kx-cta {
+    text-align: center;
+    padding: 130px 0;
+    background:
+        radial-gradient(ellipse 900px 500px at 50% 50%, rgba(0,212,255,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 300px at 20% 80%, rgba(26,111,255,0.06) 0%, transparent 70%),
+        var(--kx-bg-surface);
+    border-top: 1px solid var(--kx-border);
+    overflow: hidden;
+}
+
+#kx-cta .kx-cta__inner {
+    position: relative;
+    z-index: 2;
+}
+
+#kx-cta .kx-cta__title {
+    max-width: 680px;
+    margin: 0 auto 16px;
+}
+
+#kx-cta .kx-cta__sub {
+    max-width: 440px;
+    margin: 0 auto 44px;
+}
+
+#kx-cta .kx-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 44px;
+    background: var(--kx-accent);
+    color: #050b14;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    border-radius: 300px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#kx-cta .kx-cta__btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+#kx-cta .kx-cta__btn:hover {
+    filter: brightness(.92);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0,212,255,0.3);
+}
+
+#kx-cta .kx-cta__note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--kx-text-muted);
+    letter-spacing: 0.04em;
+}
+
+/* Decorative rings */
+#kx-cta .kx-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--kx-border);
+    pointer-events: none;
+    z-index: 0;
+    animation: kx-ring-expand 8s ease-in-out infinite;
+}
+
+#kx-cta .kx-ring-1 {
+    width: 500px; height: 500px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 0s;
+}
+
+#kx-cta .kx-ring-2 {
+    width: 750px; height: 750px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 2s;
+    border-color: rgba(255,255,255,0.03);
+}
+
+#kx-cta .kx-ring-3 {
+    width: 1000px; height: 1000px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 4s;
+    border-color: rgba(255,255,255,0.02);
+}
+
+@keyframes kx-ring-expand {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50%       { opacity: 0.3; transform: translate(-50%, -50%) scale(1.04); }
+}
+</style>
+
+<section id="kx-cta" class="kx-section">
+    <canvas class="kx-canvas-layer kx-section-canvas"
+            data-type="wave" data-count="65" data-opacity="0.3"></canvas>
+
+    <div class="kx-ring kx-ring-1"></div>
+    <div class="kx-ring kx-ring-2"></div>
+    <div class="kx-ring kx-ring-3"></div>
+
+    <div class="kx-container kx-cta__inner">
+        <span class="kx-eyebrow kx-reveal" style="justify-content:center;">Get Started</span>
+        <h2 class="kx-title-xl kx-cta__title kx-reveal kx-reveal-delay-1">
+            Operate Crypto Infrastructure<br>with Institutional Control
+        </h2>
+        <p class="kx-body kx-cta__sub kx-reveal kx-reveal-delay-2">
+            Connect your organization to a controlled, compliant, and
+            resilient crypto-to-fiat operational layer.
+        </p>
+        <div class="kx-reveal kx-reveal-delay-3">
+            <a href="/request-demo" class="kx-cta__btn">Request a Demo →</a>
+            <p class="kx-cta__note">No commitment required · Institutional setup</p>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+/* --- CTA: wave particle field behind section --- */
+/* Initialized via shared section canvas init */
+</script>
+
+<!-- ============================================================
+     SECTION 8: CTA — END
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION CANVAS INIT — START
+     Inicialización compartida de todos los canvas de sección
+     ============================================================ -->
+
+<script is:inline>
+/* --- SECTION CANVAS INIT: Inicializa todas las secciones con canvas --- */
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.kx-section-canvas').forEach(function(canvas) {
+        var type    = canvas.getAttribute('data-type')    || 'network';
+        var count   = parseInt(canvas.getAttribute('data-count')   || '50', 10);
+        var opacity = parseFloat(canvas.getAttribute('data-opacity') || '0.3');
+        var color   = canvas.getAttribute('data-color')   || '0,212,255';
+
+        KXParticles(canvas, {
+            type:    type,
+            count:   count,
+            color:   color,
+            speed:   0.28,
+            opacity: opacity
+        });
+    });
+});
+</script>
+
+<!-- GLOBAL wrapper close -->
+</div>
+
+<!-- ============================================================
+     SECTION CANVAS INIT — END
+     ============================================================ -->
+
+
+
+<script is:inline>
+/* Original PHP usaba jQuery: $('[scroll="..."]'). El proyecto Astro no carga
+   jQuery, así que se reescribe el mismo comportamiento en JS vanilla. */
+document.addEventListener('DOMContentLoaded', function () {
+  function getScrollTarget() {
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get('i');
+
+    if (!section) return null;
+
+    const target = document.querySelector('[scroll="' + section + '"]');
+    if (!target) return null;
+
+    return target;
+  }
+
+  function scrollToQuerySection() {
+    const target = getScrollTarget();
+    if (!target) return;
+
+    setTimeout(() => {
+      const headerOffset = 100; // Ajusta según la altura real de tu header
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }, 120);
+  }
+
+  scrollToQuerySection();
+
+  // Si por alguna razón cambias el query string sin recargar
+  window.addEventListener('popstate', scrollToQuerySection);
+});
+</script>
+
+</BaseLayout>

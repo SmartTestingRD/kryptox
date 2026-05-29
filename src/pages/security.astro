@@ -1,0 +1,43 @@
+---
+/**
+ * security.astro
+ * --------------
+ * 1:1 migration of part/page/security.php. Renders the 8 security
+ * sub-trozos in the exact order of the PHP page.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SecurityHero from '../components/security/SecurityHero.astro';
+import Access from '../components/security/Access.astro';
+import KYC from '../components/security/KYC.astro';
+import KYT from '../components/security/KYT.astro';
+import Approvals from '../components/security/Approvals.astro';
+import NonCustodial from '../components/security/NonCustodial.astro';
+import Traceability from '../components/security/Traceability.astro';
+import DataProtection from '../components/security/DataProtection.astro';
+---
+
+<BaseLayout
+  title="Security & Compliance — KryptoX"
+  description="Security and compliance by design—integrating KYT, AML, approvals, and audit-ready controls directly into every crypto-to-fiat settlement workflow."
+>
+  <!-- Order matches kryptox/part/page/security.php -->
+  <SecurityHero />
+  <Access />
+  <KYC />
+  <KYT />
+  <Approvals />
+  <NonCustodial />
+  <Traceability />
+  <DataProtection />
+
+  <!-- Header override — el componente <Header> es un Astro aparte. Astro scopea
+       su regla como `.kx-header[data-astro-cid-…]` (especificidad 0,2,0), así que
+       un `:global(.kx-header)` (0,1,0) pierde sin `!important`. En vez de usar
+       `!important`, se apunta por ID (`#kxHeader`, 1,0,0) que gana
+       determinísticamente sin depender del orden de carga. -->
+  <style>
+    :global(#kxHeader){ background-color: #000; }
+  </style>
+
+  <script is:inline>  menuActive('security');  </script>
+</BaseLayout>

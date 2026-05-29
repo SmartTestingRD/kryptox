@@ -1,0 +1,71 @@
+---
+/**
+ * CTA.astro
+ * ---------
+ * Call-to-action button. Use inside MDX or any layout.
+ *
+ *   <CTA href="/contact">Request a demo</CTA>
+ */
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost';
+}
+
+const { href, variant = 'primary' } = Astro.props;
+---
+
+<a href={href} class:list={['kx-cta', `kx-cta--${variant}`]}>
+  <span><slot /></span>
+  <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+    <path
+      d="M3 8h10M9 4l4 4-4 4"
+      stroke="currentColor"
+      stroke-width="1.75"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</a>
+
+<style>
+  .kx-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--kx-space-2);
+    margin-top: var(--kx-space-8);
+    padding: var(--kx-space-3) var(--kx-space-6);
+    border-radius: var(--kx-radius-pill);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background var(--kx-duration-fast) var(--kx-ease-out),
+                color var(--kx-duration-fast) var(--kx-ease-out),
+                transform var(--kx-duration-fast) var(--kx-ease-out),
+                box-shadow var(--kx-duration-fast) var(--kx-ease-out);
+  }
+
+  .kx-cta svg { transition: transform var(--kx-duration-base) var(--kx-ease-out); }
+  .kx-cta:hover svg { transform: translateX(3px); }
+
+  .kx-cta--primary {
+    background: var(--kx-color-crypto);
+    color: var(--kx-bg-dark);
+  }
+
+  .kx-cta--primary:hover {
+    background: #5BFFFF;
+    box-shadow: var(--kx-glow-cyan);
+    transform: translateY(-1px);
+  }
+
+  .kx-cta--ghost {
+    border: 1px solid var(--kx-border-on-dark);
+    color: var(--kx-text-on-dark);
+  }
+
+  .kx-cta--ghost:hover {
+    border-color: var(--kx-color-crypto);
+    color: var(--kx-color-crypto);
+  }
+</style>

@@ -1,0 +1,420 @@
+---
+/**
+ * Hero.astro
+ * ----------
+ * 1:1 migration of part/sub/home/hero.php. Structure, classes, IDs, CSS and
+ * the inline init scripts are ported verbatim from the PHP original.
+ * `$raiz` (site root) resolves to `/` in the Astro build; the orchestration
+ * animation is embedded via the real <iframe> pointing to /animate/.
+ */
+---
+
+<section class="kx-hero" id="kxHero">
+  <div class="kx-hero__inner">
+    <h1 class="kx-hero__title">
+      <span class="t-cyan">Crypto</span>
+      <span class="t-arrow"><img src="/media/arrow.hero.svg" alt=""></span>
+      <span class="t-orange">Fiat</span>
+      <span>Orchestration</span>
+    </h1>
+
+    <p class="kx-hero__subtitle">
+      The definitive bridge between digital assets and financial infrastructure.<br>
+      Total control, absolute compliance, and zero counterparty risk.
+    </p>
+
+    <div class="kx-hero__rail" aria-hidden="true">
+      <div class="kx-hero__rail-side">
+        <span class="kx-hero__rail-label">Your customer’s wallets</span>
+        <span class="kx-hero__rail-line"></span>
+      </div>
+
+      <div class="kx-hero__rail-center">This is what we orchestrated</div>
+
+      <div class="kx-hero__rail-side kx-hero__rail-side--right">
+        <span class="kx-hero__rail-line"></span>
+        <span class="kx-hero__rail-label">Your destination fiat accounts</span>
+      </div>
+    </div>
+
+
+
+    <div class="kx-hero__stage" role="group" aria-label="Orchestration visual">
+      <div class="kx-hero__stage-inner" id="kxHeroStageInner">
+        <div class="kx-hero__stage-scaler" id="kxHeroScaler">
+          <iframe src="/animate/index.html" frameborder="0" class="heroAnim" id="kxHeroIframe" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* KryptoX — Home Hero */
+  .kx-hero{
+    position: relative;
+    overflow: hidden;
+    padding-top: calc(var(--kx-header-h, 76px) + 78px);
+    padding-bottom: 0px;
+    background: #000;
+    background: radial-gradient(60.08% 50% at 50% 50%, #193230 0%, #0B1616 72.12%, #000 100%);
+  }
+
+  /* Ambient background */
+  .kx-hero::before{
+    content:"";
+    position:absolute;
+    inset:-200px -200px -260px -200px;
+    background:
+      radial-gradient(900px 420px at 50% 18%, rgba(0,215,215,0.14), rgba(0,0,0,0) 60%),
+      radial-gradient(760px 520px at 72% 52%, rgba(255,138,0,0.10), rgba(0,0,0,0) 62%),
+      radial-gradient(900px 680px at 18% 62%, rgba(0,215,215,0.10), rgba(0,0,0,0) 65%),
+      radial-gradient(1200px 900px at 50% 80%, rgba(138,255,110,0.10), rgba(0,0,0,0) 70%);
+    filter: blur(2px);
+    opacity: 0.95;
+    pointer-events:none;
+  }
+
+  .kx-hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.25) 32%, rgba(0,0,0,0.92)),
+      radial-gradient(1200px 400px at 50% 105%, rgba(172,255,120,0.15), rgba(0,0,0,0) 62%);
+    pointer-events:none;
+  }
+
+  .kx-hero__inner{
+    position: relative;
+    z-index: 2;
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+    text-align: center;
+  }
+
+  .kx-hero__title{
+    margin: 0;
+    font-size: clamp(40px, 5.2vw, 48px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+    color: #fff;
+    text-shadow: 0 18px 55px rgba(0,0,0,0.55);
+  }
+
+  .kx-hero__title .t-cyan{ color: #00D7D7; }
+  .kx-hero__title .t-orange{ color: #FF8A00; }
+  .kx-hero__title .t-arrow{
+    display: inline-block;
+    margin: 0 10px;
+    color: rgba(255,255,255,0.72);
+    transform: translateY(-2px);
+  }
+
+  .kx-hero__subtitle{
+    margin: 14px auto 0;
+    max-width: 860px;
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.58);
+  }
+
+  /* Orchestration line row */
+  .kx-hero__rail{
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+    color: rgba(255,255,255,0.50);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .kx-hero__rail-side{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .kx-hero__rail-side.kx-hero__rail-side--right{
+    justify-content: flex-end;
+  }
+
+  .kx-hero__rail-label{
+    white-space: nowrap;
+    opacity: 0.9;
+  }
+
+  .kx-hero__rail-line{
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(to right, rgba(255,255,255,0.08), rgba(255,255,255,0.16), rgba(255,255,255,0.08));
+    border-radius: 999px;
+  }
+
+  .kx-hero__rail-center{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: rgba(255,255,255,0.62);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    user-select: none;
+  }
+
+  /* Main visual container */
+  .kx-hero__stage{
+    margin: 22px auto 0;
+    width: calc(var(--innerWidth) + 20px);
+    border-radius: 43px 43px 0px 0px;
+    margin-left: -35px;
+    background: rgba(0,0,0,0.92);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow:
+      0 40px 120px rgba(0,0,0,0.75),
+      0 10px 40px rgba(0,0,0,0.45);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 0px 80px #93682a59;
+    box-shadow: 0px 0px 150px #6196b542;
+  }
+
+  /* Inner padding and placeholder area */
+  .kx-hero__stage-inner{
+    height: clamp(320px, 44vw, 520px);
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  /* subtle top vignette */
+  .kx-hero__stage::before{
+    content:"";
+    position:absolute;
+    inset:-40% -20% auto -20%;
+    height: 70%;
+    background: radial-gradient(600px 240px at 50% 0%, rgba(0,215,215,0.10), rgba(0,0,0,0) 65%);
+    opacity: 0.7;
+    pointer-events:none;
+  }
+
+  /* Bottom green glow bar */
+  .kx-hero__stage::after{
+    content:"";
+    position:absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -34px;
+    height: 92px;
+    /*background: radial-gradient(closest-side at 50% 50%, rgba(172,255,120,0.68), rgba(172,255,120,0.16) 55%, rgba(0,0,0,0) 72%);*/
+    filter: blur(10px);
+    opacity: 0.95;
+    transform: translateZ(0);
+    pointer-events:none;
+    animation: kxGlowBreath 5.8s ease-in-out infinite;
+  }
+
+  @keyframes kxGlowBreath{
+    0%,100%{ opacity: 0.78; transform: translateY(0) scaleX(1); }
+    50%{ opacity: 0.98; transform: translateY(-2px) scaleX(1.03); }
+  }
+
+  /* Placeholder content (you will replace with your animation/video) */
+  .kx-hero__placeholder{
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.66);
+    padding: 26px;
+  }
+
+  .kx-hero__placeholder-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    user-select: none;
+  }
+
+  .kx-hero__dot{
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #00D7D7;
+    box-shadow: 0 0 0 6px rgba(0,215,215,0.16), 0 18px 45px rgba(0,215,215,0.18);
+  }
+
+  .kx-hero__placeholder-title{
+    margin: 0;
+    font-weight: 800;
+    font-size: 16px;
+    color: rgba(255,255,255,0.78);
+  }
+
+  .kx-hero__placeholder-sub{
+    margin: 0;
+    font-size: 12px;
+    color: rgba(255,255,255,0.48);
+    max-width: 520px;
+    line-height: 1.55;
+  }
+
+
+  /* ---- HERO: iframe scale-fit — START ---- */
+  /*
+     The animation inside the iframe has a fixed native size.
+     We scale the iframe proportionally so 100% of its content
+     is always visible, no clipping on any viewport width.
+  */
+  .kx-hero__stage-inner{
+    /* JS will set --kx-iframe-h dynamically based on scale */
+    height: clamp(320px, 44vw, 520px); /* fallback until JS runs */
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kx-hero__stage-scaler{
+    /* The scaler wraps the iframe and receives transform: scale() from JS */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    /* width & height set by JS to iframe native dimensions */
+  }
+
+  .heroAnim{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    box-shadow: none;
+  }
+  /* ---- HERO: iframe scale-fit — END ---- */
+
+  /* Responsive */
+  @media (max-width: 860px){
+    .kx-hero{
+      padding-top: calc(var(--kx-header-h, 76px) + 56px);
+      padding-bottom: 70px;
+    }
+
+    .kx-hero__rail{
+      grid-template-columns: 1fr;
+      gap: 10px;
+      justify-items: center;
+    }
+
+    .kx-hero__rail-side{
+      width: 100%;
+      justify-content: center;
+    }
+
+    .kx-hero__rail-line{
+      max-width: 360px;
+    }
+
+    .kx-hero__stage{
+      border-radius: 26px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-hero__stage::after{ animation: none; }
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    // Keep hero top padding aligned with fixed header height (if present)
+    function setHeaderVar(){
+      var h = document.getElementById('kxHeader');
+      if (!h) return;
+      var px = (h.offsetHeight || 76);
+      document.documentElement.style.setProperty('--kx-header-h', px + 'px');
+    }
+
+    setHeaderVar();
+    window.addEventListener('resize', setHeaderVar, { passive: true });
+
+    // Defensive: warn if hero container missing (integration issues)
+    if (!document.getElementById('kxHero')) {
+      console.warn('[KryptoX] #kxHero not found. Hero section may not be included/loaded.');
+    }
+
+  (function(){
+    /* =====================================================
+       HERO: iframe proportional scale-fit
+       Native design width/height of the animation inside
+       the iframe. Adjust these two constants if the
+       animation changes its canvas size.
+    ===================================================== */
+    var NATIVE_W = 1440;   /* px — native animation width  */
+    var NATIVE_H = 520;    /* px — native animation height */
+    var BREAKPOINT = 1440; /* below this width we start scaling */
+
+    var scaler  = document.getElementById('kxHeroScaler');
+    var wrapper = document.getElementById('kxHeroStageInner');
+    var iframe  = document.getElementById('kxHeroIframe');
+
+    if (!scaler || !wrapper || !iframe) return;
+
+    /* Set iframe to its native dimensions once */
+    iframe.style.width  = NATIVE_W + 'px';
+    iframe.style.height = NATIVE_H + 'px';
+    scaler.style.width  = NATIVE_W + 'px';
+    scaler.style.height = NATIVE_H + 'px';
+
+    function fitIframe(){
+      var vw = window.innerWidth;
+
+      if (vw >= BREAKPOINT){
+        /* Desktop: no scaling needed, restore natural */
+        scaler.style.transform = 'none';
+        scaler.style.left      = '40%';
+        scaler.style.marginLeft = '-' + ((NATIVE_W / 2.5) + 5)  + 'px';
+        wrapper.style.height   = NATIVE_H + 'px';
+        return;
+      }
+
+      /* Calculate scale ratio: how much smaller than native */
+      var scale   = vw / NATIVE_W;
+      var scaledH = Math.round(NATIVE_H * scale);
+
+      /* Center horizontally and apply scale */
+      scaler.style.left       = '40%';
+      scaler.style.marginLeft = '-' + (NATIVE_W / 2) + 'px';
+      scaler.style.transformOrigin = 'top center';
+      scaler.style.transform  = 'translateX(0) scale(' + scale + ')';
+
+      /* The wrapper collapses because scale doesn't affect layout flow.
+         Manually set its height to the visually-scaled value. */
+      wrapper.style.height = scaledH + 'px';
+    }
+
+    fitIframe();
+    window.addEventListener('resize', fitIframe, { passive: true });
+  })();
+
+  })();
+</script>

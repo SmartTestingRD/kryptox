@@ -1,0 +1,368 @@
+---
+/**
+ * SecurityTeaser.astro
+ * --------------------
+ * 1:1 migration of part/sub/home/security.php — the home-page security
+ * teaser section (NOT the full /security page). HTML, CSS and inline
+ * scripts ported verbatim. `$raiz` resolves to `/`.
+ *
+ * Note: the PHP nested a small <style> (the `.draw` rules) inside the
+ * markup; it has been merged into the single component <style> block —
+ * functionally identical, just relocated.
+ */
+import { Image } from 'astro:assets';
+import blueLock from '../../assets/blue.lock.png';
+---
+
+<section class="kx-security" id="kxSecurity">
+  <canvas class="canvasSec" data-color="10,80,110" data-count="30" data-speed="0.16" data-opacity="0.24" aria-hidden="true"></canvas>
+  <div class="kx-security__inner">
+    <div class="kx-security__grid">
+
+      <!-- Left -->
+      <div class="kx-security__content kx-security__reveal">
+        <h2 class="kx-security__title">Security &amp; Compliance by Design</h2>
+        <p class="kx-security__desc">
+          KryptoX is built from the ground up for institutions that operate under regulatory scrutiny,
+          internal controls, and audit requirements.
+        </p>
+
+        <ul class="kx-security__list">
+          <li class="kx-security__item">
+            <span class="kx-security__dot"></span>
+            <span><strong>Integrated KYT &amp; AML screening</strong> across the entire flow</span>
+          </li>
+          <li class="kx-security__item">
+            <span class="kx-security__dot"></span>
+            <span><strong>Institutional-grade onboarding</strong> (KYC / KYB)</span>
+          </li>
+          <li class="kx-security__item">
+            <span class="kx-security__dot"></span>
+            <span><strong>Evidence-ready workflows</strong> for audits and reporting</span>
+          </li>
+          <li class="kx-security__item">
+            <span class="kx-security__dot"></span>
+            <span><strong>Configurable operational limits</strong> and thresholds</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right -->
+      <div class="kx-security__visual kx-security__reveal" aria-hidden="true">
+        <div class="kx-security__image">
+          <Image
+            class="kx-security__img"
+            src={blueLock}
+            alt="Security and compliance illustration" />
+
+
+          <img class="kx-security__img draw" draw="1" src="/media/lock/1.svg">
+          <img class="kx-security__img draw" draw="2" src="/media/lock/2.svg">
+          <img class="kx-security__img draw" draw="3" src="/media/lock/3.svg">
+          <img class="kx-security__img draw" draw="4" src="/media/lock/4.svg">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* KryptoX — Section: Security & Compliance by Design */
+    .kx-security{
+    position: relative;
+    background: #F4F4F4;
+    padding: 0px 0;
+    overflow: visible; /* allow image to overflow top/bottom */
+  }
+
+  .kx-security__inner{
+    max-width: var(--innerWidth);
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .kx-security__grid{
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* Left content */
+  .kx-security__title{
+    margin: 0 0 18px 0;
+    font-size: var(--titleSize);
+    line-height: 1.1;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    color: #0a0f12;
+  }
+
+  .kx-security__desc{
+    margin: 0 0 34px 0;
+    max-width: 560px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(10,15,18,0.70);
+  }
+
+  .kx-security__list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 18px;
+  }
+
+  .kx-security__item{
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #0a0f12;
+  }
+
+  .kx-security__dot{
+    width: 10px;
+    height: 10px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: #CFCFCF;
+    flex-shrink: 0;
+  }
+
+  .kx-security__item strong{
+    font-weight: 700;
+  }
+
+  /* Right image (overlapping) */
+  .kx-security__visual{
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .kx-security__image{
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    border-radius: 26px;
+    transform: translateY(-80px); /* overflow top */
+    z-index: 2;
+  }
+
+  .kx-security__image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    pointer-events:none;
+  }
+
+  .kx-security__img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: inherit;
+  }
+
+  /* Extend bottom overflow */
+  .kx-security__visual::after{
+    content:"";
+    position:absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 80px;
+    pointer-events:none;
+  }
+
+  /* Reveal animation */
+  .kx-security__reveal{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+
+  .kx-security.is-inview .kx-security__reveal{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  /* ---- SECURITY: Responsive — START ---- */
+  @media (max-width: 980px){
+    .kx-security{
+      padding: 96px 0 110px;
+    }
+
+    .kx-security__grid{
+      grid-template-columns: 1fr;
+      gap: 54px;
+    }
+
+    .kx-security__visual{
+      display: none;
+    }
+  }
+  /* ---- SECURITY: Responsive — END ---- */
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-security__reveal{
+      transition: none;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+
+  .canvasSec{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+     height: auto !important;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .draw {
+    position: absolute;
+    top: -15px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
+
+  .draw.active {
+    opacity: 1;
+  }
+</style>
+
+<script is:inline>
+  (function(){
+    var el = document.getElementById('kxSecurity');
+    if (!el){
+      console.warn('[KryptoX] #kxSecurity not found.');
+      return;
+    }
+
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        for (var i=0;i<entries.length;i++){
+          if (entries[i].isIntersecting){
+            el.classList.add('is-inview');
+            io.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.2 });
+
+      io.observe(el);
+    } else {
+      el.classList.add('is-inview');
+    }
+  })();
+</script>
+
+<script is:inline>
+(function () {
+
+  /* =========================
+     CONFIGURACIÓN
+  ========================= */
+
+  const SPEED_MS = 350;          // Velocidad entre frames
+  var STROKE_COLOR = false;      // false = sin recolor, o '#00C2FF'
+
+  /* =========================
+     UTILIDADES
+  ========================= */
+
+  function hexToFilter(hex) {
+    return `
+      brightness(0)
+      saturate(100%)
+      invert(${hex === '#ffffff' ? '0' : '1'})
+      sepia(1)
+      saturate(5000%)
+      hue-rotate(${hexHue(hex)}deg)
+      brightness(1)
+    `;
+  }
+
+  function hexHue(hex) {
+    const r = parseInt(hex.substr(1, 2), 16) / 255;
+    const g = parseInt(hex.substr(3, 2), 16) / 255;
+    const b = parseInt(hex.substr(5, 2), 16) / 255;
+
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0;
+
+    if (max !== min) {
+      if (max === r) h = (g - b) / (max - min);
+      else if (max === g) h = 2 + (b - r) / (max - min);
+      else h = 4 + (r - g) / (max - min);
+    }
+
+    h = Math.round(h * 60);
+    if (h < 0) h += 360;
+    return h;
+  }
+
+  /* =========================
+     INIT
+  ========================= */
+
+  const frames = Array.from(document.querySelectorAll('.draw'));
+  let index = 0;
+
+  if (STROKE_COLOR !== false) {
+    const filterValue = hexToFilter(STROKE_COLOR);
+    frames.forEach(img => img.style.filter = filterValue);
+  }
+
+  function showFrame(i) {
+    frames.forEach(el => el.classList.remove('active'));
+    frames[i].classList.add('active');
+  }
+
+  function loop() {
+    showFrame(index);
+
+    index++;
+
+    // 🔥 CLAVE: si llegamos al final, reiniciamos SIN ESPERA EXTRA
+    if (index >= frames.length) {
+      index = 0;
+    }
+
+      setTimeout(loop, SPEED_MS);
+  }
+
+  // Arranque inmediato
+  loop();
+
+})();
+</script>
+
+<script is:inline>
+/* --- SECURITY: init canvas particles (engine defined in whatis) --- */
+(function(){
+    var canvas = document.querySelector('#kxSecurity .canvasSec');
+    if (!canvas || typeof KXHomeParticles === 'undefined') return;
+    KXHomeParticles(canvas, {
+        color:   canvas.dataset.color   || '10,80,110',
+        count:   parseInt(canvas.dataset.count  || '30', 10),
+        speed:   parseFloat(canvas.dataset.speed  || '0.16'),
+        opacity: parseFloat(canvas.dataset.opacity || '0.17')
+    });
+})();
+</script>

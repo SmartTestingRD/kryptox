@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "note": "Migrated and reorganized from kryptox/_tradu.json. Spanish translations carried over and adjusted to the new IA."
+  },
+  "nav": {
+    "product":   "Producto",
+    "solutions": "Soluciones",
+    "security":  "Seguridad",
+    "company":   "Empresa",
+    "contact":   "Contacto",
+    "demo":      "Solicitar demo"
+  },
+  "product": {
+    "orchestration": "Orquestación Cripto ↔ Fiat",
+    "liquidity":     "Coordinación de Liquidez",
+    "settlement":    "Gestión de Settlement",
+    "controls":      "Controles Institucionales",
+    "compliance":    "Integración de Compliance"
+  },
+  "solutions": {
+    "financial_institutions": "Instituciones Financieras",
+    "payment_providers":      "Procesadores de Pago",
+    "crypto_platforms":       "Plataformas Cripto",
+    "treasury":               "Tesorería y Finanzas",
+    "compliance_risk":        "Compliance y Riesgo"
+  },
+  "hero": {
+    "eyebrow":  "Infraestructura institucional",
+    "title_crypto":        "Cripto",
+    "title_fiat":          "Fiat",
+    "title_orchestration": "Orquestación",
+    "subtitle": "El puente definitivo entre activos digitales e infraestructura financiera. Control total, cumplimiento absoluto y cero riesgo de contraparte.",
+    "rail_left":   "Las wallets de tus clientes",
+    "rail_center": "Esto es lo que orquestamos",
+    "rail_right":  "Tus cuentas fiat de destino"
+  },
+  "footer": {
+    "tagline": "Infraestructura de liquidez cripto-a-banco construida para rendimiento y discreción.",
+    "rights":  "Todos los derechos reservados.",
+    "entity":  "Operada por KryptoX, LLC."
+  }
+}

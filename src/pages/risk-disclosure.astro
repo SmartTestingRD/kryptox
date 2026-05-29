@@ -1,0 +1,114 @@
+---
+/**
+ * risk-disclosure.astro
+ * ---------------------
+ * 1:1 migration of part/page/risk-disclosure.php — feeds page/base.legal.php
+ * via the LegalPage component. Title, date and body HTML are verbatim.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/legal/LegalPage.astro';
+---
+
+<BaseLayout title="Risk Disclosure">
+  <LegalPage title="Risk Disclosure" date="March 9, 2026">
+    <p>
+      This Risk Disclosure is intended to provide general information about the nature of certain operational, market, regulatory, technological and third-party risks that may be associated with digital asset activities, crypto-to-fiat infrastructure, connected banking workflows and related informational materials presented on the KryptoX website.
+    </p>
+
+    <p>
+      In this Risk Disclosure, the words <strong>“KryptoX”</strong>, <strong>“we”</strong>, <strong>“our”</strong> and <strong>“us”</strong> refer to the KryptoX website, brand and related digital materials. The words <strong>“you”</strong> and <strong>“your”</strong> refer to any visitor, company representative, institution, evaluator or other person reviewing this website.
+    </p>
+
+    <p>
+      This page is provided for informational purposes only. It does not constitute investment advice, legal advice, regulatory advice, financial advice, a recommendation to enter into any transaction or a guarantee regarding the availability, performance or outcome of any service, workflow or future implementation that may be described on the website.
+    </p>
+
+    <h2>1. General risk acknowledgement</h2>
+    <p>
+      Activities involving digital assets, liquidity routing, crypto settlement, fiat conversion, banking coordination and third-party infrastructure may involve significant risk. Such risks can arise from market conditions, counterparty arrangements, legal and regulatory changes, technical failures, operational mistakes, security incidents or other external events beyond the direct control of any single participant.
+    </p>
+
+    <p>
+      Before relying on any content, workflow concept or service description presented on the KryptoX website, you should carefully assess whether such use is appropriate for your institution, your jurisdiction and your operational or regulatory obligations.
+    </p>
+
+    <h2>2. No guarantee of service availability or suitability</h2>
+    <p>
+      Descriptions of platform structure, integrations, providers, workflows, controls, banking relationships, compliance logic or future features shown on the KryptoX website are illustrative in nature unless expressly stated otherwise. Availability may vary by jurisdiction, partner readiness, regulatory framework, integration scope, institution type and implementation requirements.
+    </p>
+
+    <p>
+      KryptoX does not represent that any service, feature, provider relationship, liquidity connection or operational model described on the website will be available, lawful or suitable in every circumstance.
+    </p>
+
+    <h2>3. Market and liquidity risk</h2>
+    <p>
+      Digital asset markets may be volatile, fragmented and subject to rapid price dislocation, reduced liquidity, venue outages or changing execution conditions. Any infrastructure or workflow involving crypto-to-fiat settlement may be affected by price volatility, temporary liquidity shortages, slippage, delayed execution or disrupted conversion paths.
+    </p>
+
+    <p>
+      Even where infrastructure is designed to improve coordination, no system can remove all market-related risk or guarantee optimal execution outcomes in all market environments.
+    </p>
+
+    <h2>4. Counterparty and third-party dependency risk</h2>
+    <p>
+      Crypto-to-fiat operations may depend on external providers such as custodians, liquidity venues, compliance vendors, banking partners, infrastructure vendors, identity verification services, communication tools or data providers. Each of these counterparties may introduce independent legal, operational, financial or technical risk.
+    </p>
+
+    <p>
+      Failures, delays, restrictions, policy changes or outages affecting third-party providers may impact the reliability, timing or availability of any workflow described on the KryptoX website.
+    </p>
+
+    <div class="legal_template__divider"></div>
+
+    <h2>5. Regulatory and jurisdictional risk</h2>
+    <p>
+      Laws and regulations relating to digital assets, payments, settlement infrastructure, financial services, sanctions, AML, KYC, tax reporting and cross-border value transfer vary by jurisdiction and may change over time. A model that appears operationally feasible in one country may be restricted, prohibited or subject to additional licensing or compliance obligations in another.
+    </p>
+
+    <p>
+      It is your responsibility to assess the legal and regulatory framework applicable to your own activities before relying on any content, workflow or service description referenced on this website.
+    </p>
+
+    <h2>6. Technology and cybersecurity risk</h2>
+    <p>
+      Websites, digital platforms, APIs, infrastructure providers, smart systems, communication environments and internet-based tools are exposed to cybersecurity and operational risks. These may include unauthorized access, service interruption, code defects, data loss, malicious attacks, misconfiguration, degraded performance or dependency failures.
+    </p>
+
+    <p>
+      KryptoX may describe security, governance or compliance-oriented practices throughout the website, but no system should be considered immune from technical risk.
+    </p>
+
+    <h2>7. Operational and human error risk</h2>
+    <p>
+      Digital asset and settlement environments may be affected by mistakes in configuration, approvals, routing logic, access rights, institutional workflow design, data entry, implementation planning or human judgment. Such errors may lead to delays, rejected transactions, reporting inconsistencies, policy breaches or other adverse outcomes.
+    </p>
+
+    <p>
+      Institutional controls may reduce risk, but they do not eliminate the possibility of operational incidents.
+    </p>
+
+    <h2>8. Informational nature of disclosures</h2>
+    <p>
+      Any risk factors described on this page are not intended to be exhaustive. There may be additional risks, including risks specific to a given institution, region, market structure, integration model or regulatory framework, that are not explicitly described here.
+    </p>
+
+    <p>
+      You should obtain independent legal, financial, compliance, tax and technical advice appropriate to your situation before making business decisions based on the content of the KryptoX website.
+    </p>
+
+    <h2>9. Changes to this Risk Disclosure</h2>
+    <p>
+      KryptoX may revise or expand this Risk Disclosure from time to time to reflect changes in the project, the website, the legal landscape, the digital asset ecosystem or the way risks are communicated on the site. The effective date at the top of this page may be updated when changes are published.
+    </p>
+
+    <h2>10. Contact</h2>
+    <p>
+      If you have questions about this Risk Disclosure, the nature of the informational content presented on the website or the legal disclaimers connected to the KryptoX project, you may contact the project team through the channels indicated on the website or write to <a href="#">risk@KryptoX.example</a> as placeholder contact information for design purposes.
+    </p>
+
+    <p>
+      By reviewing the KryptoX website, you acknowledge that digital asset-related infrastructure and settlement activities may involve material risks and that you remain responsible for your own evaluation and decision-making.
+    </p>
+  </LegalPage>
+</BaseLayout>

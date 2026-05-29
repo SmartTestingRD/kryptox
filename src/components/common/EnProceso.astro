@@ -1,0 +1,143 @@
+---
+/**
+ * EnProceso.astro
+ * ---------------
+ * Página fallback "en proceso / under construction".
+ * Portado verbatim de kryptox/part/page/en_proceso.php — la única página en
+ * español del proyecto. El PHP la sirve desde el router cuando la URL no está
+ * en el whitelist. Aquí la usan 404.astro y request-demo.astro.
+ *
+ * Nota de fidelidad: el PHP sobreescribe `.kx-header { background: rgba(0,0,0,0.92) }`
+ * para que el header (transparente por defecto) sea visible sobre el fondo blanco
+ * de esta página. Como los estilos de Astro son scoped y no alcanzarían al
+ * componente Header, el override se hace con :global(#kxHeader) (por ID, para
+ * vencer la especificidad de la regla scopeada del Header sin usar !important).
+ */
+import { Image } from 'astro:assets';
+import enProcesoImg from '../../assets/en_proceso.png';
+---
+
+<style>
+  /* KryptoX — Page: En proceso / Under construction */
+  /* Header override: Astro scopea la regla del componente Header como
+     `.kx-header[data-astro-cid-…]` (especificidad 0,2,0), así que un
+     `:global(.kx-header)` (0,1,0) NO gana sin `!important` y el header quedaría
+     transparente (logo blanco sobre el fondo blanco de esta página). Se apunta
+     por ID (`#kxHeader`, 1,0,0) para ganar sin `!important` ni depender del orden. */
+  :global(#kxHeader){
+    background: rgba(0, 0, 0, 0.92);
+  }
+  .kx-wip{
+    min-height: 100vh;
+    background: #ffffff;
+    color: #0b0f12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 28px;
+  }
+
+  .kx-wip__inner{
+    max-width: 980px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .kx-wip__img{
+    width: min(520px, 92vw);
+    height: auto;
+    display: block;
+    margin: 0 auto 26px;
+  }
+
+  .kx-wip__title{
+    margin: 0 0 18px 0;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-weight: 900;
+    color: #0a0f12;
+  }
+
+  .kx-wip__desc{
+    margin: 0 auto;
+    max-width: 760px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(10,15,18,0.70);
+  }
+
+  .kx-wip__desc strong{
+    color: rgba(10,15,18,0.90);
+    font-weight: 800;
+  }
+
+  .kx-wip__mail{
+    color: rgba(10,15,18,0.90);
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(10,15,18,0.25);
+    transition: color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+  }
+
+  .kx-wip__mail:hover{
+    color: var(--mainColor);
+    border-color: color-mix(in srgb, var(--mainColor) 55%, rgba(10,15,18,0.25));
+  }
+
+  /* subtle fade-in */
+  .kx-wip__reveal{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+  .kx-wip.is-inview .kx-wip__reveal{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .kx-wip__reveal{
+      transition: none;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<section class="kx-wip" id="kxWip">
+  <div class="kx-wip__inner kx-wip__reveal">
+    <Image class="kx-wip__img" src={enProcesoImg} alt="Página en proceso" />
+
+    <h1 class="kx-wip__title">Esta página está en proceso</h1>
+
+    <p class="kx-wip__desc">
+      Estamos trabajando en esta sección como parte del avance del proyecto.
+Si accediste a este enlace durante una revisión y aún no está disponible, es completamente normal en esta etapa.
+
+Vuelve a intentarlo más adelante o consúltanos cualquier duda.
+      <a class="kx-wip__mail" href="mailto:info@asmith.agency">info@asmith.agency</a>
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  (function(){
+    // Defensive: ensure main color exists
+    try{
+      var mc = getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+      if (!mc || !String(mc).trim()){
+        document.documentElement.style.setProperty('--mainColor', '#00BFC2');
+      }
+    } catch(e){}
+
+    var el = document.getElementById('kxWip');
+    if (!el){
+      console.warn('[KryptoX] #kxWip not found.');
+      return;
+    }
+
+    // instant reveal (page is mostly above the fold)
+    el.classList.add('is-inview');
+  })();
+</script>

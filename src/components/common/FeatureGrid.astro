@@ -1,0 +1,20 @@
+---
+/**
+ * FeatureGrid.astro
+ * -----------------
+ * Layout wrapper for <Feature> cards. Used inside MDX content pages.
+ */
+---
+
+<div class="kx-fg">
+  <slot />
+</div>
+
+<style>
+  .kx-fg {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--kx-space-4);
+    margin: var(--kx-space-10) 0;
+  }
+</style>

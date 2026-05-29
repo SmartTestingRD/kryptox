@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Whatis from '../components/home/Whatis.astro';
+import ControlLayer from '../components/home/ControlLayer.astro';
+import Realtime from '../components/home/Realtime.astro';
+import Steps from '../components/home/Steps.astro';
+import Liquidity from '../components/home/Liquidity.astro';
+import Providers from '../components/home/Providers.astro';
+import SecurityTeaser from '../components/home/SecurityTeaser.astro';
+---
+
+<BaseLayout
+  title="KryptoX — Crypto-to-Fiat Orchestration"
+  description="The definitive bridge between digital assets and financial infrastructure. Total control, absolute compliance, and zero counterparty risk."
+  transparentHeader
+>
+  <!-- Order matches kryptox/part/page/home.php -->
+  <Hero />
+  <Whatis />
+  <ControlLayer />
+  <Realtime />
+  <Steps />
+  <Liquidity />
+  <Providers />
+  <SecurityTeaser />
+</BaseLayout>
